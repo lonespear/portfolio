@@ -50,6 +50,55 @@ An advanced image processing application that automatically analyzes Scanning El
 :::: {.g-col-12 .g-col-md-6}
 ::: {.card .mb-3}
 ::: {.card-body}
+### ✈️ WUC Predictor {.card-title}
+
+**KC-135 Maintenance Code Classification**
+
+An AI-powered application that predicts Work User Codes (WUCs) for KC-135 aircraft maintenance discrepancies using NLP. Automatically classifies maintenance issues into proper system codes based on TM 1C-135-06 technical manual.
+
+**Key Features:**
+
+- Fine-tuned transformer model for WUC classification
+- Single discrepancy and batch CSV processing
+- Confidence scores with detailed system information
+- 34 aircraft system categories (airframe, electrical, hydraulic, etc.)
+- Deployed on Hugging Face (jonday/wuc-model)
+
+**Technologies:** Python, Streamlit, PyTorch, Transformers
+
+[GitHub](https://github.com/lonespear/wuc_predict){.btn .btn-outline-secondary target="_blank"}
+:::
+:::
+::::
+
+:::: {.g-col-12 .g-col-md-6}
+::: {.card .mb-3}
+::: {.card-body}
+### 📈 HedgeAbove {.card-title}
+
+**AI-Powered Finance Analytics Platform**
+
+A comprehensive investment platform combining machine learning forecasting with quantitative finance techniques. Provides institutional-grade analytics for portfolio optimization, risk management, and AI-driven predictions.
+
+**Key Features:**
+
+- Stock screener with 2,535+ stocks and 50+ metrics
+- Real-time portfolio tracking with P&L analytics
+- Advanced risk analytics (VaR, CVaR, Sharpe ratio)
+- AI price predictions (LSTM, Prophet, ARIMA)
+- Portfolio optimization (Efficient Frontier, Max Sharpe)
+- Options pricing with full Greeks analysis
+
+**Technologies:** Python, Streamlit, TensorFlow, Plotly, yFinance
+
+[GitHub](https://github.com/lonespear/HedgeAbove){.btn .btn-outline-secondary target="_blank"}
+:::
+:::
+::::
+
+:::: {.g-col-12 .g-col-md-6}
+::: {.card .mb-3}
+::: {.card-body}
 ### 📚 MedScrape {.card-title}
 
 **AI-Powered Literature Review Platform**
