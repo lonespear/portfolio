@@ -27,6 +27,10 @@ jobs:
           cache: true
           packages: |
             tidyverse
+            tidyr
+            patchwork
+            kableExtra
+            latex2exp
             titanic
             knitr
 
