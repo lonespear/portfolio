@@ -101,6 +101,31 @@ A comprehensive investment platform combining machine learning forecasting with 
 :::: {.g-col-12 .g-col-md-6}
 ::: {.card .mb-3}
 ::: {.card-body}
+### 🇺🇦 Russo-Ukrainian War Dashboard {.card-title}
+
+**Interactive Conflict Visualization**
+
+A comprehensive Streamlit dashboard visualizing the Russo-Ukrainian conflict from 2018-2024, featuring interactive maps of demographics, fatality events, and international aid tracking with Plotly visualizations.
+
+**Key Features:**
+
+- Background demographics maps (religion, language, income)
+- Conflict timeline with 6+ years of fatality data
+- Interactive date slider with event markers
+- International aid tracking across 20+ countries
+- Choropleth maps and bar charts with log scale
+- Dark theme with Mapbox integration
+
+**Technologies:** Python, Streamlit, Plotly, GeoPandas, Mapbox
+
+[GitHub](https://github.com/lonespear/russo-ukr){.btn .btn-outline-secondary target="_blank"}
+:::
+:::
+::::
+
+:::: {.g-col-12 .g-col-md-6}
+::: {.card .mb-3}
+::: {.card-body}
 ### 📚 MedScrape {.card-title}
 
 **AI-Powered Literature Review Platform**
