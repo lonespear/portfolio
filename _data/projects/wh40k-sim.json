@@ -1,0 +1,41 @@
+{
+  "slug": "wh40k-sim",
+  "display_title": "Rules-Engine V&V and Monte Carlo Force-Pairing Analysis for a Tabletop Wargame",
+  "repo_url": "",
+  "local_path": "C:\\Users\\jonathan.day\\Documents\\wh40k-sim",
+  "site_section": "simulation",
+  "one_liner": "A seeded, headless simulator of a full tabletop wargame ruleset, verified by conformance tests and replay determinism, used to run controlled Monte Carlo experiments on which force compositions win.",
+  "problem": "Balance claims about force compositions (e.g. melee vs shooting armies) are usually anecdotal; a simulator can only answer them if it demonstrably implements the rules and its experiments control for list selection, seat order and opponent quality.",
+  "approach": "Rule-numbered conformance ledger and 42 seeded test suites; reachability audits (implemented rules no driver could call); record/replay determinism as a conformance oracle; roster build audit; round-robin list tournaments with seats swapped, Bradley-Terry strength with bootstrap CIs; head-to-head policy duels with A/A and inverted positive controls and Wilson intervals; power calculations before tuning.",
+  "decision_relevance": "Mirrors combat-model V&V and force-on-force analysis: shows how a plausible headline (melee wins 73%) was a sample-selection artifact, how silent input substitutions (wrong terrain, wrong mission) biased every batch result, and how controls bound what an AI-driven simulation can and cannot conclude.",
+  "headline_results": [
+    {"claim": "The earlier 'melee wins 73%' figure was an artifact of sampling one army list per faction; within-archetype pairings were as lopsided as cross-archetype ones.", "evidence": "docs/GLIDEPATH.md §3F/§3G; tools/rank_lists.js", "status": "traceable"},
+    {"claim": "Replay desync reduced to 0 of 1,535 recorded actions across six recordings, including two human games, after finding the headless tools were loading the wrong terrain and mission.", "evidence": "docs/GLIDEPATH.md addendum 2026-09-10; tests/recrun.js, tests/ctxrun.js", "status": "traceable"},
+    {"claim": "Roster importer audit: 0 of 9,190 models missing across 179 tournament lists (previously 64% missing in a sample, unevenly by faction).", "evidence": "tools/audit_rosters.js; GLIDEPATH §3D", "status": "traceable"},
+    {"claim": "Bradley-Terry list ordering stable across board settings (same top and bottom lists); list identity dominates archetype.", "evidence": "GLIDEPATH addendum 2026-09-10", "status": "traceable"},
+    {"claim": "Of three AI heuristics, only stratagem use moved outcomes: 54.6% [50.6, 58.6] over 600 seat-swapped games vs an A/A control of 50.7%; an inverted-objective control lost at 44.6% [40.6, 48.6], bounding headroom for objective valuation.", "evidence": "GLIDEPATH addenda 2026-09-11; tools/duel.js (Wilson intervals)", "status": "traceable"},
+    {"claim": "Five implemented-and-tested rules were unreachable by any driver (reserves, transports, objective actions, surge moves, infiltrate) and were wired in.", "evidence": "README 'Rules that existed but nothing could reach'; GLIDEPATH §3E", "status": "traceable"},
+    {"claim": "Test suites pass headless and seeded : 39 of 42 run during audit, 0 failed in 125 s (3 long soak suites skipped).", "evidence": "node tools/run_tests.js --skip simtest,cx_soak,airun (2026-09-17)", "status": "verified"}
+  ],
+  "limitations": [
+    "AI opponent is a greedy one-ply scorer; outcomes partly measure its blind spots.",
+    "Units are single oriented footprints, not player-placed models; no true line of sight.",
+    "List ranking is not validated against real tournament outcomes (corpus is undefeated or X-1 lists).",
+    "Archetype effect estimate is sensitive to terrain and mission scoring (55% to 64%) and its CI treats games, not lists, as independent.",
+    "Terrain transcriptions describe a superseded August 2026 card revision that cannot be re-obtained.",
+    "Base sizes, deployment maps and 8 layouts are invented; all rules/points data is third-party and not redistributed."
+  ],
+  "tech": ["JavaScript (Node >=18, no dependencies)", "Python 3 (serve, data build, RL bridge with numpy)", "Bradley-Terry / bootstrap", "Wilson intervals", "Seeded PRNG record/replay"],
+  "links": {"github": "", "demo": "", "paper": ""},
+  "grades": {"claims": "D", "evaluation": "B", "reproducibility": "C", "limitations": "A-", "readme": "D+", "fa49_relevance": "A-"},
+  "blockers_before_featuring": [
+    "README headline 'There is no melee-vs-shooting effect' is contradicted by the repo's own later addenda (64.4% [58.3, 70.5] on published boards with real primaries; 61.5% vs the stratagem AI) - rewrite.",
+    "README '~138x spread between lists' is contradicted (re-runs give ~92x and ~30x; GLIDEPATH says read the order, not the ratio) - remove the ratio.",
+    "Archetype win-rate CI (tools/rank_lists.js L258-261) is a Wald interval on games while treatment is assigned per list (~7 lists/arm) - recompute with list-cluster bootstrap or mixed model before claiming any direction.",
+    "No git remote exists; no LICENSE file (package.json points to a license in README that does not exist).",
+    "README Legal note ('no official rules text, points values or datasheets') no longer describes the project; GW-derived terrain transcriptions are tracked in layouts/ and real tournament-player names appear in docs/GLIDEPATH.md - decide IP/privacy posture before publishing.",
+    "Stale README facts: '41 suites' (L816, L1136) vs 42; 'no human games have been recorded yet' (L94) vs two recorded.",
+    "Unverified: charge 'no room' failures 31% to 6% has no cited run; first-turn advantage stated as 54-55% and as 'about nine points' in different sections.",
+    "README is a 1,237-line manual/notebook with no problem statement or results table; move the user guide to docs/."
+  ]
+}

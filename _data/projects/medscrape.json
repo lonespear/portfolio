@@ -1,0 +1,61 @@
+{
+  "slug": "medscrape",
+  "display_title": "MedScrape: Finding Where Review Literature Lags Primary Research",
+  "repo_url": "https://github.com/lonespear/medrev",
+  "local_path": "C:\\Users\\jonathan.day\\medrev",
+  "site_section": "research",
+  "one_liner": "A Streamlit tool that scrapes PubMed, clusters abstracts, and flags research-topic clusters that have little vocabulary overlap with existing review articles, as a screening aid for choosing review topics.",
+  "problem": "Research teams deciding where a new systematic review is needed can't manually read thousands of abstracts to see which areas of primary research the existing reviews haven't covered.",
+  "approach": "PubMed Entrez query split by publication type (review vs non-review) -> TF-IDF (1-2 grams) -> TruncatedSVD(100) -> k-means (also DBSCAN, agglomerative, LDA; Doc2Vec/FastText options) -> cluster-level TF-IDF cosine similarity between research and review clusters -> clusters with max similarity < 0.3 flagged as candidate gaps. Batch vignettes for 5 precision-nutrition searches.",
+  "decision_relevance": "Supports a portfolio or prioritization decision (which topics merit a new evidence synthesis), analogous to horizon scanning of a research portfolio. Currently only valid as exploratory triage for human review.",
+  "headline_results": [
+    {
+      "claim": "Search 4 (Precision Nutrition & Microbiome, n=464 papers): 3 of 8 research clusters flagged as under-reviewed at cosine < 0.30",
+      "evidence": "medrev/vignettes/vignette_search4_Precision_Nutrition_Microbiome.pdf; reproduced from cached CSVs by portfolio_audit/medscrape_gap_check.py",
+      "status": "verified"
+    },
+    {
+      "claim": "Five demo corpora built from PubMed (9,212 / 490 / 151 / 464 / 5,977 papers), each with review and non-review splits",
+      "evidence": "medrev/vignettes/data/*.csv row counts",
+      "status": "verified"
+    },
+    {
+      "claim": "Methodology paper accepted with revisions",
+      "evidence": "Owner-reported; youtube_script.md. No venue or DOI in repo",
+      "status": "traceable"
+    }
+  ],
+  "limitations": [
+    "Clusters are weak and unstable: cosine silhouette 0.02-0.09 for k=2..12; median ARI across k-means seeds 0.20-0.33 on corpora under 500 papers.",
+    "The gap score is confounded by cluster size (Spearman rho 0.52-0.93 between research-cluster size and max similarity) and by corpus size (large corpora give 0 gaps at 0.3, small ones give 3-5).",
+    "Fails a null test: splitting research papers against themselves still flags 2 of 8 'gaps' on two searches.",
+    "The 0.3 threshold isn't justified or calibrated, and there's no ground-truth validation.",
+    "Similarity is vocabulary overlap of concatenated abstracts, not semantic coverage; some flagged clusters are reporting boilerplate ('group, significantly, 05').",
+    "Results depend on the PubMed query date and on publication-type tagging; review counts differ between the query filter and the parsed flag (203 vs 217)."
+  ],
+  "tech": ["Python", "Streamlit", "Biopython (Entrez)", "scikit-learn", "gensim", "umap-learn", "Plotly"],
+  "links": {
+    "github": "https://github.com/lonespear/medrev",
+    "demo": "https://medreview.streamlit.app/",
+    "paper": ""
+  },
+  "grades": {
+    "claims": "F",
+    "evaluation": "F",
+    "reproducibility": "C-",
+    "limitations": "F",
+    "readme": "D",
+    "fa49_relevance": "C"
+  },
+  "blockers_before_featuring": [
+    "Remove the site page's unsupported silhouette table (0.38-0.45; the recomputed value is under 0.09), the timing/memory table, and the 'discovered' gap use cases ('nutrigenomics of microbiome interactions', 'epigenetic exercise responses', 'combination therapy reviews').",
+    "Rotate and remove the hardcoded NCBI_API_KEY in app_enhanced.py:19 and generate_vignettes.py:50 (it's in git history of a public repo).",
+    "Replace the site code snippets that don't match the repo (Ward/euclidean, find_gaps, centroid-based gaps, 3-D plots).",
+    "Add validity checks (k selection, seed stability, permutation/null threshold, size-normalized similarity) or reframe gap detection as exploratory triage, with limitations stated.",
+    "Update README: remove BERT claim, fix clone URL (medscrape -> medrev), add LICENSE file, cite the accepted paper (venue/DOI), add project lineage.",
+    "Regenerate stale search-2 vignette (pre HTML-strip fix; shows 4 gaps vs 5 now).",
+    "Archive lonespear/medscrape with a redirect README; delete stray origin/main branch (pubscrabe history) in medrev; stop using stale Documents/medrev clone.",
+    "Do not claim 'replication' from pubscrabe/review_replicate.ipynb (no recall vs. the target review's included studies; Ovid adj2 syntax invalid in PubMed).",
+    "Confirm funding attribution (NPH, All of Us, NIH Common Fund) with PI before publishing."
+  ]
+}

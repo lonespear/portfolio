@@ -1,0 +1,55 @@
+{
+  "slug": "emd",
+  "display_title": "EMD Manning: Optimal Soldier-to-Billet Sourcing (Synthetic Data)",
+  "repo_url": "https://github.com/lonespear/emd",
+  "local_path": "C:\\Users\\jonathan.day\\Documents\\emd",
+  "site_section": "simulation",
+  "one_liner": "A Streamlit decision-support prototype that sources soldiers to exercise billets by solving a linear assignment (unit-mass Earth Mover's Distance) problem that trades TDY cost against qualification, readiness, and cohesion penalties, demonstrated on synthetic data.",
+  "problem": "Brigade staffs sourcing billets for exercises and deployments must balance qualifications, readiness gates, unit cohesion, and travel cost across many soldiers and installations, usually by hand.",
+  "approach": "Synthetic soldier, billet, and MTOE generators; a pairwise cost matrix combining TDY dollars (haversine distance across 56 installations with a tiered cost model), MOS/rank/skill/clearance/airborne/language/availability/dwell penalties, priority weights, and readiness, cohesion, and geographic layers; solved exactly with scipy linear_sum_assignment (Hungarian); a heuristic agent tunes penalty weights toward a target fill; a Pareto explorer maps cost-cohesion-fill trade-offs.",
+  "decision_relevance": "Supports a force-sourcing decision (who fills which billet for an exercise such as Valiant Shield) and shows how policy weights shift the trade-off between travel cost and readiness. This is a core ORSA manning and assignment problem.",
+  "headline_results": [
+    {
+      "claim": "Solves soldier-to-billet assignment exactly with the Hungarian algorithm (scipy linear_sum_assignment) over a multi-factor cost matrix",
+      "evidence": "emd_agent.py:1193 (assign), pair_cost at emd_agent.py:366-427",
+      "status": "verified"
+    },
+    {
+      "claim": "Geographic cost model covering 56 installations across 6 combatant command AORs",
+      "evidence": "geolocation.py location database",
+      "status": "traceable"
+    }
+  ],
+  "limitations": [
+    "All data is synthetic; the cost and TDY pricing model is notional.",
+    "Qualifications and readiness are soft penalties, not hard constraints, so the optimizer can assign unqualified soldiers: 39/75 Valiant Shield assignments violate at least one requirement (15 hard qualification violations, 29 late availability).",
+    "'Fill rate' counts any assigned billet as filled, so it is 100% whenever soldiers outnumber billets.",
+    "The objective mixes dollars and penalty points; penalty weights are analyst-chosen exchange rates with no reported sensitivity analysis.",
+    "Single-period, deterministic assignment; no baseline comparison."
+  ],
+  "tech": ["Python", "SciPy (linear_sum_assignment)", "pandas", "NumPy", "Streamlit", "Plotly", "Folium"],
+  "links": {
+    "github": "https://github.com/lonespear/emd",
+    "demo": "",
+    "paper": ""
+  },
+  "grades": {
+    "claims": "F",
+    "evaluation": "D-",
+    "reproducibility": "C-",
+    "limitations": "F",
+    "readme": "D",
+    "fa49_relevance": "B"
+  },
+  "blockers_before_featuring": [
+    "Replace or qualify the '100% fill rate' claim: add a qualified-fill metric (zero hard violations) and violation counts; the committed Valiant Shield run has 52% requirement-violating assignments and the MTOE example has 99%.",
+    "Make MOS, clearance, rank band, and deployability hard constraints (infeasible = excluded), or remove 'automatically excludes soldiers who don't meet requirements' from the README.",
+    "Remove the false '20/20 tests passing / 100% test coverage' badge and claims (the referenced test files don't exist; run_all_tests.py gives 0/5; validate_system.py gives 17/26), or fix the tests and add CI.",
+    "Add a prominent synthetic-data and not-an-official-Army-tool disclaimer at the top of the README; label cost figures notional.",
+    "Remove or regenerate the illustrative example tables ($245,750; Camp Zama vs Fort Bragg 53%; fill tables whose base rows sum to 45/75 and show 11B at 83% under a 100% total); fix the inverted priority coding (code: 3=high; README: 1=Critical).",
+    "Add a baseline (greedy/manual heuristic) and multi-seed results table; add penalty-weight sensitivity.",
+    "Explain 'EMD' as unit-mass Earth Mover's Distance = linear assignment.",
+    "Repo hygiene: untrack __pycache__ (it includes .pyc for deleted modules), commit or discard dirty working tree, pin requirements, add a LICENSE file to match the MIT badge, delete or benchmark the unverified performance numbers.",
+    "Shorten README (2,592 lines) to a 30-second summary plus formulation, results, limitations, and quick start; move reference material to docs/."
+  ]
+}

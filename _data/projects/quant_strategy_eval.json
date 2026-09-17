@@ -1,0 +1,73 @@
+{
+  "slug": "quant_strategy_eval",
+  "display_title": "Do Trading Signals Beat Buy-and-Hold? A Backtest and a Live Alerting Pipeline",
+  "repo_url": "https://github.com/lonespear/roth-backtest",
+  "local_path": "C:\\Users\\jonathan.day\\Documents\\roth-backtest",
+  "site_section": "research",
+  "one_liner": "An eight-strategy, 19-year backtest that tested whether the technical signals from a self-built Raspberry Pi alerting pipeline were worth trading. They were not, and a published trend filter cut drawdown by more than half at a cost of about 1 point of annual return.",
+  "problem": "A long-horizon, tax-sheltered account must choose between passive buy-and-hold and tactical rules (trend filters, momentum, oscillator signals). Popular signals are widely promoted, but whether they improve risk-adjusted outcomes after costs is an empirical question.",
+  "approach": "A vectorized daily engine applies each strategy's target weights to adjusted ETF prices (SPY, EFA, IEF, GSG, VNQ, AGG, with BIL as cash) from 2007-05-30 to 2026-05-08. All strategies share the same dates, cost model (1 bp per side) and cash proxy. Results are CAGR, volatility, Sharpe, Sortino, max drawdown, Calmar and turnover against buy-and-hold SPY. The signals come from HedgeAbove, a cron-driven rule engine on a Raspberry Pi with SQLite dedup, Telegram delivery, point-in-time SEC EDGAR fundamentals and walk-forward threshold selection.",
+  "decision_relevance": "Frames an allocation choice as decision analysis under uncertainty: state the criterion (drawdown and risk-adjusted return, not raw CAGR), test the alternatives on equal terms, and accept a negative result. The self-built signals were kept as monitoring telemetry, not used as a strategy.",
+  "headline_results": [
+    {
+      "claim": "No tested strategy beat buy-and-hold SPY on CAGR (10.68%) over 2007-05-30 to 2026-05-08 at 1 bp costs",
+      "evidence": "roth-backtest tests/smoke.py logic re-run by the auditor on data/prices.parquet (yfinance vintage 2026-05-08). All 8x7 README table cells match.",
+      "status": "verified"
+    },
+    {
+      "claim": "Faber 200-day SMA filter cut maximum drawdown from -55.2% to -24.6% while keeping 90% of buy-and-hold CAGR (9.59% vs 10.68%)",
+      "evidence": "Auditor re-run on cached data; arithmetic 9.59/10.68 = 0.898, 24.59/55.19 = 0.446",
+      "status": "verified"
+    },
+    {
+      "claim": "Faber Sharpe 0.65 vs buy-and-hold 0.51, but the difference is not statistically significant (block-bootstrap 95% CI [-0.21, +0.49])",
+      "evidence": "Point estimates re-run by the auditor. CI from a stationary block bootstrap (21-day blocks, 2,000 reps) the auditor ran. Must be shown with the CI, never without it.",
+      "status": "verified"
+    },
+    {
+      "claim": "Single-name-style oscillator signals underperformed: RSI mean reversion on SPY Sharpe 0.11, MACD cross Sharpe 0.43 at 42x annual turnover",
+      "evidence": "Auditor re-run on cached data",
+      "status": "verified"
+    },
+    {
+      "claim": "Alerting pipeline uses point-in-time SEC EDGAR fundamentals (facts filtered to filing_date <= as-of date, amendments deduped to earliest filing)",
+      "evidence": "HedgeAbove hedgeabove/data/edgar.py _filter_as_of",
+      "status": "traceable"
+    }
+  ],
+  "limitations": [
+    "A single 19-year sample dominated by one major bear market (2008-09) and a short one (2020); no 1970s-style inflation regime.",
+    "Trades fill at the same close that generates the signal. With next-day execution, Faber's Sharpe falls from 0.65 to 0.59 and its CAGR from 9.59% to 8.80%.",
+    "Trend and momentum strategies sit in cash during their 200-252 day warm-up (May 2007 to mid-2008), which flatters them. Over a common post-warm-up window the Sharpe edge shrinks from +0.14 to +0.09.",
+    "Eight strategies were compared without a multiple-testing adjustment.",
+    "Static weights are effectively rebalanced daily at zero cost. Only 1 bp costs are tested. No slippage model.",
+    "yfinance adjusted prices are revised after the fact, and the data vintage is not committed.",
+    "Educational research only, not investment advice."
+  ],
+  "tech": ["Python", "pandas", "NumPy", "SciPy", "yfinance", "Streamlit", "Plotly", "SQLite", "SEC EDGAR XBRL (edgartools)", "FRED", "Telegram Bot API", "Raspberry Pi cron"],
+  "links": {
+    "github": "https://github.com/lonespear/roth-backtest",
+    "demo": "",
+    "paper": ""
+  },
+  "grades": {
+    "claims": "C",
+    "evaluation": "C-",
+    "reproducibility": "D+",
+    "limitations": "C",
+    "readme": "D",
+    "fa49_relevance": "B"
+  },
+  "blockers_before_featuring": [
+    "roth-backtest and tick are private repos. Make roth-backtest public (or move the analysis into public HedgeAbove) before linking. Archive tick and cite it as provenance, not as a separate entry.",
+    "Add a disclaimer (not investment advice; past performance; views not those of the U.S. Army or DoD). Remove the personalized 'Recommendation for the Roth IRA' allocation (80/20), the first-person user quote, and HedgeAbove's Pro/Premium subscription and monetization sections. Check JER implications of advertising paid tiers.",
+    "Fix contradicted roth-backtest claims: 'costs eat the edge' for MACD (costs are 0.45 pp of a 4.2 pp gap at 1 bp); 'apples-to-apples' (cash during warm-up); EEM named as a GTAA sleeve it does not hold.",
+    "Report uncertainty: bootstrap CI on Sharpe difference vs buy-and-hold for every strategy; note 8 comparisons (Deflated Sharpe or Reality Check); add next-day-execution and 0/5/10 bp cost-sensitivity columns; add a common post-warm-up window.",
+    "HedgeAbove home-page and SESSION-doc numbers are unverified and methodologically unsound: 84.9% RSI hit rate in VIX>30 (overlapping, clustered level-rule fires, no base rate); Sharpe 2.13 / -11.0% DD basket (per-trade Sharpe times sqrt(trades/yr) with overlapping positions, tickers chosen after the fact, zero costs); walk-forward 0.96 vs ~1.5 (possibly mixed units). Remove them or restate them as exploratory, with episode counts, base rates and CIs.",
+    "HedgeAbove README is stale and contradicted by code: claims LSTM, Prophet and Ensemble models (not present; predictions page is ARIMA + GARCH), '2,535+ stocks' (2,500 unique, many duplicates, 'sp500' list includes non-members), single-file app.py (now a package), 'proprietary' license on a public repo. Rewrite it.",
+    "Bug: hedgeabove/backtest/strategy.py line 171 references undefined 'daily_idx'. simulate_basket raises NameError with the default --benchmark SPY whenever a trade occurs (confirmed with a mocked-data run; broken since commit 265e5b5).",
+    "Reliability defect: scanner.py logs the alert to the dedup table before send_telegram and ignores a failed send, so a failed POST silently suppresses that alert for the day (same pattern in tick).",
+    "Reproducibility: pin dependencies (lock file); commit a results CSV/JSON with data vintage and git SHA; add an offline engine unit test on synthetic prices. HedgeAbove has zero tests despite its README pytest section.",
+    "Document the same-close execution convention and survivorship bias in HedgeAbove's hardcoded present-day universe used for IC and factor scoring."
+  ]
+}

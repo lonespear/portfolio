@@ -1,0 +1,62 @@
+{
+  "slug": "mh_sir",
+  "display_title": "Biomarkers and Depression Severity in NHANES: Sliced Inverse Regression vs. LASSO vs. XGBoost",
+  "repo_url": "https://github.com/lonespear/mh_sir",
+  "local_path": "C:\\Users\\jonathan.day\\AppData\\Local\\Temp\\claude\\C--Users-jonathan-day-Documents\\f6c56ecc-4f1a-499a-90bd-d286eb7b3603\\scratchpad\\clones\\mh_sir",
+  "site_section": "research",
+  "one_liner": "Scores PHQ-9 depression severity with a Bayesian ordinal IRT model, then compares supervised dimension reduction (SIR), PCA, LASSO, and XGBoost/SHAP for ranking ~150 NHANES clinical, biomarker, and demographic predictors.",
+  "problem": "Which routinely collected clinical and laboratory measures carry signal about depression severity, and do different variable-ranking methods agree?",
+  "approach": "NHANES 2017-Mar 2020 pre-pandemic files merged on SEQN; PHQ-9 items modeled with brms cumulative-logit IRT (equal discrimination) to get latent severity; predictors cleaned (NZV, correlation filter, scaling); SIR with GMM-derived slices, PCA, cross-validated LASSO, and XGBoost+SHAP each rank variables; GAMs refit on top-10 variables per method.",
+  "decision_relevance": "Could inform which low-cost measures are worth including in behavioral-health screening or readiness-risk models (e.g., Army H2F/medical readiness), but no decision framing is stated.",
+  "headline_results": [
+    {
+      "claim": "Analytic pipeline built on 27 NHANES 2017-2020 files (15,560 participants in the raw merge)",
+      "evidence": "mh_sir.R file list lines 24-52; figures/workflow.png; P_DEMO size",
+      "status": "traceable"
+    },
+    {
+      "claim": "Top-10 variable rankings per method (e.g., SIR1 led by serum globulin/total protein/albumin; LASSO and SHAP led by age, arthritis history, COPD history, income)",
+      "evidence": "figures/sum_table.png; values hard-coded at mh_sir.R table_data",
+      "status": "traceable"
+    },
+    {
+      "claim": "Presented as a JSM 2025 poster",
+      "evidence": "README (owner-reported; no poster link)",
+      "status": "traceable"
+    }
+  ],
+  "limitations": [
+    "No NHANES survey weights, strata, or PSUs, so results describe an unweighted sample, not the U.S. population.",
+    "Latent severity scores are computed incorrectly: the row-mean of ranef summary columns (estimate, SE, CI bounds) is used as the posterior mean.",
+    "Variables are selected and evaluated on the same data; the GAM R2 values (0.04-0.12) are in-sample and hard-coded.",
+    "SIR dimension d=10 isn't tested; eigen-decomposition uses a symmetrized Sigma^-1 M; the top loadings reflect the exact collinearity total protein = albumin + globulin.",
+    "Cross-sectional data with no causal interpretation; several top predictors (chronic conditions, activity, income) may be consequences of depression.",
+    "Blanket recoding of 7/9/77/99 values as missing can delete legitimate responses.",
+    "Mean imputation across fasting-subsample labs."
+  ],
+  "tech": ["R", "brms", "cmdstanr", "mclust", "glmnet", "xgboost", "SHAPforxgboost", "mgcv", "caret", "gt"],
+  "links": {
+    "github": "https://github.com/lonespear/mh_sir",
+    "demo": "",
+    "paper": ""
+  },
+  "grades": {
+    "claims": "D",
+    "evaluation": "F",
+    "reproducibility": "F",
+    "limitations": "F",
+    "readme": "C-",
+    "fa49_relevance": "C"
+  },
+  "blockers_before_featuring": [
+    "Fix the theta bug (ranef summary columns averaged) and rerun everything downstream.",
+    "Adopt the NHANES complex survey design (correct subsample weight, SDMVSTRA, SDMVPSU), or drop all 'U.S. population' language.",
+    "Make it reproducible: add a download script for the 14 missing XPT files, replace the 2-byte data/P_TST.xpt, fix paths and case, load gt/ggplot2, define H and gam_model, add renv.lock.",
+    "Replace hard-coded R2 and ranking tables with computed, out-of-sample results (train/test or nested CV) with CIs and a demographics-only baseline.",
+    "Fix the SIR GAM formula (uses SIR3 twice, omits SIR1) and the workflow figure text ('within-slice' should be 'between-slice'; 'first two SIR directions').",
+    "Justify the SIR dimension with a formal test and handle the total protein/albumin/globulin linear dependence before interpreting loadings.",
+    "Correct the README variable dictionary (LBDBPBSI=blood lead, LBDPCT=transferrin saturation, LBDUIBSI=UIBC, LBXMC=MCHC, MCQ160A=arthritis, MCQ160P=COPD, MCQ300A=family heart attack, BPAOCSZ=cuff size, LBXHCOT=hydroxycotinine).",
+    "Rename 'Bayesian Graded Response Model' to what was fit (equal-discrimination cumulative-logit / Rasch-type), or fit a true GRM with item discriminations.",
+    "Add a limitations section, a license, and a link to the poster."
+  ]
+}

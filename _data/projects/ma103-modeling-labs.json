@@ -1,0 +1,63 @@
+{
+  "slug": "ma103-modeling-labs",
+  "display_title": "MA103 Mathematical Modeling Labs",
+  "repo_url": "https://github.com/lonespear/ma103",
+  "local_path": "C:\\Users\\jonathan.day\\AppData\\Local\\Temp\\claude\\C--Users-jonathan-day-Documents\\f6c56ecc-4f1a-499a-90bd-d286eb7b3603\\scratchpad\\clones\\ma103; C:\\Users\\jonathan.day\\AppData\\Local\\Temp\\claude\\C--Users-jonathan-day-Documents\\f6c56ecc-4f1a-499a-90bd-d286eb7b3603\\scratchpad\\clones\\param_find",
+  "site_section": "teaching",
+  "one_liner": "Two MA103 labs: logistic regression predicting Ranger School outcomes (synthetic data) and a gamified Streamlit curve-fitting challenge.",
+  "problem": "First-year cadets need intuition for model families, parameters, fit metrics and classification.",
+  "approach": "sklearn scaled logistic regression with confusion matrix and odds ratios, where students score their own 'SIM' soldiers; seeded exponential/power/sinusoidal data where students tune sliders until NRMSE < 0.1.",
+  "decision_relevance": "Military-relevant classification framing (selection outcomes) and quantitative model-fit judgment.",
+  "headline_results": [
+    {
+      "claim": "Ruck-time odds ratio per minute (-10%)",
+      "evidence": "Correct conversion coef/SD in notebook",
+      "status": "verified"
+    },
+    {
+      "claim": "Gender odds ratio",
+      "evidence": "Computed coef*SD (should be coef/SD) and printed under the ruck-time label",
+      "status": "contradicted"
+    },
+    {
+      "claim": "Every fitting problem is winnable",
+      "evidence": "1,000-seed simulation: the true generating model reaches NRMSE<0.1 on only 64% of power and 78% of trig problems",
+      "status": "contradicted"
+    }
+  ],
+  "limitations": [
+    "Ranger School data is synthetic",
+    "MSE reported as classifier metric; |coef| 'importance' with collinear raw/points pairs",
+    "Notebook needs a_hr/c_hr/d_hr_sims.csv, which are not in the repo; outputs include student-entered names",
+    "param_find help text contradicts its model form (phase shift direction); answer password hardcoded; no README"
+  ],
+  "tech": [
+    "Python",
+    "scikit-learn",
+    "pandas",
+    "Streamlit",
+    "numpy",
+    "matplotlib"
+  ],
+  "links": {
+    "github": "https://github.com/lonespear/ma103",
+    "demo": "",
+    "paper": ""
+  },
+  "grades": {
+    "claims": "C-",
+    "evaluation": "C-",
+    "reproducibility": "D",
+    "limitations": "C",
+    "readme": "D",
+    "fa49_relevance": "B-"
+  },
+  "blockers_before_featuring": [
+    "Fix the gender odds-ratio cell and its label",
+    "Replace MSE with accuracy vs. the 31% base rate (or AUC); caution about collinear coefficients and causal wording",
+    "Clear notebook outputs or add the sims CSVs",
+    "Scale param_find noise so all seeds are winnable; fix help text; include d in the revealed answer",
+    "Add a param_find README (outline in teaching.md)",
+    "Otherwise downgrade to a one-line mention"
+  ]
+}

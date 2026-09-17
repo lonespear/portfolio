@@ -1,0 +1,63 @@
+{
+  "slug": "ma206-course",
+  "display_title": "MA206 Probability & Statistics: Course Guide and Interactive Inference Apps",
+  "repo_url": "https://github.com/lonespear/MA206",
+  "local_path": "C:\\Users\\jonathan.day\\AppData\\Local\\Temp\\claude\\C--Users-jonathan-day-Documents\\f6c56ecc-4f1a-499a-90bd-d286eb7b3603\\scratchpad\\clones\\MA206; C:\\Users\\jonathan.day\\Documents\\ma206x; C:\\Users\\jonathan.day\\Documents\\jonday.github.io\\ma206_course.qmd",
+  "site_section": "teaching",
+  "one_liner": "Full-semester USMA intro stats course: a Quarto course guide, R/Colab lesson notebooks, and a 10-page Streamlit app for hypothesis tests and confidence intervals.",
+  "problem": "Non-major cadets have to learn to reason from data, not just memorize formulas.",
+  "approach": "Six-step statistical investigation method; worked examples on public and synthetic military datasets; interactive apps (CI coverage animation, Wald/Wilson/Agresti-Coull/Clopper-Pearson comparison, z/t/Welch/paired walkthroughs).",
+  "decision_relevance": "Shows the ability to make inference and uncertainty understandable to non-specialist decision makers, a core ORSA briefing skill.",
+  "headline_results": [
+    {
+      "claim": "Interactive CI coverage explorer and four-method proportion CI comparison",
+      "evidence": "hypoth_tests/pages/03, conf_int_multiple_methods.py, utils.py (Wilson/AC/CP formulas checked correct)",
+      "status": "verified"
+    },
+    {
+      "claim": "Course guide covers probability through MLR with interactions, ANOVA and Tukey",
+      "evidence": "ma206_course.qmd (identical copy in ma206x and jonday.github.io)",
+      "status": "verified"
+    },
+    {
+      "claim": "Statistical definitions are correct",
+      "evidence": "p-value defined as Type I error rate (pages/01:134, qmd:811); correlation formula missing sqrt (qmd:287); pdf defined as P(X=x) (qmd:611); left-tail z shown as -2.31, correct value -2.04",
+      "status": "contradicted"
+    }
+  ],
+  "limitations": [
+    "ACFT/ranger_school/plebe datasets are synthetic (labeled in README)",
+    "Third-party CSVs lack source attribution",
+    "Devcontainer points to nonexistent hypoth_tests/z_test.py",
+    "ANOVA and set-notation LaTeX render broken in qmd"
+  ],
+  "tech": [
+    "R",
+    "tidyverse",
+    "Quarto",
+    "Python",
+    "Streamlit",
+    "scipy",
+    "Google Colab"
+  ],
+  "links": {
+    "github": "https://github.com/lonespear/MA206",
+    "demo": "",
+    "paper": ""
+  },
+  "grades": {
+    "claims": "C",
+    "evaluation": "n/a",
+    "reproducibility": "C",
+    "limitations": "B",
+    "readme": "D",
+    "fa49_relevance": "B"
+  },
+  "blockers_before_featuring": [
+    "Fix the p-value definition in pages/01_One_Proportion_Z_Test.py:134 and ma206_course.qmd:811",
+    "Fix the correlation formula (qmd:287) and the pdf definition (qmd:611-614)",
+    "Fix the left-tailed z example (-2.04) and the 'Rejection Region' mislabel on page 01; fix the 'pooled' label on page 07",
+    "Fix the bootstrap '95% CI' computed as min/max in QuantitativeFinance.ipynb",
+    "Write a README with a lesson index, app link and run instructions; fix the devcontainer"
+  ]
+}

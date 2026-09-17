@@ -1,0 +1,49 @@
+---
+title: "fiberL: Automated Fiber Length and Alignment Measurement from SEM Images"
+description: "A Streamlit tool that traces every fiber in an SEM image of a nanofiber gel and reports length and orientation distributions. It is meant to replace slow, subjective hand-tracing."
+categories: ["Research", "Python", "OpenCV", "scikit-image", "NumPy"]
+order: 100
+featured: false
+draft: true
+---
+
+[Code](https://github.com/lonespear/fiberL){.btn .btn-outline-primary .btn-sm}
+
+## The problem
+
+Materials researchers characterize electrospun nanofiber gels by hand-tracing fibers in SEM images. That is slow, analyst-dependent, and covers only a few dozen fibers per sample, so comparisons between fabrication conditions are weakly powered.
+
+## Approach
+
+Perona-Malik anisotropic diffusion, morphological top-hat, fixed threshold combined with Canny edges, and skeletonization. Junctions are found with 17 hit-or-miss kernels. Segments meeting at a junction are paired by most anti-parallel direction and merged with union-find. Arc length, PCA orientation and a tangent-correlation persistence length are then computed per fiber. The interactive app provides crop, scale-bar and parameter controls, plus CSV/PNG/PDF export. Prototyped in the lonespear/aerogel Colab notebooks (2024).
+
+::: {.callout-note appearance="simple"}
+## Why it matters for a decision
+
+Turns a manual measurement into a repeatable instrument, so a lab can test whether a fabrication condition (e.g., high-alignment vs 2:1 alignment gels) changes fiber alignment and length, with known measurement error. This is not yet demonstrated: no validation or between-condition comparison exists.
+:::
+
+## Results
+
+| Result | Evidence |
+|---|---|
+| End-to-end pipeline implemented: anisotropic diffusion, top-hat, threshold with Canny, skeleton, 17 hit-or-miss junction kernels, direction-based junction pairing, union-find merging, per-fiber length/orientation statistics, CSV/PNG/PDF export. | fiberL.py preproc() L523-551, branch() L555-627, edge_connect() L674-734, merge_edges() L736-769, viz_and_sum() L878-1035, export_results_streamlit() L1113-1174 |
+| Interactive Streamlit front end with ROI crop, a scale-bar click tool and 13 parameter sliders. | app.py L43-157 (note: 4 sliders currently have no effect and the calibration is not applied downstream) |
+| Grew out of 2024 prototype notebooks run on real SEM images of PCL/PLCL nanofiber gels. One preprocessing change cut detected branch points on the same image from 12,832 to 5,702, while mean segment length moved only from 136.4 to 127.7 px. | aerogel/fiberL_v4.ipynb and aerogel/fiberL_v5.ipynb saved outputs |
+
+Every result above is traced to a script, log, or artifact in the repository. See [How I Check My Work](/approach.qmd).
+
+## Limitations
+
+- No ground truth: never compared against manual tracing, synthetic fibers of known geometry, or an established tool (DiameterJ, FiberApp, ImageJ Ridge Detection).
+- Physical calibration is collected in the UI but never applied; all outputs are in pixels.
+- Persistence-length estimator uses exp(-s/Lp) instead of the 2D worm-like-chain form exp(-s/2Lp) and a 20-pixel lag window; in simulation it returns about 2x true Lp and saturates near 140 px on skeleton-like chains.
+- 'Lambda' = log(Lp)/L is not dimensionless and changes with the unit choice.
+- Arc length on pixel skeletons carries a +3-5% diagonal-step bias; greedy point ordering adds a heavy upper tail (p90 +44-77% for curvy fibers in simulation).
+- Orientation mean/SD computed linearly on axial (0-180 deg) data; rose diagram is mirrored relative to image coordinates.
+- Results depend on about 9 hand-set thresholds with no sensitivity analysis; fibers cut by the image border are length-censored; 2D projection understates true length.
+- Exercised only on a handful of images from one lab; junction pairing is unvalidated at crossings and bundles.
+
+## Tools
+
+Python, OpenCV, scikit-image, NumPy, SciPy, scikit-learn (PCA), NetworkX, pandas, Matplotlib/Seaborn, Streamlit

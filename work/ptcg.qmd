@@ -1,0 +1,51 @@
+---
+title: "Measurement-System Validation for a Game-Playing AI: Bayesian Opponent Modelling and Sequential Testing (Kaggle PTCG AI Battle Challenge)"
+description: "Two-person Kaggle entry in which the most important findings were three faults in our own test harness. Finding them is what separated real improvements from measurement artifacts."
+categories: ["Simulation & ML Engineering", "Python", "kaggle-environments", "Bayesian inference (multivariate hypergeometric likelihood)", "SPRT (Wald)"]
+order: 100
+featured: false
+draft: true
+---
+
+[Code](https://github.com/lonespear/ptcg){.btn .btn-outline-primary .btn-sm}
+
+## The problem
+
+Build a program that plays a hidden-information card game against thousands of other agents. Five shared submissions a day and a ladder whose single reading carries about ±125 rating points of noise make every improvement hard to verify.
+
+## Approach
+
+Rule-based policy with 1-ply forward search. A hypergeometric Bayesian posterior over opponent decklists, built from 146k mined decks. Sequential probability ratio tests for agent changes. Instrument validation (symmetry, determinism, distribution checks against real replays). A ladder-episode store for rating-band-conditioned matchup and loss analysis.
+
+::: {.callout-note appearance="simple"}
+## Why it matters for a decision
+
+The same failure modes appear in combat-model and wargame analysis: a simulator whose scoring rule penalises only one side, 'paired' random seeds that are not paired, self-play benchmarks where shared errors cancel, and decisions read off a single stochastic run. The project quantifies each one and shows how it was caught.
+:::
+
+## Results
+
+| Result | Evidence |
+|---|---|
+| An identical agent resubmitted scores 93-150 rating points apart (noise floor ~125). A single leaderboard submission cannot resolve differences below ~150. | GLIDEPATH.md s2d; README 'A single submission's score is worth ±150 points' (4 identical-submission pairs) |
+| Opponent-decklist posterior graded on 300 replays with both real decklists known: 99.7% prior coverage, top-1 accuracy 0.63 (turn 1), 0.84 (turn 3), 0.94 (turn 10), well calibrated. 80% of misidentifications are near-identical sister lists. | scripts/validate_posterior.py, scripts/misid_cost.py; README 'Lookahead'; GLIDEPATH s3 (output file not tracked) |
+| Found three test-harness faults that invalidated recorded evidence: legal empty moves scored as forfeits for opponents only (24.9% vs 0%), an engine that was never actually seeded, and 300-game cells that flipped sign at 600 games. Example correction: Archaludon matchup 0.887 -> 0.32. | GLIDEPATH.md s2a-2c; FINDINGS_v3_to_v9.md s1; ptcg/arena.py fix; scripts/harness_selftest.py |
+| Local self-play harness reports 0.892 against the encounter-weighted field where the ladder shows 0.519. The bias grows with how much piloting skill the opponent's deck needs (+0.25 to +0.78). | GLIDEPATH.md s5e; data/analysis/episode_store.json (261 ladder episodes) |
+| Grader-environment probes found silent production failures: exec()-loaded main.py has no __file__, the last callable becomes the entry point, and a lazy import disabled search on every submission (0 -> 273 search calls after fix). | scripts/validate_submission.py, scripts/probe_grader.py; collaborate_and_merge.md |
+| An apparent 0.532 -> 0.294 drop against the plurality archetype (z=1.68) was killed as a rating-band confound without spending a submission. The win rate is monotone in opponent rating (0.750/0.533/0.368/0.000). | GLIDEPATH.md s5g-5h; scripts/build_autopsy_pool.py, scripts/loss_autopsy.py |
+| Metagame mined from 146,376 decks over 16 days: ~120-204 distinct decklists, with the top 40 lists covering 94.4% of play. | data/meta_decks.csv, data/meta_cards.csv, agent/deck_priors.json, scripts/mine_day.py |
+
+Every result above is traced to a script, log, or artifact in the repository. See [How I Check My Work](/approach.qmd).
+
+## Limitations
+
+- Every local matchup win rate is an upper bound: our own agent pilots both sides (symmetric-pilot bias up to +0.78).
+- The pre-2026-08-09 SPRT decision ledger ran on 82-511 unseeded games with forfeit inflation and is provisional.
+- Engine seed pinning works only on macOS/Linux (LD_PRELOAD/DYLD). Pinned runs cannot be reproduced on Windows.
+- The battle engine is competition-use-only and not redistributable, so game-outcome results cannot be reproduced from the public repo.
+- Ladder autopsy rows are small-n (5-32 games per archetype-band cell), and the 900+ band has 20 games.
+- Two-person team: agent internals, the seed fix and the engine-arithmetic fixes are the teammate's (Austin S) work.
+
+## Tools
+
+Python, kaggle-environments, Bayesian inference (multivariate hypergeometric likelihood), SPRT (Wald), Perfect-Information Monte Carlo search, pandas, numpy, matplotlib, C++ engine build / LD_PRELOAD seeding

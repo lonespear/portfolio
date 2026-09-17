@@ -1,0 +1,69 @@
+{
+  "slug": "threnody",
+  "display_title": "Threnody (Pre-release Mobile Strategy Game)",
+  "repo_url": "",
+  "local_path": "C:\\Users\\jonathan.day\\Documents\\threnody",
+  "site_section": "product",
+  "one_liner": "Solo-built Phaser 3 / Capacitor Android tactics game with Firebase async multiplayer, in pre-release for Google Play (internal testing).",
+  "problem": "Taking a feature-complete app through store compliance, asset size and multiplayer reliability to a releasable build.",
+  "approach": "Versioned release checklists and a data-safety inventory; scripted PNG to WebP asset migration; seeded deterministic combat with an append-only Firestore action log enabling replay; mission, placement and clearance validators.",
+  "decision_relevance": "Shows disciplined delivery: measured optimization, compliance tracking and auditable state.",
+  "headline_results": [
+    {
+      "claim": "Assets reduced 72.3 MB to 6.3 MB via WebP",
+      "evidence": "git blob sums of public/assets: 72.3 MiB at ee1c5cd^ to 6.1 MiB at ee1c5cd; du now 6.3M; scripts/optimize-assets.mjs",
+      "status": "verified"
+    },
+    {
+      "claim": "All 19 campaign missions pass validation",
+      "evidence": "npm run validate run 2026-09-17: missions and placements clean; clearance 1 cosmetic warning",
+      "status": "verified"
+    },
+    {
+      "claim": "PWA precache 77 MB to 8.98 MB",
+      "evidence": "CHANGELOG 1.4.13; not rebuilt",
+      "status": "traceable"
+    },
+    {
+      "claim": "Shipped / live on Google Play",
+      "evidence": "v1.4.13 checklist open with blockers B1/B2; last AAB 1.4.11; CHANGELOG says FB login is gated 'until the app is publicly listed on the Play Store'",
+      "status": "contradicted"
+    }
+  ],
+  "limitations": [
+    "Not publicly listed; 1.4.13 AAB not built",
+    "No unit/integration test framework; QA is validators plus manual smoke tests",
+    "FCM Cloud Function deploy and live push unverified",
+    "No remote backup of repo or keystore"
+  ],
+  "tech": [
+    "JavaScript",
+    "Phaser 3",
+    "Vite",
+    "Capacitor 8",
+    "Firebase Auth",
+    "Firestore",
+    "Cloud Functions",
+    "FCM",
+    "Android"
+  ],
+  "links": {
+    "github": "",
+    "demo": "",
+    "paper": ""
+  },
+  "grades": {
+    "claims": "B (if worded as pre-release)",
+    "evaluation": "C",
+    "reproducibility": "n/a (private)",
+    "limitations": "B",
+    "readme": "B+",
+    "fa49_relevance": "C"
+  },
+  "blockers_before_featuring": [
+    "Use 'pre-release / internal testing' wording, never 'shipped'",
+    "Recapture screenshots (current ones show pre-rebrand branding)",
+    "Keep repo private; never publish IP_REVIEW_BRIEF.md, THRENODY_REBRAND*.md, TECHDEBT.md, or Iron Tide screenshots/zip",
+    "Present as a written case study with no repo link"
+  ]
+}

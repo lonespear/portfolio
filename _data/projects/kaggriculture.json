@@ -1,0 +1,36 @@
+{
+  "slug": "kaggriculture",
+  "display_title": "Agent Tuning in a Shared-Market Simulation: Holdout-Gated Search and Sim-to-Real Validation",
+  "repo_url": "https://github.com/lonespear/kaggriculture",
+  "local_path": "C:\\Users\\jonathan.day\\Documents\\kaggriculture",
+  "site_section": "simulation",
+  "one_liner": "A heuristic agent for a two-player farming simulation with a shared, finite market, tuned by holdout-gated search and checked against a live ladder.",
+  "problem": "Kaggle Kaggriculture: manage a farm for 720 turns against one opponent. Both players sell into the same finite market, so each player's sales lower the other's prices. The task is a Cournot-style competitive allocation problem, not single-agent optimisation.",
+  "approach": "A hand-built policy with a GA and grid search over its constants. Candidates are graded on a deterministic hash-based search/holdout split of recorded ladder episodes, both in-band and out-of-band, then in closed-loop head-to-head. The engine version is pinned and verified by coin-exact replay reconstruction.",
+  "decision_relevance": "Shows habits that transfer to combat-model and wargame analysis: verifying the simulator against ground truth before trusting it, keeping holdouts when many candidates are tried, measuring the sim-to-real gap, and noticing when the search space excludes the optimum.",
+  "headline_results": [
+    {"claim": "v36 beat the previous agent v32 65-15 in 80 closed-loop head-to-head games (about 81%, 95% CI about 71-88%)", "evidence": "README.md:35; h2h_results.txt", "status": "traceable"},
+    {"claim": "The best SELL_THRESHOLD values form a plateau (0.02-0.15) that lay entirely below the GA's search floor of 0.20, so the search could never have found them", "evidence": "README.md:38-51; sweep_sell.txt", "status": "traceable"},
+    {"claim": "Sweeping 154 values across 48 never-searched constants (~48k games) produced no improvement; the top candidates collapsed on holdout and head-to-head", "evidence": "README.md:53-79; sweep_all.txt; h2h_pfert8.txt", "status": "traceable"},
+    {"claim": "The engine version matters: 24/24 rated replays reconstruct coin-exact on kaggle-environments 1.32.5 vs 22/24 on 1.32.4", "evidence": "README.md:1406-1414; ledger_sweep.py; settle_check.txt", "status": "traceable"}
+  ],
+  "limitations": [
+    "The out-of-band gate replays recorded opponent actions open-loop, so opponents do not react to the agent",
+    "Band confound: top-band agents contest the shared market with different opponents, which distorts absolute margins",
+    "One holdout split is reused across many candidates, so selection effects are not fully controlled",
+    "The ladder is non-stationary: ratings inflate as the field grows, so rating changes over time are confounded",
+    "The top-band gate has only 6 seats"
+  ],
+  "tech": ["Python", "kaggle-environments 1.32.5", "genetic algorithm / grid search", "Hungarian assignment", "multiprocessing sweeps", "behaviour cloning (exploratory)"],
+  "links": {"github": "https://github.com/lonespear/kaggriculture", "demo": "", "paper": ""},
+  "grades": {"claims": "C", "evaluation": "B-", "reproducibility": "C-", "limitations": "A-", "readme": "D", "fa49_relevance": "B"},
+  "blockers_before_featuring": [
+    "Public repo is 58 commits behind local: the v36 ship, holdout gates and ledger validation are not on GitHub",
+    "TUNING.md/NEXT.md headline 'PREDICTION CONFIRMED: v29 rates 1100.9' (n=15 episodes) is contradicted by v29's later ratings of 984.4 and 961.6, and was never retracted",
+    "Leaderboard rating/rank claims (1008.5; ~1,195/3,380) have no tracked evidence, and '~35th percentile' is inverted (it is the top 35%, about the 65th percentile)",
+    "No uncertainty on win counts or margins; 'better on every instrument' rests on 145 vs 143 of 152 and tied holdout wins",
+    "README is a 1,869-line lab notebook with contradictory 'current agent' sections (v29 vs v36; league 47-3 vs 70-0); plain-language explanation starts at line 907",
+    "Repo described as a 'compendium' but covers a single competition",
+    "No requirements.txt or single entry command; gate corpora are gitignored, so gates cannot be rerun from a clone; ~65 tracked replay JSONs (~1.5 GB) and 53 near-duplicate main*.py files"
+  ]
+}

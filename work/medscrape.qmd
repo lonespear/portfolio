@@ -1,0 +1,47 @@
+---
+title: "MedScrape: Finding Where Review Literature Lags Primary Research"
+description: "A Streamlit tool that scrapes PubMed, clusters abstracts, and flags research-topic clusters that have little vocabulary overlap with existing review articles, as a screening aid for choosing review topics."
+categories: ["Research", "Python", "Streamlit", "Biopython (Entrez)", "scikit-learn"]
+order: 100
+featured: false
+draft: true
+---
+
+[Code](https://github.com/lonespear/medrev){.btn .btn-outline-primary .btn-sm} [Live demo](https://medreview.streamlit.app/){.btn .btn-primary .btn-sm}
+
+## The problem
+
+Research teams deciding where a new systematic review is needed can't manually read thousands of abstracts to see which areas of primary research the existing reviews haven't covered.
+
+## Approach
+
+PubMed Entrez query split by publication type (review vs non-review) -> TF-IDF (1-2 grams) -> TruncatedSVD(100) -> k-means (also DBSCAN, agglomerative, LDA; Doc2Vec/FastText options) -> cluster-level TF-IDF cosine similarity between research and review clusters -> clusters with max similarity < 0.3 flagged as candidate gaps. Batch vignettes for 5 precision-nutrition searches.
+
+::: {.callout-note appearance="simple"}
+## Why it matters for a decision
+
+Supports a portfolio or prioritization decision (which topics merit a new evidence synthesis), analogous to horizon scanning of a research portfolio. Currently only valid as exploratory triage for human review.
+:::
+
+## Results
+
+| Result | Evidence |
+|---|---|
+| Search 4 (Precision Nutrition & Microbiome, n=464 papers): 3 of 8 research clusters flagged as under-reviewed at cosine < 0.30 | medrev/vignettes/vignette_search4_Precision_Nutrition_Microbiome.pdf; reproduced from cached CSVs by portfolio_audit/medscrape_gap_check.py |
+| Five demo corpora built from PubMed (9,212 / 490 / 151 / 464 / 5,977 papers), each with review and non-review splits | medrev/vignettes/data/*.csv row counts |
+| Methodology paper accepted with revisions | Owner-reported; youtube_script.md. No venue or DOI in repo |
+
+Every result above is traced to a script, log, or artifact in the repository. See [How I Check My Work](/approach.qmd).
+
+## Limitations
+
+- Clusters are weak and unstable: cosine silhouette 0.02-0.09 for k=2..12; median ARI across k-means seeds 0.20-0.33 on corpora under 500 papers.
+- The gap score is confounded by cluster size (Spearman rho 0.52-0.93 between research-cluster size and max similarity) and by corpus size (large corpora give 0 gaps at 0.3, small ones give 3-5).
+- Fails a null test: splitting research papers against themselves still flags 2 of 8 'gaps' on two searches.
+- The 0.3 threshold isn't justified or calibrated, and there's no ground-truth validation.
+- Similarity is vocabulary overlap of concatenated abstracts, not semantic coverage; some flagged clusters are reporting boilerplate ('group, significantly, 05').
+- Results depend on the PubMed query date and on publication-type tagging; review counts differ between the query filter and the parsed flag (203 vs 217).
+
+## Tools
+
+Python, Streamlit, Biopython (Entrez), scikit-learn, gensim, umap-learn, Plotly

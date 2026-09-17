@@ -6,7 +6,6 @@ project:
     - about.qmd
     - work/*.qmd
     - teaching/*.qmd
-    - medrev.qmd
     - ma206_course.qmd
     - code_annex.qmd
 

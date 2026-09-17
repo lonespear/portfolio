@@ -1,0 +1,47 @@
+---
+title: "Open-Source Infrastructure Query Explorer (OpenStreetMap / Overpass) - prototype"
+description: "A Streamlit and folium front end for OpenStreetMap: basemaps, reverse geocoding, and Overpass lookups of facilities around a point. This is a prototype toward an infrastructure access analysis tool."
+categories: ["Product Engineering", "Python", "Streamlit", "folium", "streamlit-folium"]
+order: 100
+featured: false
+draft: true
+---
+
+[Code](https://github.com/lonespear/osm){.btn .btn-outline-primary .btn-sm}
+
+## The problem
+
+Planners often need a fast first look at what infrastructure exists around a location (hospitals, fuel, power, bridges) from open data that is available anywhere. Commercial or classified geospatial holdings may not cover every location or may not be releasable.
+
+## Approach
+
+The app sends Overpass API queries for OSM amenity nodes within 1 km of a user-set point and Nominatim reverse geocoding. Results appear in a table and on an interactive folium map with drawing and measurement controls.
+
+::: {.callout-note appearance="simple"}
+## Why it matters for a decision
+
+Potential: first-look infrastructure IPB (intelligence preparation of the battlefield) or HA/DR site assessment (facility inventory, nearest-facility distance, with coverage caveats). Currently it supports no specific decision; the analysis layer is not built.
+:::
+
+## Results
+
+| Result | Evidence |
+|---|---|
+| Queries live OSM data through the Overpass API for amenities near a point, and reverse-geocodes through Nominatim | app.py / app_fixed.py Execute Query handler (Overpass node[amenity](around:1000); Nominatim /reverse) |
+| Interactive drawing and distance/area measurement on the map | folium plugins.Draw and plugins.MeasureControl in app.py |
+
+Every result above is traced to a script, log, or artifact in the repository. See [How I Check My Work](/approach.qmd).
+
+## Limitations
+
+- The heatmap is 100 uniformly random points around the map centre, not data.
+- Queries return nodes only: facilities mapped as ways or relations (most hospitals, schools, parks) are missed. 'park' queries the wrong key (amenity instead of leisure).
+- The query radius is fixed at 1 km, results are silently cut to 20, and the 'Search Location' option has no handler.
+- OSM completeness varies by region. No data timestamp or coverage caveat is shown.
+- Drawn shapes are not read back, so no analysis runs on user areas.
+- The public app.py still offers deprecated Stamen tiles (3 of 6 styles). The fix exists only in the unversioned app_fixed.py.
+- Dependencies are unpinned and the code has no license.
+
+## Tools
+
+Python, Streamlit, folium, streamlit-folium, Overpass API, Nominatim, OpenStreetMap

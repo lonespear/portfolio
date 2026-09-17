@@ -1,0 +1,51 @@
+{
+  "slug": "rl_balance_testing",
+  "display_title": "Can a Self-Play RL Agent Serve as a Balance Oracle? Automated Stress-Testing of a Wargame Rule Set",
+  "repo_url": "https://github.com/lonespear/threnody_rl",
+  "local_path": "C:\\Users\\jonathan.day\\Documents\\threnody_rl",
+  "site_section": "simulation",
+  "one_liner": "Ported a shipped wargame's rules engine to Python and trained PPO self-play agents to flag unbalanced units, then tested whether the agent's win rates can be trusted as a measure of balance.",
+  "problem": "Balancing a five-faction wargame by hand is slow, and play-testers are scarce. The question is whether AI-vs-AI round-robins with counterfactual stat changes can detect over- or under-powered units before release.",
+  "approach": "A Python port of the game's combat, board and turn engine, with unit data checked against the live game's source. A masked actor-critic trained with PPO against periodically frozen copies of itself. A 5x5 faction round-robin evaluator, and a counterfactual tool that applies stat overrides in memory and compares matchup matrices. A predecessor prototype on a tabletop ruleset developed the self-play env and a premature-convergence (entropy) monitor.",
+  "decision_relevance": "Automated adjudication and COA stress-testing face the same threat: an optimising agent exploits the scoring rule, so outcome deltas stop measuring the effect of interest. The project shows the design of a counterfactual round-robin, the need for a measured noise floor before reading deltas, and how draw-rate confounding produced wrong-sign conclusions.",
+  "headline_results": [
+    {
+      "claim": "The Python engine's unit data matches the live game's source: all 15 units across 5 factions agree on movement, toughness, skills, wounds, saves, objective control and both weapon profiles.",
+      "evidence": "Script diff of threnody_rl/env/factions.py against threnody/src/data/{accord,harrow,ironveil,drift,voidborn}.js, run 2026-09-17 (0 mismatches; keywords and abilities not compared)",
+      "status": "verified"
+    },
+    {
+      "claim": "Engine self-consistency test suite (wound table, closed-form vs Monte Carlo ranged and melee damage, line of sight, pathfinding, deployment zones, action masking) passes.",
+      "evidence": "python -m threnody_rl.tests.test_parity -> 'all 9 tests passed' (2026-09-17)",
+      "status": "verified"
+    },
+    {
+      "claim": "Built a counterfactual balance tool: stat overrides applied in memory, then baseline and modified 5x5 matchup matrices, per-matchup deltas and a JSON dump, with decisive-game (W/(W+L)) re-analysis.",
+      "evidence": "threnody_rl/tune.py, threnody_rl/analyze_tune.py, threnody_rl/eval.py",
+      "status": "verified"
+    }
+  ],
+  "limitations": [
+    "The trained agent learned to win on the turn-limit alive-count tiebreak rather than by eliminating opponents, so its win rates are not yet a valid proxy for player-level balance.",
+    "Aggregate win rate is confounded by draws; stat nerfs that turn draws into decisive games can look like buffs.",
+    "Single training seed and single checkpoint; checkpoints are not published.",
+    "The counterfactual tool holds the policy fixed, so the agent does not re-optimise for the changed stats.",
+    "Baseline and modified runs are not common-random-number paired; there are no confidence intervals in tool output.",
+    "Combat-rule and turn-logic parity with the live JavaScript engine has no cross-engine test; only unit data was diffed.",
+    "Predecessor (tabletop prototype) RL code is not in its repository, and its headline metric (win rate against a frozen, first-moving snapshot in one matchup) is not a strength measure."
+  ],
+  "tech": ["Python", "PyTorch", "PPO", "action-masked actor-critic", "frozen-snapshot self-play", "NumPy", "Flask dashboard"],
+  "links": {"github": "https://github.com/lonespear/threnody_rl", "demo": "", "paper": ""},
+  "grades": {"claims": "C-", "evaluation": "C", "reproducibility": "C", "limitations": "D", "readme": "F", "fa49_relevance": "A-"},
+  "blockers_before_featuring": [
+    "Write a README. The repo has none; BALANCING.md is an ops runbook referencing private paths (~/.claude/.../MEMORY.md, 'threnody_rl.md Path B').",
+    "Remove or qualify 'balance findings here transfer to the live game' (BALANCING.md). The owner's own tune runs (H1/H2/H4) and Run 3 show the policy exploits the turn-limit tiebreak.",
+    "Commit the evidence: training logs for Run 2 and Run 3, runs/*.json tune outputs, analyze_tune.py outputs, checkpoint SHA256. These currently exist only on the remote training container and in private notes.",
+    "Report tune results as decisive-game win rate with Wilson 95% CIs, and include the two baseline-vs-baseline runs as the empirical noise floor (about ±5% per faction, ±10-12% per cell at 30 games; unverified until committed).",
+    "Qualify 'isolates the mechanical effect without retraining' as an assumption, with the Bulwark save counter-example.",
+    "Fix the eval.py header: the cell is policy wins with sides alternating, not team0 wins.",
+    "Add a cross-engine combat parity test (scripted scenarios, fixed dice) or state that only unit data is verified.",
+    "Add LICENSE; remove committed __pycache__/*.pyc.",
+    "40k-basic: keep private. Do not cite its win%T0 figures or 'Run 3 in progress' (the log ended at 2.74M steps with entropy 0.71, below its own 1.0 canary). If ever published: fix .gitignore 'env/' (it excludes the RL env), commit the RL layer, remove tracked .claude.json, add LICENSE."
+  ]
+}

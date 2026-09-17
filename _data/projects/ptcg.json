@@ -1,0 +1,80 @@
+{
+  "slug": "ptcg",
+  "display_title": "Measurement-System Validation for a Game-Playing AI: Bayesian Opponent Modelling and Sequential Testing (Kaggle PTCG AI Battle Challenge)",
+  "repo_url": "https://github.com/lonespear/ptcg",
+  "local_path": "C:\\Users\\jonathan.day\\Documents\\ptcg",
+  "site_section": "simulation",
+  "one_liner": "Two-person Kaggle entry in which the most important findings were three faults in our own test harness. Finding them is what separated real improvements from measurement artifacts.",
+  "problem": "Build a program that plays a hidden-information card game against thousands of other agents. Five shared submissions a day and a ladder whose single reading carries about ±125 rating points of noise make every improvement hard to verify.",
+  "approach": "Rule-based policy with 1-ply forward search. A hypergeometric Bayesian posterior over opponent decklists, built from 146k mined decks. Sequential probability ratio tests for agent changes. Instrument validation (symmetry, determinism, distribution checks against real replays). A ladder-episode store for rating-band-conditioned matchup and loss analysis.",
+  "decision_relevance": "The same failure modes appear in combat-model and wargame analysis: a simulator whose scoring rule penalises only one side, 'paired' random seeds that are not paired, self-play benchmarks where shared errors cancel, and decisions read off a single stochastic run. The project quantifies each one and shows how it was caught.",
+  "headline_results": [
+    {
+      "claim": "An identical agent resubmitted scores 93-150 rating points apart (noise floor ~125). A single leaderboard submission cannot resolve differences below ~150.",
+      "evidence": "GLIDEPATH.md s2d; README 'A single submission's score is worth ±150 points' (4 identical-submission pairs)",
+      "status": "traceable"
+    },
+    {
+      "claim": "Opponent-decklist posterior graded on 300 replays with both real decklists known: 99.7% prior coverage, top-1 accuracy 0.63 (turn 1), 0.84 (turn 3), 0.94 (turn 10), well calibrated. 80% of misidentifications are near-identical sister lists.",
+      "evidence": "scripts/validate_posterior.py, scripts/misid_cost.py; README 'Lookahead'; GLIDEPATH s3 (output file not tracked)",
+      "status": "traceable"
+    },
+    {
+      "claim": "Found three test-harness faults that invalidated recorded evidence: legal empty moves scored as forfeits for opponents only (24.9% vs 0%), an engine that was never actually seeded, and 300-game cells that flipped sign at 600 games. Example correction: Archaludon matchup 0.887 -> 0.32.",
+      "evidence": "GLIDEPATH.md s2a-2c; FINDINGS_v3_to_v9.md s1; ptcg/arena.py fix; scripts/harness_selftest.py",
+      "status": "traceable"
+    },
+    {
+      "claim": "Local self-play harness reports 0.892 against the encounter-weighted field where the ladder shows 0.519. The bias grows with how much piloting skill the opponent's deck needs (+0.25 to +0.78).",
+      "evidence": "GLIDEPATH.md s5e; data/analysis/episode_store.json (261 ladder episodes)",
+      "status": "traceable"
+    },
+    {
+      "claim": "Grader-environment probes found silent production failures: exec()-loaded main.py has no __file__, the last callable becomes the entry point, and a lazy import disabled search on every submission (0 -> 273 search calls after fix).",
+      "evidence": "scripts/validate_submission.py, scripts/probe_grader.py; collaborate_and_merge.md",
+      "status": "verified"
+    },
+    {
+      "claim": "An apparent 0.532 -> 0.294 drop against the plurality archetype (z=1.68) was killed as a rating-band confound without spending a submission. The win rate is monotone in opponent rating (0.750/0.533/0.368/0.000).",
+      "evidence": "GLIDEPATH.md s5g-5h; scripts/build_autopsy_pool.py, scripts/loss_autopsy.py",
+      "status": "traceable"
+    },
+    {
+      "claim": "Metagame mined from 146,376 decks over 16 days: ~120-204 distinct decklists, with the top 40 lists covering 94.4% of play.",
+      "evidence": "data/meta_decks.csv, data/meta_cards.csv, agent/deck_priors.json, scripts/mine_day.py",
+      "status": "traceable"
+    }
+  ],
+  "limitations": [
+    "Every local matchup win rate is an upper bound: our own agent pilots both sides (symmetric-pilot bias up to +0.78).",
+    "The pre-2026-08-09 SPRT decision ledger ran on 82-511 unseeded games with forfeit inflation and is provisional.",
+    "Engine seed pinning works only on macOS/Linux (LD_PRELOAD/DYLD). Pinned runs cannot be reproduced on Windows.",
+    "The battle engine is competition-use-only and not redistributable, so game-outcome results cannot be reproduced from the public repo.",
+    "Ladder autopsy rows are small-n (5-32 games per archetype-band cell), and the 900+ band has 20 games.",
+    "Two-person team: agent internals, the seed fix and the engine-arithmetic fixes are the teammate's (Austin S) work."
+  ],
+  "tech": ["Python", "kaggle-environments", "Bayesian inference (multivariate hypergeometric likelihood)", "SPRT (Wald)", "Perfect-Information Monte Carlo search", "pandas", "numpy", "matplotlib", "C++ engine build / LD_PRELOAD seeding"],
+  "links": {
+    "github": "https://github.com/lonespear/ptcg",
+    "demo": "",
+    "paper": ""
+  },
+  "grades": {
+    "claims": "D",
+    "evaluation": "B",
+    "reproducibility": "D",
+    "limitations": "A-",
+    "readme": "D+",
+    "fa49_relevance": "B+"
+  },
+  "blockers_before_featuring": [
+    "Headline 'rank 831 of 6563, top 12.7%' has no evidence artifact. leaderboard6AUG.png shows rank 4567 (520.5), and GLIDEPATH quotes a different 778/6679. The competition closed 13 Sep 2026 with no final private-leaderboard placement recorded. Capture it with a dated screenshot or CSV and quote only that.",
+    "README body still states numbers its own banner invalidates (92-8 vs Grimmsnarl, 0.942 field, 71-9 vs Archaludon, 0.720 '10-sigma' search result, the SPRT accept/reject ledger, 'search +50 rating'). Retract them in place or move the narrative to docs/history.md.",
+    "README submission/rank tables are stale and internally inconsistent (v9 = 645.7 in README vs 822.0 in GLIDEPATH; 'Us 520.5 / 4567' beside 'rank 831').",
+    "No contributions section. The teammate authored ~60% of commits and the canonical agent, so Jon's contribution (measurement, opponent model, pool, autopsies) must be stated explicitly.",
+    "No pinned environment (no requirements.txt/lockfile). No statement of which results reproduce without the licence-barred engine.",
+    "Internal working memos (FEEDBACK_FOR_AUSTIN.md, collaborate_and_merge.md, STATUS.md, CLAUDE.md) sit at repo root of a public showcase repo. Move them to docs/internal/ or remove them.",
+    "Win-rate tables lack n/CIs on small cells. Add Wilson intervals.",
+    "Broken repo-layout markdown table (README ~l.589-593). Local main is 2 commits ahead of origin/main (unpushed)."
+  ]
+}

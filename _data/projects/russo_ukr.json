@@ -1,0 +1,48 @@
+{
+  "slug": "russo_ukr",
+  "display_title": "Multi-Source Conflict Dashboard: ACLED Event Geography, WVS Regional Attitudes, and Partner-Support Data (Russo-Ukrainian War)",
+  "repo_url": "https://github.com/lonespear/russo-ukr",
+  "local_path": "C:\\Users\\jonathan.day\\Documents\\russo_ukr_streamlit",
+  "site_section": "product",
+  "one_liner": "An interactive Streamlit dashboard that combines three open sources: ACLED fatal-event geography (2018 to March 2024), World Values Survey regional religion and language data, and Kiel Ukraine Support Tracker donor commitments.",
+  "problem": "The war's regional background, the geography of its violence, and the international support effort sit in separate datasets with different units and vintages. That makes a combined first-look picture hard to assemble.",
+  "approach": "ACLED fatal events are shown as a time-sliced scatter map (log-scaled markers, colored by sub-event type). WVS Wave 7 oblast shares appear as choropleths. Kiel tracker donor commitments and allocations appear as a world choropleth and a ranked bar chart. Built with Streamlit and Plotly, co-authored with Settasit Chitphentom (April 2024).",
+  "decision_relevance": "Situational context for analysts and students. It does not currently inform a specific decision or answer a stated analytic question.",
+  "headline_results": [
+    {
+      "claim": "Maps 12,339 ACLED fatality-producing events in Ukraine from 2018-01-01 to 2024-03-08",
+      "evidence": "ukr_death.pkl profiled: 12,339 rows, all FATALITIES >= 1, EVENT_DATE min/max 2018-01-01 / 2024-03-08",
+      "status": "verified"
+    },
+    {
+      "claim": "Oblast-level religion, language and income layers from World Values Survey Wave 7",
+      "evidence": "ukr_background.pkl columns Denomination / Language / Income over 25 ADM1 units; no processing script committed",
+      "status": "traceable"
+    },
+    {
+      "claim": "Donor commitments and allocations by type for 42 donors from the Kiel Ukraine Support Tracker",
+      "evidence": "Foreign Aid/Foreign_aid.csv (43 rows incl. header row) and app.py update_foreign_aid",
+      "status": "traceable"
+    }
+  ],
+  "limitations": [
+    "ACLED fatality counts are conservative coded values (49% of rows are split-event placeholders), not casualty estimates. The app does not disclose this.",
+    "Pre-2022 events are sparse (93 in 2020, 119 in 2021), so apparent trends partly reflect coverage.",
+    "WVS oblast shares rest on small samples (about 50 respondents per oblast) with no intervals. Crimea and Sevastopol are absent.",
+    "Kiel figures are labeled '$ billion'. Kiel publishes in EUR, so the label needs confirming. The release version is not named.",
+    "EU institutions (the largest entry) are dropped from the donor bar chart and map by an inner merge. Malta does not render.",
+    "No data-preparation code is committed. The pickles are tied to library versions, and the app requires a Mapbox token."
+  ],
+  "tech": ["Python", "Streamlit", "Plotly", "pandas", "GeoPandas", "Mapbox", "ACLED", "World Values Survey", "Kiel Ukraine Support Tracker"],
+  "links": {"github": "https://github.com/lonespear/russo-ukr", "demo": "https://russo-ukr.streamlit.app/", "paper": ""},
+  "grades": {"claims": "C", "evaluation": "D", "reproducibility": "D", "limitations": "F", "readme": "D", "fa49_relevance": "C"},
+  "blockers_before_featuring": [
+    "ACLED terms: ukr_death.pkl is a public, row-level extract with all 36 ACLED columns including verbatim NOTES. The owner must confirm the terms and account tier. If redistribution is not permitted, remove the file from the repo and git history and replace it with a fetch script (user's own API key) or permitted aggregates.",
+    "Fix the README clone URL (russo-ukr-dashboard -> russo-ukr) and cd path.",
+    "Verify the currency unit of the Kiel figures ('$ billion' vs EUR) and name the Kiel release and access date.",
+    "The 'Top Donor Countries' chart silently excludes EU institutions (largest value, 93.25). Include it or label the exclusion.",
+    "Add a limitations section: ACLED fatality coding conventions, WVS sample sizes, missing Crimea/Sevastopol, commitments vs allocations.",
+    "Add dated citations (ACLED format with access date, WVS Wave 7 version, Kiel release), geoBoundaries CC BY 4.0 and CARTO attribution, and a code license.",
+    "Commit or document the data-preparation code and pin pandas/numpy."
+  ]
+}

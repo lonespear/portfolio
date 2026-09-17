@@ -1,0 +1,58 @@
+{
+  "slug": "statball",
+  "display_title": "StatBall: A Stats-Powered Baseball Review Game",
+  "repo_url": "https://github.com/lonespear/ma206-review",
+  "local_path": "C:\\Users\\jonathan.day\\AppData\\Local\\Temp\\claude\\C--Users-jonathan-day-Documents\\f6c56ecc-4f1a-499a-90bd-d286eb7b3603\\scratchpad\\clones\\ma206-review",
+  "site_section": "teaching",
+  "one_liner": "Classroom-tested final-exam review: teams earn a salary cap from a 30-question stats quiz, draft players in a silent auction, and play a 2d6 dice-baseball tournament.",
+  "problem": "Cumulative review before the term-end exam is usually passive and low-engagement.",
+  "approach": "Streamlit quiz that pays out salary cap and sends results to Google Sheets through st.secrets; players' OBP/SLG/ERA map to dice probability tables; scouting built on expected bases per plate appearance (law of total expectation).",
+  "decision_relevance": "Turns probability tables and expected value into resource-allocation decisions under a budget, which parallels analytic tradeoffs.",
+  "headline_results": [
+    {
+      "claim": "Dice-table expected value: P(2d6>=6)*E[bases|hit] = 26/36*2.333 = 1.684",
+      "evidence": "README math re-derived (outcome counts 6/15/12/3)",
+      "status": "verified"
+    },
+    {
+      "claim": "Quiz answer key correct",
+      "evidence": "Q3, Q6, Q8, Q9, Q15, Q26, Q28 recomputed correctly; Q27 explanation says 1.15 while the correct keyed answer is 0.65",
+      "status": "contradicted"
+    },
+    {
+      "claim": "Live at statball.streamlit.app",
+      "evidence": "README link; not checked (no network)",
+      "status": "unverified"
+    }
+  ],
+  "limitations": [
+    "Q16 uses causal wording for a regression slope",
+    "25 vs 30 question-count and cap-arithmetic inconsistencies",
+    "Needs Google service account to run submissions"
+  ],
+  "tech": [
+    "Python",
+    "Streamlit",
+    "pandas",
+    "gspread"
+  ],
+  "links": {
+    "github": "https://github.com/lonespear/ma206-review",
+    "demo": "https://statball.streamlit.app/",
+    "paper": ""
+  },
+  "grades": {
+    "claims": "B",
+    "evaluation": "n/a",
+    "reproducibility": "C",
+    "limitations": "C",
+    "readme": "B-",
+    "fa49_relevance": "C+"
+  },
+  "blockers_before_featuring": [
+    "Fix the Q27 explanation (z = 0.65, not 1.15)",
+    "Reword Q16 as associational",
+    "Fix README clone URL, run command (review.py) and gamesheet filename; reconcile the 25/30 question count and the $ cap example",
+    "Confirm the demo URL is live"
+  ]
+}

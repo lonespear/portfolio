@@ -1,0 +1,52 @@
+{
+  "slug": "streamlit-workshop",
+  "display_title": "D/Math Streamlit Workshop (Faculty Development)",
+  "repo_url": "https://github.com/usma-stats/streamlit-workshop",
+  "local_path": "C:\\Users\\jonathan.day\\Documents\\streamlit-workshop; C:\\Users\\jonathan.day\\AppData\\Local\\Temp\\claude\\C--Users-jonathan-day-Documents\\f6c56ecc-4f1a-499a-90bd-d286eb7b3603\\scratchpad\\clones\\demo_facdev",
+  "site_section": "teaching",
+  "one_liner": "30-minute workshop that teaches math faculty with no web experience to build and deploy an interactive course app.",
+  "problem": "Instructors want interactive teaching tools but lack web-development skills.",
+  "approach": "Instructor-led walkthrough of a reference app in 5 steps, then tiered lab shells (guided, stats dashboard, open challenge), deployment to Streamlit Cloud, and a quick-reference sheet.",
+  "decision_relevance": "Shows the ability to build analytic capacity in others by training colleagues to field their own tools.",
+  "headline_results": [
+    {
+      "claim": "Authored the workshop in the department org repo",
+      "evidence": "git: lonespear 5 commits, usma-stats 1 (initial commit)",
+      "status": "verified"
+    },
+    {
+      "claim": "demo_facdev is the same app",
+      "evidence": "diff --strip-trailing-cr shows identical app.py",
+      "status": "verified"
+    }
+  ],
+  "limitations": [
+    "np.std (ddof=0) labeled 'Std dev'",
+    "Stale line-number map in the app header",
+    "Lab shells deliberately do not run until the blanks are filled"
+  ],
+  "tech": [
+    "Python",
+    "Streamlit",
+    "numpy",
+    "pandas",
+    "matplotlib"
+  ],
+  "links": {
+    "github": "https://github.com/usma-stats/streamlit-workshop",
+    "demo": "",
+    "paper": ""
+  },
+  "grades": {
+    "claims": "A-",
+    "evaluation": "n/a",
+    "reproducibility": "A-",
+    "limitations": "B",
+    "readme": "A-",
+    "fa49_relevance": "C+"
+  },
+  "blockers_before_featuring": [
+    "Archive demo_facdev or point it to the org repo",
+    "Optional: use ddof=1 or explain the difference; fix the header line map"
+  ]
+}

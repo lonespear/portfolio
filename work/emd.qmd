@@ -1,0 +1,45 @@
+---
+title: "EMD Manning: Optimal Soldier-to-Billet Sourcing (Synthetic Data)"
+description: "A Streamlit decision-support prototype that sources soldiers to exercise billets by solving a linear assignment (unit-mass Earth Mover's Distance) problem that trades TDY cost against qualification, readiness, and cohesion penalties, demonstrated on synthetic data."
+categories: ["Simulation & ML Engineering", "Python", "SciPy (linear_sum_assignment)", "pandas", "NumPy"]
+order: 100
+featured: false
+draft: true
+---
+
+[Code](https://github.com/lonespear/emd){.btn .btn-outline-primary .btn-sm}
+
+## The problem
+
+Brigade staffs sourcing billets for exercises and deployments must balance qualifications, readiness gates, unit cohesion, and travel cost across many soldiers and installations, usually by hand.
+
+## Approach
+
+Synthetic soldier, billet, and MTOE generators; a pairwise cost matrix combining TDY dollars (haversine distance across 56 installations with a tiered cost model), MOS/rank/skill/clearance/airborne/language/availability/dwell penalties, priority weights, and readiness, cohesion, and geographic layers; solved exactly with scipy linear_sum_assignment (Hungarian); a heuristic agent tunes penalty weights toward a target fill; a Pareto explorer maps cost-cohesion-fill trade-offs.
+
+::: {.callout-note appearance="simple"}
+## Why it matters for a decision
+
+Supports a force-sourcing decision (who fills which billet for an exercise such as Valiant Shield) and shows how policy weights shift the trade-off between travel cost and readiness. This is a core ORSA manning and assignment problem.
+:::
+
+## Results
+
+| Result | Evidence |
+|---|---|
+| Solves soldier-to-billet assignment exactly with the Hungarian algorithm (scipy linear_sum_assignment) over a multi-factor cost matrix | emd_agent.py:1193 (assign), pair_cost at emd_agent.py:366-427 |
+| Geographic cost model covering 56 installations across 6 combatant command AORs | geolocation.py location database |
+
+Every result above is traced to a script, log, or artifact in the repository. See [How I Check My Work](/approach.qmd).
+
+## Limitations
+
+- All data is synthetic; the cost and TDY pricing model is notional.
+- Qualifications and readiness are soft penalties, not hard constraints, so the optimizer can assign unqualified soldiers: 39/75 Valiant Shield assignments violate at least one requirement (15 hard qualification violations, 29 late availability).
+- 'Fill rate' counts any assigned billet as filled, so it is 100% whenever soldiers outnumber billets.
+- The objective mixes dollars and penalty points; penalty weights are analyst-chosen exchange rates with no reported sensitivity analysis.
+- Single-period, deterministic assignment; no baseline comparison.
+
+## Tools
+
+Python, SciPy (linear_sum_assignment), pandas, NumPy, Streamlit, Plotly, Folium

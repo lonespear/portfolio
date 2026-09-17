@@ -1,0 +1,44 @@
+{
+  "slug": "osm",
+  "display_title": "Open-Source Infrastructure Query Explorer (OpenStreetMap / Overpass) - prototype",
+  "repo_url": "https://github.com/lonespear/osm",
+  "local_path": "C:\\Users\\jonathan.day\\Documents\\osm-explore",
+  "site_section": "product",
+  "one_liner": "A Streamlit and folium front end for OpenStreetMap: basemaps, reverse geocoding, and Overpass lookups of facilities around a point. This is a prototype toward an infrastructure access analysis tool.",
+  "problem": "Planners often need a fast first look at what infrastructure exists around a location (hospitals, fuel, power, bridges) from open data that is available anywhere. Commercial or classified geospatial holdings may not cover every location or may not be releasable.",
+  "approach": "The app sends Overpass API queries for OSM amenity nodes within 1 km of a user-set point and Nominatim reverse geocoding. Results appear in a table and on an interactive folium map with drawing and measurement controls.",
+  "decision_relevance": "Potential: first-look infrastructure IPB (intelligence preparation of the battlefield) or HA/DR site assessment (facility inventory, nearest-facility distance, with coverage caveats). Currently it supports no specific decision; the analysis layer is not built.",
+  "headline_results": [
+    {
+      "claim": "Queries live OSM data through the Overpass API for amenities near a point, and reverse-geocodes through Nominatim",
+      "evidence": "app.py / app_fixed.py Execute Query handler (Overpass node[amenity](around:1000); Nominatim /reverse)",
+      "status": "traceable"
+    },
+    {
+      "claim": "Interactive drawing and distance/area measurement on the map",
+      "evidence": "folium plugins.Draw and plugins.MeasureControl in app.py",
+      "status": "traceable"
+    }
+  ],
+  "limitations": [
+    "The heatmap is 100 uniformly random points around the map centre, not data.",
+    "Queries return nodes only: facilities mapped as ways or relations (most hospitals, schools, parks) are missed. 'park' queries the wrong key (amenity instead of leisure).",
+    "The query radius is fixed at 1 km, results are silently cut to 20, and the 'Search Location' option has no handler.",
+    "OSM completeness varies by region. No data timestamp or coverage caveat is shown.",
+    "Drawn shapes are not read back, so no analysis runs on user areas.",
+    "The public app.py still offers deprecated Stamen tiles (3 of 6 styles). The fix exists only in the unversioned app_fixed.py.",
+    "Dependencies are unpinned and the code has no license."
+  ],
+  "tech": ["Python", "Streamlit", "folium", "streamlit-folium", "Overpass API", "Nominatim", "OpenStreetMap"],
+  "links": {"github": "https://github.com/lonespear/osm", "demo": "", "paper": ""},
+  "grades": {"claims": "D", "evaluation": "F", "reproducibility": "D", "limitations": "F", "readme": "D", "fa49_relevance": "D"},
+  "blockers_before_featuring": [
+    "Remove the random heatmap, or replace it with a density of real query results.",
+    "Make app_fixed.py the public app.py (Stamen removal), add .gitignore, pin folium/streamlit-folium, and retire the duplicate local copies (osm-explore has an unrelated git history).",
+    "Fix 'Search Location' (implement or remove), switch to nwr + out center, fix park=leisure, use HTTPS plus a User-Agent, and stop silent truncation at 20.",
+    "Build at least one real analysis output (facility counts per class and nearest-facility distance for a drawn area) before using an ORSA framing.",
+    "Show the Overpass timestamp_osm_base and a completeness caveat. Add a Limitations section.",
+    "README: replace the <your-repo-url> placeholder and stale folder name; add a code LICENSE, a screenshot and a demo link.",
+    "README claims contradicted at HEAD: 'Heatmap visualization' (random data), 'Stamen' tile styles, 'Search Location'."
+  ]
+}

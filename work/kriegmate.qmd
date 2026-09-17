@@ -1,0 +1,50 @@
+---
+title: "Adversarial Monte Carlo COA Analysis: Common Random Numbers, Ranking-and-Selection, and History-Matching Calibration (notional parameters)"
+description: "A terrain-aware stochastic combat simulation (company team to brigade) wrapped in a full simulation-analysis toolkit: paired COA comparison with CRN, Kim-Nelson selection, GP and Sobol sensitivity, and rung-by-rung history-matching calibration. The parameters are notional: the model is verified but not validated."
+categories: ["Simulation & ML Engineering", "Python", "NumPy", "SciPy", "scikit-learn (GP)"]
+order: 100
+featured: false
+draft: true
+---
+
+[Code](https://github.com/lonespear/kriegmate){.btn .btn-outline-primary .btn-sm}
+
+## The problem
+
+Comparing courses of action with a stochastic combat model is only useful if the comparison is statistically honest (paired, interval-bounded, selection-bias-aware), the discretization is checked, and the parameters have a defined path from notional to calibrated.
+
+## Approach
+
+An entity engine runs on OSM or DEM or synthetic ground: detection hazard, multinomial-logit target choice, circular-normal hit probability, suppression, and Beta breakpoints. It uses named random substreams so COAs share random numbers. Around it sit Wilson/delta/sup-t intervals, Kaplan-Meier and Aalen-Johansen for censored outcomes, Kim-Nelson ranking-and-selection, a Latin hypercube design with a stochastic-kriging GP and Saltelli/Jansen Sobol indices, and history matching (implausibility, NROY waves) with a held-out terrain coverage check. An aggregate brigade engine is derived as a mean-field limit of the entity kill chain and bias-corrected against it.
+
+::: {.callout-note appearance="simple"}
+## Why it matters for a decision
+
+Supports COA analysis (which Blue scheme of maneuver is best, with what confidence) and shows the V&V and calibration process that Army analytic organizations apply to combat models. The outputs are methodological, not operational, because every parameter is notional.
+:::
+
+## Results
+
+| Result | Evidence |
+|---|---|
+| Core mechanics and estimators are unit-tested: the hit-probability formula matches brute force, Wilson coverage holds, Kim-Nelson selects the known best system, and history matching retains a synthetic truth. 31 of 46 tests were rerun and passed. | pytest tests/test_stats.py tests/test_sim.py tests/test_calibration.py: 31 passed in 74 s (2026-09-17 audit rerun) |
+| Tick-length convergence: a 15 s tick is not converged (P(win) 0.565 -> 0.698 at 7.5 s), while 7.5 s and 3.75 s agree (0.698 vs 0.702) on the 25 m demo ground | scripts/convergence.py --reps 1500 rerun at HEAD a20b7c9, seed 7 |
+| Rung-1 sensitivity: the GP metamodel is trusted (LOO R2 0.75-0.86, MC noise share 0.04-0.05); AT-team P_K dominates every output (total Sobol index 0.61-0.79) | scripts/doe_sobol.py --rung 1 --design 24 --reps 300 rerun at HEAD |
+| The aggregate brigade engine, corrected against the entity engine, cuts the P(win) gap from +0.41 to +0.05 and loss-fraction gaps to about 0.01 (multipliers 0.63 / 2.54) | data/aggregation_correction.json (residuals); raw gap from scripts/aggregation_check.py --raw, not rerun |
+| The history-matching pipeline recovers hidden synthetic parameters and achieves 0.90 held-out coverage of 90% prediction intervals (31 outputs) | scripts/calibrate_ladder.py --rungs 1 2 --terrains 5 --keep 4 --reps 200 --design 20 --waves 2 (not rerun; synthetic reference) |
+
+Every result above is traced to a script, log, or artifact in the repository. See [How I Check My Work](/approach.qmd).
+
+## Limitations
+
+- All parameters, nation catalogs and C2 profiles are notional. There is no validation against real engagements or a higher-fidelity model; every calibration uses the engine's own synthetic reference.
+- Intervals cover Monte Carlo error only, not model error. Parameter uncertainty was about 96% of outcome variance in the predecessor notebook.
+- Grid cell size is not converged on the demo ground: P(win) differs by 0.14-0.17 between 25 m and 12.5 m cells at fine ticks (audit rerun). The README currently says about 0.05.
+- Choice-model parameters (lam_blue, lam_red, b_threat) are not identifiable from aggregate outcomes.
+- The rung-5 aggregation correction is fitted at company scale and extrapolated to brigades.
+- Red is largely static in the entity engine. The brigade engine has no EW, fixed-wing air, or air-defence units.
+- Brigade results are quoted at n = 20 without intervals.
+
+## Tools
+
+Python, NumPy, SciPy, scikit-learn (GP), pandas, Streamlit, pydeck, Altair, OpenStreetMap / Overpass, AWS Terrain Tiles, pytest

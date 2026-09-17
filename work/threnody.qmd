@@ -1,0 +1,43 @@
+---
+title: "Threnody (Pre-release Mobile Strategy Game)"
+description: "Solo-built Phaser 3 / Capacitor Android tactics game with Firebase async multiplayer, in pre-release for Google Play (internal testing)."
+categories: ["Product Engineering", "JavaScript", "Phaser 3", "Vite", "Capacitor 8"]
+order: 100
+featured: false
+draft: true
+---
+
+## The problem
+
+Taking a feature-complete app through store compliance, asset size and multiplayer reliability to a releasable build.
+
+## Approach
+
+Versioned release checklists and a data-safety inventory; scripted PNG to WebP asset migration; seeded deterministic combat with an append-only Firestore action log enabling replay; mission, placement and clearance validators.
+
+::: {.callout-note appearance="simple"}
+## Why it matters for a decision
+
+Shows disciplined delivery: measured optimization, compliance tracking and auditable state.
+:::
+
+## Results
+
+| Result | Evidence |
+|---|---|
+| Assets reduced 72.3 MB to 6.3 MB via WebP | git blob sums of public/assets: 72.3 MiB at ee1c5cd^ to 6.1 MiB at ee1c5cd; du now 6.3M; scripts/optimize-assets.mjs |
+| All 19 campaign missions pass validation | npm run validate run 2026-09-17: missions and placements clean; clearance 1 cosmetic warning |
+| PWA precache 77 MB to 8.98 MB | CHANGELOG 1.4.13; not rebuilt |
+
+Every result above is traced to a script, log, or artifact in the repository. See [How I Check My Work](/approach.qmd).
+
+## Limitations
+
+- Not publicly listed; 1.4.13 AAB not built
+- No unit/integration test framework; QA is validators plus manual smoke tests
+- FCM Cloud Function deploy and live push unverified
+- No remote backup of repo or keystore
+
+## Tools
+
+JavaScript, Phaser 3, Vite, Capacitor 8, Firebase Auth, Firestore, Cloud Functions, FCM, Android

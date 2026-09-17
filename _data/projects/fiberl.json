@@ -1,0 +1,64 @@
+{
+  "slug": "fiberl",
+  "display_title": "fiberL: Automated Fiber Length and Alignment Measurement from SEM Images",
+  "repo_url": "https://github.com/lonespear/fiberL",
+  "local_path": "C:\\Users\\jonathan.day\\Documents\\fiberL",
+  "site_section": "research",
+  "one_liner": "A Streamlit tool that traces every fiber in an SEM image of a nanofiber gel and reports length and orientation distributions. It is meant to replace slow, subjective hand-tracing.",
+  "problem": "Materials researchers characterize electrospun nanofiber gels by hand-tracing fibers in SEM images. That is slow, analyst-dependent, and covers only a few dozen fibers per sample, so comparisons between fabrication conditions are weakly powered.",
+  "approach": "Perona-Malik anisotropic diffusion, morphological top-hat, fixed threshold combined with Canny edges, and skeletonization. Junctions are found with 17 hit-or-miss kernels. Segments meeting at a junction are paired by most anti-parallel direction and merged with union-find. Arc length, PCA orientation and a tangent-correlation persistence length are then computed per fiber. The interactive app provides crop, scale-bar and parameter controls, plus CSV/PNG/PDF export. Prototyped in the lonespear/aerogel Colab notebooks (2024).",
+  "decision_relevance": "Turns a manual measurement into a repeatable instrument, so a lab can test whether a fabrication condition (e.g., high-alignment vs 2:1 alignment gels) changes fiber alignment and length, with known measurement error. This is not yet demonstrated: no validation or between-condition comparison exists.",
+  "headline_results": [
+    {
+      "claim": "End-to-end pipeline implemented: anisotropic diffusion, top-hat, threshold with Canny, skeleton, 17 hit-or-miss junction kernels, direction-based junction pairing, union-find merging, per-fiber length/orientation statistics, CSV/PNG/PDF export.",
+      "evidence": "fiberL.py preproc() L523-551, branch() L555-627, edge_connect() L674-734, merge_edges() L736-769, viz_and_sum() L878-1035, export_results_streamlit() L1113-1174",
+      "status": "verified"
+    },
+    {
+      "claim": "Interactive Streamlit front end with ROI crop, a scale-bar click tool and 13 parameter sliders.",
+      "evidence": "app.py L43-157 (note: 4 sliders currently have no effect and the calibration is not applied downstream)",
+      "status": "verified"
+    },
+    {
+      "claim": "Grew out of 2024 prototype notebooks run on real SEM images of PCL/PLCL nanofiber gels. One preprocessing change cut detected branch points on the same image from 12,832 to 5,702, while mean segment length moved only from 136.4 to 127.7 px.",
+      "evidence": "aerogel/fiberL_v4.ipynb and aerogel/fiberL_v5.ipynb saved outputs",
+      "status": "traceable"
+    }
+  ],
+  "limitations": [
+    "No ground truth: never compared against manual tracing, synthetic fibers of known geometry, or an established tool (DiameterJ, FiberApp, ImageJ Ridge Detection).",
+    "Physical calibration is collected in the UI but never applied; all outputs are in pixels.",
+    "Persistence-length estimator uses exp(-s/Lp) instead of the 2D worm-like-chain form exp(-s/2Lp) and a 20-pixel lag window; in simulation it returns about 2x true Lp and saturates near 140 px on skeleton-like chains.",
+    "'Lambda' = log(Lp)/L is not dimensionless and changes with the unit choice.",
+    "Arc length on pixel skeletons carries a +3-5% diagonal-step bias; greedy point ordering adds a heavy upper tail (p90 +44-77% for curvy fibers in simulation).",
+    "Orientation mean/SD computed linearly on axial (0-180 deg) data; rose diagram is mirrored relative to image coordinates.",
+    "Results depend on about 9 hand-set thresholds with no sensitivity analysis; fibers cut by the image border are length-censored; 2D projection understates true length.",
+    "Exercised only on a handful of images from one lab; junction pairing is unvalidated at crossings and bundles."
+  ],
+  "tech": ["Python", "OpenCV", "scikit-image", "NumPy", "SciPy", "scikit-learn (PCA)", "NetworkX", "pandas", "Matplotlib/Seaborn", "Streamlit"],
+  "links": {
+    "github": "https://github.com/lonespear/fiberL",
+    "demo": "",
+    "paper": ""
+  },
+  "grades": {
+    "claims": "F",
+    "evaluation": "F",
+    "reproducibility": "D",
+    "limitations": "D",
+    "readme": "F",
+    "fa49_relevance": "B-"
+  },
+  "blockers_before_featuring": [
+    "Rewrite jonday.github.io/fiberL.qmd and the index.qmd card: remove the invented code snippets, the non-existent API (scale_factor, process(), get_statistics(), export_csv()), '17+ parameters', 'batch processing', the complexity table, the i7-9700K timing table, the 'used in research' list, and the fictional requirements listing.",
+    "Apply the pixel-to-unit calibration to every length/Lp output (read the TIFF pixel-size tag when present), and fix the app guard so the default number_input value does not count as a completed calibration.",
+    "Fix or drop persistence length (2D WLC factor, lag window, sub-pixel centerline) and drop or redefine the lambda coefficient.",
+    "Validate: synthetic WLC phantoms (length bias/RMSE, Lp recovery) and manual tracing on 2-3 real images (Bland-Altman, detection precision/recall).",
+    "Run a parameter sensitivity screen on the 6 highalign replicate images and report which thresholds move median length and alignment.",
+    "Use axial circular statistics for orientation (doubled-angle mean, nematic order parameter) and fix the mirrored rose diagram.",
+    "Add networkx to requirements, pin a Streamlit version compatible with st.image(use_container_width), ship a sample image with known pixel size, and confirm a clean install runs.",
+    "Add a README and LICENSE (account for the embedded GPL-3.0 MedPy anisotropic_diffusion code).",
+    "Confirm permission from the image owner (TIFF Artist tag 'Calabro') to publish the raw SEM images and credit the collaborator; add a publication/poster link only if one exists.",
+    "Either wire tip_association into the app or stop describing tip-to-tip merging as a feature."
+  ]
+}

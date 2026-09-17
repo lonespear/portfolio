@@ -52,14 +52,14 @@ The cases below are summarized from project notes and are being verified in the
 portfolio audit. Remove this box once each is linked to its evidence.
 :::
 
-- **A 14-point gap between training and serving.** A maintenance-code classifier
-  reported 90.3% accuracy during training. Scoring it the way it is actually deployed
-  exposed a serving bug hiding a 14-point shortfall. After the fix, the held-out figure
-  is 91.6% top-1. *(WUC Predict)*
-- **An archetype effect that was a sampling artifact.** A simulation study suggested
+- **A 14-point gap between training and serving.** A maintenance-code classifier looked
+  healthy in training. Re-measuring the model the way it is actually served exposed a
+  pooling mismatch that silently cost 14 points of accuracy. *(WUC Predict)*
+- **An effect size inflated by the experimental design.** A simulation study suggested
   melee armies win 73% of the time. The design picked one army list per faction, which
-  confounded list with archetype. Re-running across 546 games of many lists showed no
-  archetype effect; the real signal is a roughly 138-fold spread between individual lists.
+  confounded list with archetype. Later checks found the scenario inputs themselves were
+  wrong (invented terrain, the wrong mission); re-run on the published terrain and mission
+  cards, the melee advantage is smaller and still under test with list-level uncertainty.
   *(Rules-engine simulation)*
 - **Measurement faults in an agent evaluation.** Three faults in how competition agents
   were scored invalidated much of the recorded evidence, which was re-classified rather

@@ -1,0 +1,49 @@
+---
+title: "Rules-Engine V&V and Monte Carlo Force-Pairing Analysis for a Tabletop Wargame"
+description: "A seeded, headless simulator of a full tabletop wargame ruleset, verified by conformance tests and replay determinism, used to run controlled Monte Carlo experiments on which force compositions win."
+categories: ["Simulation & ML Engineering", "JavaScript (Node >=18, no dependencies)", "Python 3 (serve, data build, RL bridge with numpy)", "Bradley-Terry / bootstrap", "Wilson intervals"]
+order: 100
+featured: false
+draft: true
+---
+
+## The problem
+
+Balance claims about force compositions (e.g. melee vs shooting armies) are usually anecdotal; a simulator can only answer them if it demonstrably implements the rules and its experiments control for list selection, seat order and opponent quality.
+
+## Approach
+
+Rule-numbered conformance ledger and 42 seeded test suites; reachability audits (implemented rules no driver could call); record/replay determinism as a conformance oracle; roster build audit; round-robin list tournaments with seats swapped, Bradley-Terry strength with bootstrap CIs; head-to-head policy duels with A/A and inverted positive controls and Wilson intervals; power calculations before tuning.
+
+::: {.callout-note appearance="simple"}
+## Why it matters for a decision
+
+Mirrors combat-model V&V and force-on-force analysis: shows how a plausible headline (melee wins 73%) was a sample-selection artifact, how silent input substitutions (wrong terrain, wrong mission) biased every batch result, and how controls bound what an AI-driven simulation can and cannot conclude.
+:::
+
+## Results
+
+| Result | Evidence |
+|---|---|
+| The earlier 'melee wins 73%' figure was an artifact of sampling one army list per faction; within-archetype pairings were as lopsided as cross-archetype ones. | docs/GLIDEPATH.md §3F/§3G; tools/rank_lists.js |
+| Replay desync reduced to 0 of 1,535 recorded actions across six recordings, including two human games, after finding the headless tools were loading the wrong terrain and mission. | docs/GLIDEPATH.md addendum 2026-09-10; tests/recrun.js, tests/ctxrun.js |
+| Roster importer audit: 0 of 9,190 models missing across 179 tournament lists (previously 64% missing in a sample, unevenly by faction). | tools/audit_rosters.js; GLIDEPATH §3D |
+| Bradley-Terry list ordering stable across board settings (same top and bottom lists); list identity dominates archetype. | GLIDEPATH addendum 2026-09-10 |
+| Of three AI heuristics, only stratagem use moved outcomes: 54.6% [50.6, 58.6] over 600 seat-swapped games vs an A/A control of 50.7%; an inverted-objective control lost at 44.6% [40.6, 48.6], bounding headroom for objective valuation. | GLIDEPATH addenda 2026-09-11; tools/duel.js (Wilson intervals) |
+| Five implemented-and-tested rules were unreachable by any driver (reserves, transports, objective actions, surge moves, infiltrate) and were wired in. | README 'Rules that existed but nothing could reach'; GLIDEPATH §3E |
+| Test suites pass headless and seeded : 39 of 42 run during audit, 0 failed in 125 s (3 long soak suites skipped). | node tools/run_tests.js --skip simtest,cx_soak,airun (2026-09-17) |
+
+Every result above is traced to a script, log, or artifact in the repository. See [How I Check My Work](/approach.qmd).
+
+## Limitations
+
+- AI opponent is a greedy one-ply scorer; outcomes partly measure its blind spots.
+- Units are single oriented footprints, not player-placed models; no true line of sight.
+- List ranking is not validated against real tournament outcomes (corpus is undefeated or X-1 lists).
+- Archetype effect estimate is sensitive to terrain and mission scoring (55% to 64%) and its CI treats games, not lists, as independent.
+- Terrain transcriptions describe a superseded August 2026 card revision that cannot be re-obtained.
+- Base sizes, deployment maps and 8 layouts are invented; all rules/points data is third-party and not redistributed.
+
+## Tools
+
+JavaScript (Node >=18, no dependencies), Python 3 (serve, data build, RL bridge with numpy), Bradley-Terry / bootstrap, Wilson intervals, Seeded PRNG record/replay
