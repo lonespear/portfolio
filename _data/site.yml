@@ -1,0 +1,7 @@
+# Site curation. Card content lives in _data/projects/*.json (from the portfolio audit).
+
+# Shown on the home page, in this order. Fill after the audit results are reviewed.
+featured: []
+
+# Slugs to publish even though their card still lists blockers (owner's explicit call).
+publish: []

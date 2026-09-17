@@ -1,0 +1,66 @@
+---
+title: "How I Check My Work"
+subtitle: "The standard every project on this site is held to, and where my own work failed it."
+toc: true
+---
+
+An analysis is only useful to a commander if it is right, and if the person briefing it
+knows how it could be wrong. These are the checks I run before I call something a result.
+
+## 1. Every number has a receipt
+
+Each headline figure on this site traces to a script, a log, or a saved artifact in the
+project's repository. If I cannot point to where a number came from, it does not appear.
+Project pages show only results in that state.
+
+## 2. Evaluate on data the model never saw
+
+Performance is reported on held-out data, split the way the model will be used: by time
+when the future is what matters, by unit or person when the model must generalize to new
+ones. Training-time scores are diagnostics, not results.
+
+## 3. Compare against something
+
+A number without a baseline is not a finding. I report the naive alternative (the
+majority class, last year's rate, a random policy, the current manual process) next to
+the model.
+
+## 4. Report uncertainty, not just the estimate
+
+Win rates come with game counts and intervals. Model scores come with variation across
+seeds or folds. Simulation outputs come with the number of replications behind them.
+
+## 5. Don't test the hypothesis on the data that suggested it
+
+Selecting variables and then testing them on the same data manufactures significance.
+When a method selects, the inference happens on separate data, or with a correction
+built for selection.
+
+## 6. Say what the analysis cannot tell you
+
+Every project page ends with its limitations: what the data does not cover, which
+assumptions carry the result, and what would change the conclusion.
+
+## Where I got it wrong
+
+Applying these checks to my own finished work changed conclusions. I keep those
+corrections visible, because catching them is the job.
+
+::: {.callout-warning appearance="simple"}
+## Draft: confirm against the audit before publishing
+The cases below are summarized from project notes and are being verified in the
+portfolio audit. Remove this box once each is linked to its evidence.
+:::
+
+- **A 14-point gap between training and serving.** A maintenance-code classifier
+  reported 90.3% accuracy during training. Scoring it the way it is actually deployed
+  exposed a serving bug hiding a 14-point shortfall. After the fix, the held-out figure
+  is 91.6% top-1. *(WUC Predict)*
+- **An archetype effect that was a sampling artifact.** A simulation study suggested
+  melee armies win 73% of the time. The design picked one army list per faction, which
+  confounded list with archetype. Re-running across 546 games of many lists showed no
+  archetype effect; the real signal is a roughly 138-fold spread between individual lists.
+  *(Rules-engine simulation)*
+- **Measurement faults in an agent evaluation.** Three faults in how competition agents
+  were scored invalidated much of the recorded evidence, which was re-classified rather
+  than quietly kept. *(Card-game AI)*

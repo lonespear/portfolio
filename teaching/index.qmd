@@ -1,0 +1,21 @@
+---
+title: "Teaching"
+subtitle: "Making quantitative reasoning usable by people who have to act on it."
+listing:
+  id: teaching
+  contents: "*.qmd"
+  type: grid
+  grid-columns: 2
+  sort: ["order", "title"]
+  fields: [title, description]
+  field-display-names:
+    description: ""
+page-layout: full
+toc: false
+---
+
+Course materials, workshops, and tools built while teaching probability and statistics
+at the United States Military Academy.
+
+- [MA206 course guide](/ma206_course.qmd)
+- [Code annex](/code_annex.qmd)

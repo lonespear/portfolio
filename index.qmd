@@ -1,273 +1,58 @@
 ---
 title: "Jonathan Day"
-subtitle: "Data Scientist | Educator | Developer"
+subtitle: "Operations research, statistics, and simulation, delivered as tools people use."
 page-layout: full
 toc: false
+listing:
+  id: featured
+  contents:
+    - work/*.qmd
+  include:
+    featured: true
+  type: grid
+  grid-columns: 3
+  sort: ["order"]
+  fields: [title, description, categories]
+  field-display-names:
+    description: ""
 ---
 
-## About Me
+::: {.hero}
+Army officer entering **FA49, Operations Research and Systems Analysis**. I build models
+of messy operational problems, test them against data they have not seen, say plainly
+what they cannot tell you, and ship them as software.
 
-I'm CPT Jonathan Day, an educator and data scientist at the United States Military Academy at West Point. I specialize in developing innovative tools and educational resources at the intersection of mathematics, statistics, and computer science.
+[See the work](work/index.qmd){.btn .btn-primary}
+[How I check my work](approach.qmd){.btn .btn-outline-primary}
+:::
 
-My work spans multiple domains including:
+## Featured work
 
-- **Data Science & Machine Learning**: Building intelligent systems for literature review automation and research gap identification
-- **Computer Vision**: Developing specialized image analysis tools for materials science
-- **Education**: Creating comprehensive statistical computing resources for cadets
-- **Scientific Computing**: Applying advanced algorithms to solve real-world problems
+:::{#featured}
+:::
 
----
-
-## Featured Projects
+## Areas
 
 ::::: {.grid}
 
-:::: {.g-col-12 .g-col-md-6}
-::: {.card .mb-3}
-::: {.card-body}
-### 🔬 fiberL {.card-title}
-
-**Computer Vision for Fiber Analysis**
-
-An advanced image processing application that automatically analyzes Scanning Electron Microscope (SEM) images of fiber networks. Uses sophisticated computer vision algorithms to detect, measure, and characterize fiber structures.
-
-**Key Features:**
-
-- Advanced morphological image processing
-- Intelligent fiber network reconstruction
-- Quantitative metrics (length, orientation, persistence length)
-- Interactive Streamlit interface
-- Statistical analysis and visualization
-
-**Technologies:** Python, OpenCV, scikit-image, Streamlit
-
-[View Project →](fiberL.qmd){.btn .btn-primary}
-[GitHub](https://github.com/lonespear/fiberL){.btn .btn-outline-secondary target="_blank"}
-:::
-:::
+:::: {.g-col-12 .g-col-md-6 .g-col-lg-3}
+### Decision analytics
+Predictive models on operational data, built for the people who act on them.
 ::::
 
-:::: {.g-col-12 .g-col-md-6}
-::: {.card .mb-3}
-::: {.card-body}
-### ✈️ WUC Predictor {.card-title}
-
-**KC-135 Maintenance Code Classification**
-
-An AI-powered application that predicts Work User Codes (WUCs) for KC-135 aircraft maintenance discrepancies using NLP. Automatically classifies maintenance issues into proper system codes based on TM 1C-135-06 technical manual.
-
-**Key Features:**
-
-- Fine-tuned transformer model for WUC classification
-- Single discrepancy and batch CSV processing
-- Confidence scores with detailed system information
-- 34 aircraft system categories (airframe, electrical, hydraulic, etc.)
-- Deployed on Hugging Face (jonday/wuc-model)
-
-**Technologies:** Python, Streamlit, PyTorch, Transformers
-
-[GitHub](https://github.com/lonespear/wuc_predict){.btn .btn-outline-secondary target="_blank"}
-[Live Demo](https://wucpred.streamlit.app/){.btn .btn-success target="_blank"}
-:::
-:::
+:::: {.g-col-12 .g-col-md-6 .g-col-lg-3}
+### Simulation & wargaming
+Rules engines, Monte Carlo experiments, and reinforcement learning for stress-testing.
 ::::
 
-:::: {.g-col-12 .g-col-md-6}
-::: {.card .mb-3}
-::: {.card-body}
-### 📈 HedgeAbove {.card-title}
-
-**AI-Powered Finance Analytics Platform**
-
-A comprehensive investment platform combining machine learning forecasting with quantitative finance techniques. Provides institutional-grade analytics for portfolio optimization, risk management, and AI-driven predictions.
-
-**Key Features:**
-
-- Stock screener with 2,535+ stocks and 50+ metrics
-- Real-time portfolio tracking with P&L analytics
-- Advanced risk analytics (VaR, CVaR, Sharpe ratio)
-- AI price predictions (LSTM, Prophet, ARIMA)
-- Portfolio optimization (Efficient Frontier, Max Sharpe)
-- Options pricing with full Greeks analysis
-
-**Technologies:** Python, Streamlit, TensorFlow, Plotly, yFinance
-
-[GitHub](https://github.com/lonespear/HedgeAbove){.btn .btn-outline-secondary target="_blank"}
-[Live Demo](https://hedgeabove.streamlit.app/){.btn .btn-success target="_blank"}
-:::
-:::
+:::: {.g-col-12 .g-col-md-6 .g-col-lg-3}
+### Research
+Text mining, high-dimensional regression, and image quantification.
 ::::
 
-:::: {.g-col-12 .g-col-md-6}
-::: {.card .mb-3}
-::: {.card-body}
-### 🇺🇦 Russo-Ukrainian War Dashboard {.card-title}
-
-**Interactive Conflict Visualization**
-
-A comprehensive Streamlit dashboard visualizing the Russo-Ukrainian conflict from 2018-2024, featuring interactive maps of demographics, fatality events, and international aid tracking with Plotly visualizations.
-
-**Key Features:**
-
-- Background demographics maps (religion, language, income)
-- Conflict timeline with 6+ years of fatality data
-- Interactive date slider with event markers
-- International aid tracking across 20+ countries
-- Choropleth maps and bar charts with log scale
-- Dark theme with Mapbox integration
-
-**Technologies:** Python, Streamlit, Plotly, GeoPandas, Mapbox
-
-[GitHub](https://github.com/lonespear/russo-ukr){.btn .btn-outline-secondary target="_blank"}
-[Live Demo](https://russo-ukr.streamlit.app/){.btn .btn-success target="_blank"}
-:::
-:::
-::::
-
-:::: {.g-col-12 .g-col-md-6}
-::: {.card .mb-3}
-::: {.card-body}
-### 📚 MedScrape {.card-title}
-
-**AI-Powered Literature Review Platform**
-
-An intelligent system that automates PubMed literature searches, performs unsupervised clustering of research articles, and identifies research gaps using natural language processing and machine learning.
-
-**Key Features:**
-
-- Automated PubMed database scraping
-- Multiple clustering algorithms (K-Means, DBSCAN, LDA)
-- Research gap identification
-- Interactive 3D visualizations
-- Extractive summarization
-
-**Technologies:** Python, Streamlit, scikit-learn, Gensim, UMAP
-
-[View Project →](medrev.qmd){.btn .btn-primary}
-[GitHub](https://github.com/lonespear/medrev){.btn .btn-outline-secondary target="_blank"}
-[Live Demo](https://medreview.streamlit.app/){.btn .btn-success target="_blank"}
-:::
-:::
-::::
-
-:::: {.g-col-12 .g-col-md-6}
-::: {.card .mb-3}
-::: {.card-body}
-### 📊 MA206: Probability & Statistics {.card-title}
-
-**Comprehensive Course Guide**
-
-A complete educational resource for Introduction to Probability and Statistics, featuring interactive R code examples, comprehensive statistical coverage from exploratory data analysis to ANOVA, and the Six Step Method framework.
-
-**Topics Covered:**
-
-- Data and Randomness
-- Univariate Inference
-- Multivariate Inference
-- R Programming with tidyverse
-- Statistical Visualization
-
-**Technologies:** Quarto, R, RStudio, tidyverse
-
-[View Course →](ma206_course.qmd){.btn .btn-primary}
-[Code Annex →](code_annex.qmd){.btn .btn-outline-primary}
-:::
-:::
-::::
-
-:::: {.g-col-12 .g-col-md-6}
-::: {.card .mb-3}
-::: {.card-body}
-### ♟️ Chess Opening Trainer {.card-title}
-
-**Memorization Through Active Practice**
-
-An interactive Streamlit application designed to help chess players master their opening repertoire through quiz modes, spaced repetition, and random position testing.
-
-**Key Features:**
-
-- Three training modes (Study, Quiz, Random Test)
-- Spaced repetition system
-- Progress tracking with mastery indicators
-- Interactive chess board visualization
-- Auto-play with adjustable speed
-
-**Technologies:** Python, Streamlit, python-chess
-
-[GitHub](https://github.com/lonespear/pawnbarian){.btn .btn-outline-secondary target="_blank"}
-:::
-:::
-::::
-
-:::: {.g-col-12 .g-col-md-6}
-::: {.card .mb-3}
-::: {.card-body}
-### ⚔️ Warhammer 40K Tabletop Simulator {.card-title}
-
-**Turn-Based Strategy Game Engine**
-
-A digital implementation of Warhammer 40,000 tabletop gameplay mechanics using Pygame. Features all core game phases with authentic dice rolling, line-of-sight calculations, and tactical terrain placement.
-
-**Key Features:**
-
-- Five game phases (Command, Movement, Shooting, Charge, Fight)
-- Drag-and-drop unit movement with collision detection
-- Line-of-sight and terrain blocking mechanics
-- Authentic dice rolling for attacks and wounds
-- Unit stat popups with weapon profiles
-- Distance-based targeting and range circles
-
-**Technologies:** Python, Pygame, Math, OOP
-
-[GitHub](https://github.com/lonespear/40k-basic){.btn .btn-outline-secondary target="_blank"}
-:::
-:::
+:::: {.g-col-12 .g-col-md-6 .g-col-lg-3}
+### Teaching
+Probability and statistics at West Point, and workshops on building analytic tools.
 ::::
 
 :::::
-
----
-
-## Technical Skills
-
-::::: {.grid}
-
-:::: {.g-col-12 .g-col-md-4}
-### Programming Languages
-- Python (Advanced)
-- R (Advanced)
-- SQL
-- JavaScript
-::::
-
-:::: {.g-col-12 .g-col-md-4}
-### Data Science & ML
-- scikit-learn
-- TensorFlow/PyTorch
-- NLP (Gensim, NLTK)
-- Computer Vision (OpenCV)
-- Statistical Analysis
-::::
-
-:::: {.g-col-12 .g-col-md-4}
-### Tools & Frameworks
-- Streamlit
-- Quarto/RMarkdown
-- Git/GitHub
-- Docker
-- Cloud Deployment
-::::
-
-:::::
-
----
-
-## Contact
-
-- **Email**: jonathan.day@westpoint.edu
-- **GitHub**: [github.com/lonespear](https://github.com/lonespear)
-- **Institution**: United States Military Academy, West Point, NY
-
----
-
-*Last updated: December 2024*

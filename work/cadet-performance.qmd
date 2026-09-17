@@ -1,0 +1,42 @@
+---
+title: "High-Dimensional Predictors of Cadet Performance"
+description: "LASSO feature selection across 369 physiological, behavioral, and dietary measures to see which predict academic, physical, and military performance."
+categories: ["Research", "R", "glmnet", "tidyverse"]
+order: 100
+featured: false
+draft: true
+---
+
+[Code](https://github.com/lonespear/cadet_performance){.btn .btn-outline-primary .btn-sm}
+
+## The problem
+
+West Point assesses cadets on three pillars: academic, physical, and military. With hundreds of measurements from wearables, surveys, blood work, and diet records, which of them actually carry information about each pillar, and do the pillars share predictors?
+
+## Approach
+
+Joined device-based sleep and activity data with demographic, fitness, psychosocial, dietary, and biomarker measures for a Fall 2024 cohort (data collection supported by USARIEM). Used 10-fold cross-validated LASSO to select predictors for each outcome, then examined the selected models with full diagnostics. The public repository runs end to end on a synthetic dataset with a planted signal, so the pipeline can be checked without any study records.
+
+::: {.callout-note appearance="simple"}
+## Why it matters for a decision
+
+Where to invest in cadet support: if academic and physical performance respond to measurable, changeable factors while military performance does not, resources for the military pillar belong in mentorship and experience rather than monitoring.
+:::
+
+## Results
+
+| Result | Evidence |
+|---|---|
+| On synthetic data with a planted signal, the pipeline recovers exactly the planted academic and physical predictors and returns a null model for the pure-noise outcome at lambda.1se. | R/make_synthetic.R + R/analysis.R (recovery test) |
+
+Every result above is traced to a script, log, or artifact in the repository. See [How I Check My Work](/approach.qmd).
+
+## Limitations
+
+- Single institution and a single semester.
+- Observational data; no causal conclusions.
+- Study records are restricted human-subjects data and are not public; the repository ships synthetic data only.
+
+## Tools
+
+R, glmnet, tidyverse

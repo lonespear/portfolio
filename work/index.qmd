@@ -1,0 +1,19 @@
+---
+title: "Work"
+subtitle: "Analysis, research, simulation, and the software that delivers them."
+listing:
+  id: work
+  contents: "*.qmd"
+  type: grid
+  grid-columns: 3
+  sort: ["order", "title"]
+  categories: true
+  fields: [title, description, categories]
+  field-display-names:
+    description: ""
+page-layout: full
+toc: false
+---
+
+Each project page states the problem, the method, the result with the evidence behind
+it, and what the analysis cannot tell you. Filter by category on the right.

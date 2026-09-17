@@ -1,0 +1,44 @@
+---
+title: "About"
+toc: false
+---
+
+::: {.callout-important appearance="simple"}
+## Owner to complete before publishing
+Confirm rank, education, assignments, and contact details. Nothing below the line
+has been filled in from records; only facts already public on the GitHub profile are
+used.
+:::
+
+I'm Jonathan Day, a U.S. Army officer transitioning into Functional Area 49,
+Operations Research and Systems Analysis.
+
+I came up as an Airborne Infantry leader and have taught probability and statistics
+in the Department of Mathematical Sciences at the United States Military Academy. My
+work sits where statistics, simulation, and software meet: building the model, checking
+it honestly, and delivering it as a tool the people who make decisions will actually use.
+
+## What I bring to an ORSA team
+
+- **Predictive modeling on operational data.** Classifying aircraft maintenance
+  discrepancies from free text for a KC-135 fleet.
+- **Simulation and wargaming analytics.** Rules engines with automated verification,
+  Monte Carlo experiments, and reinforcement learning for balance testing.
+- **Research methods.** Literature-mining pipelines, high-dimensional regression, and
+  dimension reduction on public health data.
+- **Delivery.** Streamlit decision tools, production pipelines, and a mobile app built
+  through a full release process.
+- **Teaching.** Turning statistical reasoning into something cadets and staff can use.
+
+## Education
+
+<!-- TODO: degrees, institutions, years -->
+
+## Experience
+
+<!-- TODO: key assignments -->
+
+## Contact
+
+- GitHub: [github.com/lonespear](https://github.com/lonespear)
+<!-- TODO: LinkedIn and a durable email (not a .edu address that ends at PCS) -->

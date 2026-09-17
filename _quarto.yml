@@ -1,40 +1,55 @@
 project:
   type: website
+  render:
+    - index.qmd
+    - approach.qmd
+    - about.qmd
+    - work/*.qmd
+    - teaching/*.qmd
+    - medrev.qmd
+    - ma206_course.qmd
+    - code_annex.qmd
 
 website:
-  title: "Jonathan Day | Portfolio"
+  title: "Jonathan Day"
+  description: "Operations research, statistics, and simulation. Portfolio of Jonathan Day."
+  site-url: https://lonespear.github.io
+  repo-url: https://github.com/lonespear/lonespear.github.io
+  open-graph: true
+  page-navigation: true
   navbar:
     left:
-      - href: index.qmd
-        text: Home
-      - text: Projects
-        menu:
-          - href: fiberL.qmd
-            text: fiberL - Fiber Analysis
-          - href: https://github.com/lonespear/wuc_predict
-            text: WUC Predictor - Aircraft Maintenance
-          - href: https://github.com/lonespear/HedgeAbove
-            text: HedgeAbove - Finance Analytics
-          - href: medrev.qmd
-            text: MedScrape - Literature Review
-          - href: ma206_course.qmd
-            text: MA206 - Probability & Statistics
-      - href: code_annex.qmd
-        text: Code Examples
+      - href: work/index.qmd
+        text: Work
+      - href: teaching/index.qmd
+        text: Teaching
+      - href: approach.qmd
+        text: How I Check My Work
+      - href: about.qmd
+        text: About
     right:
       - icon: github
         href: https://github.com/lonespear
-        text: GitHub
+        aria-label: GitHub
+  page-footer:
+    left: |
+      The views expressed here are my own and do not reflect the official policy or position of
+      the United States Military Academy, the Department of the Army, the Department of Defense,
+      or the U.S. Government.
+    right: "Built with [Quarto](https://quarto.org)"
 
 format:
   html:
-    theme: cosmo
+    theme:
+      light: [flatly, styles/light.scss]
+      dark: [darkly, styles/dark.scss]
+    css: styles.css
+    include-in-header:
+      text: |
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
     toc: true
     toc-depth: 3
-    code-fold: false
-    page-layout: full
     fig-align: center
-    css: styles.css
     link-external-newwindow: true
-
-editor: visual
+    smooth-scroll: true
