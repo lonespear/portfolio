@@ -26,6 +26,7 @@ Mirrors combat-model V&V and force-on-force analysis: shows how a plausible head
 | Result | Evidence |
 |---|---|
 | The earlier 'melee wins 73%' figure was an artifact of sampling one army list per faction; within-archetype pairings were as lopsided as cross-archetype ones. | docs/GLIDEPATH.md §3F/§3G; tools/rank_lists.js |
+| Whether melee beats shooting is NOT established: melee wins 61.5% of 239 decided cross-archetype games, but a list-level cluster bootstrap (13 lists, 2,000 resamples) gives [39.1, 82.1], which contains 50%. More lists, not more games, would settle it | tools/rank_lists.js archetypeClusterCI, commit 7a870e0 |
 | Replay desync reduced to 0 of 1,535 recorded actions across six recordings, including two human games, after finding the headless tools were loading the wrong terrain and mission. | docs/GLIDEPATH.md addendum 2026-09-10; tests/recrun.js, tests/ctxrun.js |
 | Roster importer audit: 0 of 9,190 models missing across 179 tournament lists (previously 64% missing in a sample, unevenly by faction). | tools/audit_rosters.js; GLIDEPATH §3D |
 | Bradley-Terry list ordering stable across board settings (same top and bottom lists); list identity dominates archetype. | GLIDEPATH addendum 2026-09-10 |

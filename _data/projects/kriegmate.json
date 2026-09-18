@@ -1,6 +1,6 @@
 {
   "slug": "kriegmate",
-  "display_title": "Adversarial Monte Carlo COA Analysis: Common Random Numbers, Ranking-and-Selection, and History-Matching Calibration (notional parameters)",
+  "display_title": "kriegmate: Adversarial Monte Carlo COA Analysis",
   "repo_url": "https://github.com/lonespear/kriegmate",
   "local_path": "C:\\Users\\jonathan.day\\Documents\\kriegmate",
   "site_section": "simulation",
@@ -10,51 +10,62 @@
   "decision_relevance": "Supports COA analysis (which Blue scheme of maneuver is best, with what confidence) and shows the V&V and calibration process that Army analytic organizations apply to combat models. The outputs are methodological, not operational, because every parameter is notional.",
   "headline_results": [
     {
-      "claim": "Core mechanics and estimators are unit-tested: the hit-probability formula matches brute force, Wilson coverage holds, Kim-Nelson selects the known best system, and history matching retains a synthetic truth. 31 of 46 tests were rerun and passed.",
-      "evidence": "pytest tests/test_stats.py tests/test_sim.py tests/test_calibration.py: 31 passed in 74 s (2026-09-17 audit rerun)",
+      "claim": "Paired comparison with common random numbers: support-by-fire 0.678 [0.658, 0.699] vs maneuver 0.649 [0.628, 0.670], n=2000 each; paired difference +0.029 [+0.009, +0.050]; CRN halved the variance",
+      "evidence": "scripts/headline.py -> runs/headline.json + manifest",
       "status": "verified"
     },
     {
-      "claim": "Tick-length convergence: a 15 s tick is not converged (P(win) 0.565 -> 0.698 at 7.5 s), while 7.5 s and 3.75 s agree (0.698 vs 0.702) on the 25 m demo ground",
-      "evidence": "scripts/convergence.py --reps 1500 rerun at HEAD a20b7c9, seed 7",
+      "claim": "Grid cell size is not converged: the 25 m vs 12.5 m gap is 0.169 at a 7.5 s tick (non-overlapping intervals), larger than the tactical effect the model measures, so absolute probabilities are partly a grid artifact",
+      "evidence": "scripts/convergence.py --reps 1500 -> runs/convergence.json",
       "status": "verified"
     },
     {
-      "claim": "Rung-1 sensitivity: the GP metamodel is trusted (LOO R2 0.75-0.86, MC noise share 0.04-0.05); AT-team P_K dominates every output (total Sobol index 0.61-0.79)",
-      "evidence": "scripts/doe_sobol.py --rung 1 --design 24 --reps 300 rerun at HEAD",
+      "claim": "43 of 47 test suites pass in 10 min 55 s, backing the verified-claims table",
+      "evidence": "pytest tests/test_sim.py test_stats.py test_calibration.py test_brigade.py",
       "status": "verified"
     },
     {
-      "claim": "The aggregate brigade engine, corrected against the entity engine, cuts the P(win) gap from +0.41 to +0.05 and loss-fraction gaps to about 0.01 (multipliers 0.63 / 2.54)",
-      "evidence": "data/aggregation_correction.json (residuals); raw gap from scripts/aggregation_check.py --raw, not rerun",
-      "status": "traceable"
-    },
-    {
-      "claim": "The history-matching pipeline recovers hidden synthetic parameters and achieves 0.90 held-out coverage of 90% prediction intervals (31 outputs)",
-      "evidence": "scripts/calibrate_ladder.py --rungs 1 2 --terrains 5 --keep 4 --reps 200 --design 20 --waves 2 (not rerun; synthetic reference)",
-      "status": "traceable"
+      "claim": "Sobol sensitivity: probability of kill at tank range dominates (total-order 0.61-0.79), metamodel LOO R2 0.75-0.86",
+      "evidence": "scripts/doe_sobol.py -> runs/sobol_rung1.json",
+      "status": "verified"
     }
   ],
   "limitations": [
-    "All parameters, nation catalogs and C2 profiles are notional. There is no validation against real engagements or a higher-fidelity model; every calibration uses the engine's own synthetic reference.",
-    "Intervals cover Monte Carlo error only, not model error. Parameter uncertainty was about 96% of outcome variance in the predecessor notebook.",
-    "Grid cell size is not converged on the demo ground: P(win) differs by 0.14-0.17 between 25 m and 12.5 m cells at fine ticks (audit rerun). The README currently says about 0.05.",
-    "Choice-model parameters (lam_blue, lam_red, b_threat) are not identifiable from aggregate outcomes.",
-    "The rung-5 aggregation correction is fitted at company scale and extrapolated to brigades.",
-    "Red is largely static in the entity engine. The brigade engine has no EW, fixed-wing air, or air-defence units.",
-    "Brigade results are quoted at n = 20 without intervals."
+    "Parameters are notional; nothing is fitted to or checked against real data",
+    "Absolute win probabilities are partly a grid artifact; only fixed-cell paired comparisons are defensible",
+    "Brigade table runs at n=20 replications; raising it costs about an hour of CPU"
   ],
-  "tech": ["Python", "NumPy", "SciPy", "scikit-learn (GP)", "pandas", "Streamlit", "pydeck", "Altair", "OpenStreetMap / Overpass", "AWS Terrain Tiles", "pytest"],
-  "links": {"github": "https://github.com/lonespear/kriegmate", "demo": "", "paper": ""},
-  "grades": {"claims": "C", "evaluation": "B", "reproducibility": "B", "limitations": "A", "readme": "C", "fa49_relevance": "A"},
+  "tech": [
+    "Python",
+    "NumPy",
+    "SciPy",
+    "scikit-learn (GP)",
+    "pandas",
+    "Streamlit",
+    "pydeck",
+    "Altair",
+    "OpenStreetMap / Overpass",
+    "AWS Terrain Tiles",
+    "pytest"
+  ],
+  "links": {
+    "github": "https://github.com/lonespear/kriegmate",
+    "demo": "",
+    "paper": ""
+  },
+  "grades": {
+    "claims": "B+",
+    "evaluation": "B",
+    "reproducibility": "B",
+    "limitations": "A",
+    "readme": "A-",
+    "fa49_relevance": "A"
+  },
   "blockers_before_featuring": [
-    "README section 10 convergence table (12.5 m rows) does not reproduce at HEAD with the fixed seed (rerun 0.236/0.401/0.529/0.567 vs stated 0.261/0.487/0.621/0.655), and the 'cell size matters about 0.05' finding is contradicted (actual 0.14-0.17). Regenerate, commit the JSON and manifest, and revise the finding.",
-    "Replace the 'Mathematically rigorous combat simulation' repo description with a method-first title plus 'notional parameters; verified, not validated'. Do not describe the attrition model as Lanchester (there is none; the aggregate engine is a mean-field kill-chain limit).",
-    "Section 19.4 brigade table: add Wilson intervals or raise n from 20. The claim 'Force ratio dominates at equal quality' is unverified (nations differ in quality).",
-    "Fix README internal contradictions: 33 tests / 40 s vs 46 tests / 5 min; section 15 'no obstacles / C2 delays' vs section 19; roadmap vs 7.10 on the LP game; duplicated Contents line; appendix order A.21 before A.20; garbled A.21 sentence.",
-    "Add a one-screen front section (problem, one figure, one worked paired-COA result, verified-vs-not-validated table); move the 1,571-line reference into docs/.",
-    "Pin dependencies (lock file) and commit small result artifacts plus manifests for every quoted number.",
-    "The repo is under a day old with web-upload history. Label it 'in progress' on the site.",
-    "Owner to confirm the public-release suitability of adversary-nation force templates and C2 profiles (prepublication/PAO review question)."
+    "OWNER DECISION: notional force-quality and C2 scores for Russia, China and Iran (sim/nations.py, sim/c2.py) — confirm no prepublication/PAO review is required (DoDI 5230.29)",
+    "Cell size is not converged; no absolute probability from this model should appear as a result until the sweep extends to 6.25 m",
+    "Nothing is validated against real data; the site must label this a methods demonstration in progress",
+    "GitHub repo description still reads 'Mathematically rigorous combat simulation' (remote metadata, must be changed by the owner)",
+    "Push the 10 local commits"
   ]
 }

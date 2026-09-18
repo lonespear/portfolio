@@ -46,7 +46,7 @@
     "fa49_relevance": "C+"
   },
   "blockers_before_featuring": [
-    "Archive demo_facdev or point it to the org repo",
-    "Optional: use ddof=1 or explain the difference; fix the header line map"
+    "Push branch statistics-fixes and open a PR to the usma-stats organization",
+    "Archive demo_facdev or point it at the org repo"
   ]
 }

@@ -27,7 +27,8 @@ Turns probability tables and expected value into resource-allocation decisions u
 
 | Result | Evidence |
 |---|---|
-| Dice-table expected value: P(2d6>=6)*E[bases\|hit] = 26/36*2.333 = 1.684 | README math re-derived (outcome counts 6/15/12/3) |
+| Dice-table expected value: P(2d6>=6) * E[bases\|hit] = 26/36 * 2.333 = 1.684 | README derivation, re-derived in audit |
+| All 30 answer keys re-derived and correct; the Q27 explanation that contradicted its own key is fixed | review.py, commit 6d417b7 |
 
 Every result above is traced to a script, log, or artifact in the repository. See [How I Check My Work](/approach.qmd).
 

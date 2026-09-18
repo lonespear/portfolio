@@ -44,30 +44,39 @@
     "yfinance adjusted prices are revised after the fact, and the data vintage is not committed.",
     "Educational research only, not investment advice."
   ],
-  "tech": ["Python", "pandas", "NumPy", "SciPy", "yfinance", "Streamlit", "Plotly", "SQLite", "SEC EDGAR XBRL (edgartools)", "FRED", "Telegram Bot API", "Raspberry Pi cron"],
+  "tech": [
+    "Python",
+    "pandas",
+    "NumPy",
+    "SciPy",
+    "yfinance",
+    "Streamlit",
+    "Plotly",
+    "SQLite",
+    "SEC EDGAR XBRL (edgartools)",
+    "FRED",
+    "Telegram Bot API",
+    "Raspberry Pi cron"
+  ],
   "links": {
     "github": "https://github.com/lonespear/roth-backtest",
     "demo": "",
     "paper": ""
   },
   "grades": {
-    "claims": "C",
-    "evaluation": "C-",
-    "reproducibility": "D+",
-    "limitations": "C",
-    "readme": "D",
+    "claims": "A-",
+    "evaluation": "B+",
+    "reproducibility": "B",
+    "limitations": "A",
+    "readme": "A-",
     "fa49_relevance": "B"
   },
   "blockers_before_featuring": [
-    "roth-backtest and tick are private repos. Make roth-backtest public (or move the analysis into public HedgeAbove) before linking. Archive tick and cite it as provenance, not as a separate entry.",
-    "Add a disclaimer (not investment advice; past performance; views not those of the U.S. Army or DoD). Remove the personalized 'Recommendation for the Roth IRA' allocation (80/20), the first-person user quote, and HedgeAbove's Pro/Premium subscription and monetization sections. Check JER implications of advertising paid tiers.",
-    "Fix contradicted roth-backtest claims: 'costs eat the edge' for MACD (costs are 0.45 pp of a 4.2 pp gap at 1 bp); 'apples-to-apples' (cash during warm-up); EEM named as a GTAA sleeve it does not hold.",
-    "Report uncertainty: bootstrap CI on Sharpe difference vs buy-and-hold for every strategy; note 8 comparisons (Deflated Sharpe or Reality Check); add next-day-execution and 0/5/10 bp cost-sensitivity columns; add a common post-warm-up window.",
-    "HedgeAbove home-page and SESSION-doc numbers are unverified and methodologically unsound: 84.9% RSI hit rate in VIX>30 (overlapping, clustered level-rule fires, no base rate); Sharpe 2.13 / -11.0% DD basket (per-trade Sharpe times sqrt(trades/yr) with overlapping positions, tickers chosen after the fact, zero costs); walk-forward 0.96 vs ~1.5 (possibly mixed units). Remove them or restate them as exploratory, with episode counts, base rates and CIs.",
-    "HedgeAbove README is stale and contradicted by code: claims LSTM, Prophet and Ensemble models (not present; predictions page is ARIMA + GARCH), '2,535+ stocks' (2,500 unique, many duplicates, 'sp500' list includes non-members), single-file app.py (now a package), 'proprietary' license on a public repo. Rewrite it.",
-    "Bug: hedgeabove/backtest/strategy.py line 171 references undefined 'daily_idx'. simulate_basket raises NameError with the default --benchmark SPY whenever a trade occurs (confirmed with a mocked-data run; broken since commit 265e5b5).",
-    "Reliability defect: scanner.py logs the alert to the dedup table before send_telegram and ignores a failed send, so a failed POST silently suppresses that alert for the day (same pattern in tick).",
-    "Reproducibility: pin dependencies (lock file); commit a results CSV/JSON with data vintage and git SHA; add an offline engine unit test on synthetic prices. HedgeAbove has zero tests despite its README pytest section.",
-    "Document the same-close execution convention and survivorship bias in HedgeAbove's hardcoded present-day universe used for IC and factor scoring."
+    "OWNER DECISION: roth-backtest (the analytic core) is private and has no remote. Make it public or move the analysis into public HedgeAbove",
+    "HedgeAbove now has no published quantitative evidence by design; an exploratory result with episode counts and CIs needs a network run plus committed artifacts",
+    "No saved record of fired alerts and forward outcomes, so this stays a research entry rather than a product one",
+    "Removed subscription marketing remains in the public git history (JER question is a human call)",
+    "Cite a specific SPIVA scorecard year/table or drop the reference",
+    "Push the 6 local commits"
   ]
 }

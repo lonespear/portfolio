@@ -49,31 +49,35 @@
     "Training data and model weights are CUI and are not public; results cannot be reproduced externally.",
     "The LLM-written profile narrative (Tab 3) can state details that are not in the data."
   ],
-  "tech": ["Python", "PyTorch", "Hugging Face Transformers", "ModernBERT-large", "scikit-learn", "pandas", "Streamlit", "Altair", "Ollama (Gemma 4, local)"],
+  "tech": [
+    "Python",
+    "PyTorch",
+    "Hugging Face Transformers",
+    "ModernBERT-large",
+    "scikit-learn",
+    "pandas",
+    "Streamlit",
+    "Altair",
+    "Ollama (Gemma 4, local)"
+  ],
   "links": {
     "github": "https://github.com/lonespear/wuc_predict",
     "demo": "",
     "paper": ""
   },
   "grades": {
-    "claims": "C",
+    "claims": "B",
     "evaluation": "C",
     "reproducibility": "D",
-    "limitations": "B",
-    "readme": "D",
+    "limitations": "A",
+    "readme": "A-",
     "fa49_relevance": "B"
   },
   "blockers_before_featuring": [
-    "The README headlines training-time 0.903/0.772 and argues the hierarchical model is 'significantly better calibrated' from a 47% lower test loss. That loss is a 0.5-weighted composite and not comparable to the flat model's cross-entropy (CONTRADICTED; CLAUDE.md retracts it). Rewrite the README.",
-    "The README claims a '76%' confidence corresponds to about 76% empirical accuracy. No reliability analysis supports this (UNVERIFIED). Remove it.",
-    "Held-out 0.9162 top-1 / 0.9797 top-3 (in CLAUDE.md and the user guide) disagrees with the test-split 0.9032; the 95% CIs do not overlap and the gap is unexplained. It is likely caused by frequency weighting and by dropping label-ambiguous texts in the anti-join. Reconcile before displaying it.",
-    "'0.9162 is a floor' and 'if labels contain errors, true accuracy is higher' are logically unsupported (CONTRADICTED); remove them from all docs.",
-    "The user guide says '93.2% of codes in current use'; the figure is 93.2% of records (CONTRADICTED); fix the wording.",
-    "No baseline. Add at least the maintainer-typed WUC vs QC Corrected WUC agreement, plus a TF-IDF+LR or majority-class baseline.",
-    "No confidence intervals, seed variance, or committed evidence artifact (metrics JSON or a counts-only log) for any headline number.",
-    "Unverified README claims: per-run wall times (~57-60 min) and 'expected ~0.55-0.65 macro F1' for the discrepancy-only variant.",
-    "Unpinned requirements.txt, no synthetic data sample, and a README quick start that points at the stale FinalData.csv.",
-    "The README has stale paths (training scripts listed at root, FinalData.csv in the diagram, deleted jonday/wuc-model), no LICENSE file, and says 'Internal - not yet licensed' on a public repo.",
-    "Optional: genericize the internal JupyterHub URL hard-coded in CLAUDE.md and run_app.sh."
+    "Reconcile the 0.916 frequency-weighted figure with the 0.903 test-split figure, or retire it (README currently headlines 0.903 and flags the conflict)",
+    "No baseline measured: maintainer-typed WUC vs QC-corrected label is the decision-relevant one, plus TF-IDF+LR and majority class. Runs on CPU on the authorized box",
+    "Commit a non-CUI evidence artifact (counts-only metrics JSON) for each headline figure",
+    "Pin requirements.txt and add a synthetic schema sample so the pipeline can be exercised without CUI data",
+    "Push commit f7acf4e"
   ]
 }
