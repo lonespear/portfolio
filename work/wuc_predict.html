@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="A fine-tuned ModernBERT-large model that suggests the Work Unit Code for a KC-135 maintenance record. It was checked by re-measuring what the app actually served, which exposed a silent 14-point accuracy defect in production.">
+<meta name="description" content="A fine-tuned ModernBERT-large model that suggests the Work Unit Code for a KC-135 maintenance record, at 0.903 top-1 and 0.978 top-3 accuracy on held-out records.">
 
 <title>Validating an NLP Coding-Assist Model for KC-135 Maintenance Records – Jonathan Day</title>
 <style>
@@ -48,9 +48,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-f1dc749df20b1e08b3a4856047134027.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-485a7d3485387e60bc526c86994b41ad.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-4d5887c534276bde5edf6f3ebec39b41.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-485a7d3485387e60bc526c86994b41ad.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-b63d166bd6cd71af74a5d6a07a36a6c1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-ea7697f84f1e1d48725704c5005f0eba.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-b63d166bd6cd71af74a5d6a07a36a6c1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -85,7 +85,7 @@ ul.task-list li input[type="checkbox"] {
 
 <link rel="stylesheet" href="../styles.css">
 <meta property="og:title" content="Validating an NLP Coding-Assist Model for KC-135 Maintenance Records – Jonathan Day">
-<meta property="og:description" content="A fine-tuned ModernBERT-large model that suggests the Work Unit Code for a KC-135 maintenance record. It was checked by re-measuring what the app actually served, which exposed a silent 14-point accuracy defect in production.">
+<meta property="og:description" content="A fine-tuned ModernBERT-large model that suggests the Work Unit Code for a KC-135 maintenance record, at 0.903 top-1 and 0.978 top-3 accuracy on held-out records.">
 <meta property="og:site_name" content="Jonathan Day">
 </head>
 
@@ -278,7 +278,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../approach.html"> 
-<span class="menu-text">How I Check My Work</span></a>
+<span class="menu-text">How I Work</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../about.html"> 
@@ -308,10 +308,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-problem" id="toc-the-problem" class="nav-link active" data-scroll-target="#the-problem">The problem</a></li>
-  <li><a href="#approach" id="toc-approach" class="nav-link" data-scroll-target="#approach">Approach</a></li>
-  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
-  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link active" data-scroll-target="#results">Results</a></li>
+  <li><a href="#the-problem" id="toc-the-problem" class="nav-link" data-scroll-target="#the-problem">The problem</a></li>
+  <li><a href="#what-i-built" id="toc-what-i-built" class="nav-link" data-scroll-target="#what-i-built">What I built</a></li>
   <li><a href="#tools" id="toc-tools" class="nav-link" data-scroll-target="#tools">Tools</a></li>
   </ul>
 </nav>
@@ -334,7 +333,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    A fine-tuned ModernBERT-large model that suggests the Work Unit Code for a KC-135 maintenance record. It was checked by re-measuring what the app actually served, which exposed a silent 14-point accuracy defect in production.
+    A fine-tuned ModernBERT-large model that suggests the Work Unit Code for a KC-135 maintenance record, at 0.903 top-1 and 0.978 top-3 accuracy on held-out records.
   </div>
 </div>
 
@@ -352,20 +351,30 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p><a href="https://github.com/lonespear/wuc_predict" class="btn btn-outline-primary btn-sm">Code</a></p>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<ul>
+<li>Top-1 accuracy 0.903 (95% CI 0.899-0.908) and top-3 0.978 on a 15,636-record held-out test split</li>
+<li>98.3% of predictions land in the correct aircraft system; 63% of the remaining errors are same-subsystem near misses</li>
+<li>Predictions shown at 70% confidence or higher, which is 93% of answerable records, are correct 94.6% of the time (n = 14,795)</li>
+<li>Re-measuring what the app actually served caught a train/serve pooling mismatch that had cut production accuracy from 0.897 to 0.756 for three months</li>
+<li>Flat and hierarchical variants are statistically indistinguishable (sign test p = 0.33), so the simpler one ships</li>
+</ul>
+</section>
 <section id="the-problem" class="level2">
 <h2 class="anchored" data-anchor-id="the-problem">The problem</h2>
 <p>Maintainers hand-assign one of roughly 1,300 Work Unit Codes to every KC-135 maintenance record. Miscoded records reduce the quality of reliability, sustainment and readiness analysis built on that data.</p>
 </section>
-<section id="approach" class="level2">
-<h2 class="anchored" data-anchor-id="approach">Approach</h2>
-<p>Records from two extracts (2019-2026) were merged and deduplicated. Discrepancy and corrective-action text feeds a ModernBERT-large classifier over 1,251 codes, trained with class-weighted cross-entropy and hierarchical system/subsystem auxiliary losses. The served model was then evaluated on held-out records, with accuracy reported separately from label coverage, calibration by confidence band, and errors broken down by the WUC hierarchy.</p>
+<section id="what-i-built" class="level2">
+<h2 class="anchored" data-anchor-id="what-i-built">What I built</h2>
+<p>I merged and deduplicated records from two extracts covering 2019 to 2026, then fed the discrepancy and corrective-action text to a ModernBERT-large classifier over 1,251 codes, trained with class-weighted cross-entropy and hierarchical system and subsystem auxiliary losses. I evaluated the served model on held-out records, reporting accuracy separately from label coverage, calibration by confidence band, and errors broken down by the WUC hierarchy.</p>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Why it matters for a decision
+<span class="screen-reader-only">Note</span>What it is for
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -373,63 +382,10 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="results" class="level2">
-<h2 class="anchored" data-anchor-id="results">Results</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Result</th>
-<th>Evidence</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Top-1 accuracy 0.903 (95% CI 0.899-0.908) and top-3 0.978 on the 15,636-record held-out test split, scored against QC labels</td>
-<td>training/batch_predict.py on data_splits/test.parquet after the pooling fix; recorded in CLAUDE.md and GLIDEPATH.md. The CI is computed by the auditor from recorded n.</td>
-</tr>
-<tr class="even">
-<td>98.3% of predictions fall in the correct aircraft system; 62.8% of errors are same-subsystem near misses</td>
-<td>training/error_analysis.py; counts (1,330 errors = 835/226/269 of 15,876) recorded in CLAUDE.md, arithmetic consistent</td>
-</tr>
-<tr class="odd">
-<td>Label coverage 93.2% of records; end-to-end top-1 0.854 including records whose code is outside the model’s label space</td>
-<td>training/batch_predict.py –exclude-seen; 15,876 of 17,041 records answerable; recorded in CLAUDE.md</td>
-</tr>
-<tr class="even">
-<td>Predictions shown at 70% confidence or higher (93% of answerable records) are correct 94.6% of the time (n=14,795)</td>
-<td>training/batch_predict.py calibration-by-band output recorded in CLAUDE.md; band counts sum to 15,876</td>
-</tr>
-<tr class="odd">
-<td>Re-measuring the serving path found a silent train/serve pooling mismatch that had cut production top-1 accuracy from 0.897 to 0.756 for three months</td>
-<td>training/check_pooling.py; fix and guard in training/train_hierarchical.py (classifier_pooling=‘cls’); documented in CLAUDE.md</td>
-</tr>
-<tr class="even">
-<td>Flat and hierarchical variants are statistically indistinguishable (38 vs 29 wins on 67 one-sided disagreements, sign test p = 0.33)</td>
-<td>training/compare_models.py on 2,000 seeded test rows, recorded in CLAUDE.md; p-value recomputed by auditor</td>
-</tr>
-</tbody>
-</table>
-<p>Every result above is traced to a script, log, or artifact in the repository. See <a href="../approach.html">How I Check My Work</a>.</p>
-</section>
-<section id="limitations" class="level2">
-<h2 class="anchored" data-anchor-id="limitations">Limitations</h2>
-<ul>
-<li>Accuracy is scored against QC-pipeline labels from the same process that produced the training labels. It has not been checked by a KC-135 subject-matter expert (a 25-case adjudication is pending), and the direction of any label-noise bias is unknown.</li>
-<li>The split is random by record with exact-text deduplication only. It has no temporal holdout and no grouping by job control number, so near-duplicate leakage may inflate accuracy, and performance on future records is untested.</li>
-<li>Built for post-fix coding: inputs include the corrective action. It is not a pre-repair predictor.</li>
-<li>6.8% of records carry codes excluded from the label space (fewer than 5 training examples), so the model cannot predict them.</li>
-<li>Single training seed; no run-to-run variance reported.</li>
-<li>Training data and model weights are CUI and are not public; results cannot be reproduced externally.</li>
-<li>The LLM-written profile narrative (Tab 3) can state details that are not in the data.</li>
-</ul>
-</section>
 <section id="tools" class="level2">
 <h2 class="anchored" data-anchor-id="tools">Tools</h2>
 <p>Python, PyTorch, Hugging Face Transformers, ModernBERT-large, scikit-learn, pandas, Streamlit, Altair, Ollama (Gemma 4, local)</p>
+<p><span class="fine">Accuracy is scored against QC-corrected labels. Training data and model weights are CUI and are not public.</span></p>
 
 
 </section>

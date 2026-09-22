@@ -48,9 +48,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-f1dc749df20b1e08b3a4856047134027.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-485a7d3485387e60bc526c86994b41ad.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-4d5887c534276bde5edf6f3ebec39b41.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-485a7d3485387e60bc526c86994b41ad.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-b63d166bd6cd71af74a5d6a07a36a6c1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-ea7697f84f1e1d48725704c5005f0eba.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-b63d166bd6cd71af74a5d6a07a36a6c1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -278,7 +278,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../approach.html"> 
-<span class="menu-text">How I Check My Work</span></a>
+<span class="menu-text">How I Work</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../about.html"> 
@@ -308,10 +308,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-problem" id="toc-the-problem" class="nav-link active" data-scroll-target="#the-problem">The problem</a></li>
-  <li><a href="#approach" id="toc-approach" class="nav-link" data-scroll-target="#approach">Approach</a></li>
-  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
-  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link active" data-scroll-target="#results">Results</a></li>
+  <li><a href="#the-problem" id="toc-the-problem" class="nav-link" data-scroll-target="#the-problem">The problem</a></li>
+  <li><a href="#what-i-built" id="toc-what-i-built" class="nav-link" data-scroll-target="#what-i-built">What I built</a></li>
   <li><a href="#tools" id="toc-tools" class="nav-link" data-scroll-target="#tools">Tools</a></li>
   </ul>
 </nav>
@@ -352,60 +351,34 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p><a href="https://github.com/usma-stats/streamlit-workshop" class="btn btn-outline-primary btn-sm">Code</a></p>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<ul>
+<li>A 30-minute workshop that takes math faculty with no web experience to a deployed Streamlit app</li>
+<li>Three-part structure with guided, intermediate and challenge variants of each lab</li>
+<li>Authored and maintained in the department org repository</li>
+</ul>
+</section>
 <section id="the-problem" class="level2">
 <h2 class="anchored" data-anchor-id="the-problem">The problem</h2>
 <p>Instructors want interactive teaching tools but lack web-development skills.</p>
 </section>
-<section id="approach" class="level2">
-<h2 class="anchored" data-anchor-id="approach">Approach</h2>
-<p>Instructor-led walkthrough of a reference app in 5 steps, then tiered lab shells (guided, stats dashboard, open challenge), deployment to Streamlit Cloud, and a quick-reference sheet.</p>
+<section id="what-i-built" class="level2">
+<h2 class="anchored" data-anchor-id="what-i-built">What I built</h2>
+<p>I wrote an instructor-led walkthrough of a reference app in five steps, then tiered lab shells (guided, statistics dashboard, open challenge), deployment to Streamlit Cloud, and a quick-reference sheet.</p>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Why it matters for a decision
+<span class="screen-reader-only">Note</span>What it is for
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Shows the ability to build analytic capacity in others by training colleagues to field their own tools.</p>
+<p>Builds analytic capacity in others: colleagues leave able to field their own tools.</p>
 </div>
 </div>
-</section>
-<section id="results" class="level2">
-<h2 class="anchored" data-anchor-id="results">Results</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Result</th>
-<th>Evidence</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Authored the workshop in the department org repo</td>
-<td>git: lonespear 5 commits, usma-stats 1 (initial commit)</td>
-</tr>
-<tr class="even">
-<td>demo_facdev is the same app</td>
-<td>diff –strip-trailing-cr shows identical app.py</td>
-</tr>
-</tbody>
-</table>
-<p>Every result above is traced to a script, log, or artifact in the repository. See <a href="../approach.html">How I Check My Work</a>.</p>
-</section>
-<section id="limitations" class="level2">
-<h2 class="anchored" data-anchor-id="limitations">Limitations</h2>
-<ul>
-<li>np.std (ddof=0) labeled ‘Std dev’</li>
-<li>Stale line-number map in the app header</li>
-<li>Lab shells deliberately do not run until the blanks are filled</li>
-</ul>
 </section>
 <section id="tools" class="level2">
 <h2 class="anchored" data-anchor-id="tools">Tools</h2>

@@ -48,9 +48,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-f1dc749df20b1e08b3a4856047134027.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-485a7d3485387e60bc526c86994b41ad.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-4d5887c534276bde5edf6f3ebec39b41.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-485a7d3485387e60bc526c86994b41ad.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-b63d166bd6cd71af74a5d6a07a36a6c1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-ea7697f84f1e1d48725704c5005f0eba.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-b63d166bd6cd71af74a5d6a07a36a6c1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -278,7 +278,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../approach.html"> 
-<span class="menu-text">How I Check My Work</span></a>
+<span class="menu-text">How I Work</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../about.html"> 
@@ -308,10 +308,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-problem" id="toc-the-problem" class="nav-link active" data-scroll-target="#the-problem">The problem</a></li>
-  <li><a href="#approach" id="toc-approach" class="nav-link" data-scroll-target="#approach">Approach</a></li>
-  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
-  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link active" data-scroll-target="#results">Results</a></li>
+  <li><a href="#the-problem" id="toc-the-problem" class="nav-link" data-scroll-target="#the-problem">The problem</a></li>
+  <li><a href="#what-i-built" id="toc-what-i-built" class="nav-link" data-scroll-target="#what-i-built">What I built</a></li>
   <li><a href="#tools" id="toc-tools" class="nav-link" data-scroll-target="#tools">Tools</a></li>
   </ul>
 </nav>
@@ -352,60 +351,35 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p><a href="https://github.com/lonespear/ma206-review" class="btn btn-outline-primary btn-sm">Code</a> <a href="https://statball.streamlit.app/" class="btn btn-primary btn-sm">Live demo</a></p>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<ul>
+<li>A 30-question statistics quiz sets each team’s salary cap; teams then draft players in a silent auction and play a 2d6 dice-baseball tournament</li>
+<li>Dice tables built from real OBP, SLG and ERA: P(2d6 &gt;= 6) x E[bases | hit] = 26/36 x 2.333 = 1.684 expected bases per plate appearance</li>
+<li>All 30 answer keys re-derived and verified</li>
+<li>Classroom-tested as the final-exam review in MA206, with submissions collected through Google Sheets</li>
+</ul>
+</section>
 <section id="the-problem" class="level2">
 <h2 class="anchored" data-anchor-id="the-problem">The problem</h2>
 <p>Cumulative review before the term-end exam is usually passive and low-engagement.</p>
 </section>
-<section id="approach" class="level2">
-<h2 class="anchored" data-anchor-id="approach">Approach</h2>
-<p>Streamlit quiz that pays out salary cap and sends results to Google Sheets through st.secrets; players’ OBP/SLG/ERA map to dice probability tables; scouting built on expected bases per plate appearance (law of total expectation).</p>
+<section id="what-i-built" class="level2">
+<h2 class="anchored" data-anchor-id="what-i-built">What I built</h2>
+<p>I built a Streamlit quiz that pays out a salary cap and writes results to Google Sheets, mapped real OBP, SLG and ERA onto 2d6 dice probability tables, and wrote a scouting guide around expected bases per plate appearance using the law of total expectation.</p>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Why it matters for a decision
+<span class="screen-reader-only">Note</span>What it is for
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>Turns probability tables and expected value into resource-allocation decisions under a budget, which parallels analytic tradeoffs.</p>
 </div>
 </div>
-</section>
-<section id="results" class="level2">
-<h2 class="anchored" data-anchor-id="results">Results</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Result</th>
-<th>Evidence</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Dice-table expected value: P(2d6&gt;=6) * E[bases|hit] = 26/36 * 2.333 = 1.684</td>
-<td>README derivation, re-derived in audit</td>
-</tr>
-<tr class="even">
-<td>All 30 answer keys re-derived and correct; the Q27 explanation that contradicted its own key is fixed</td>
-<td>review.py, commit 6d417b7</td>
-</tr>
-</tbody>
-</table>
-<p>Every result above is traced to a script, log, or artifact in the repository. See <a href="../approach.html">How I Check My Work</a>.</p>
-</section>
-<section id="limitations" class="level2">
-<h2 class="anchored" data-anchor-id="limitations">Limitations</h2>
-<ul>
-<li>Q16 uses causal wording for a regression slope</li>
-<li>25 vs 30 question-count and cap-arithmetic inconsistencies</li>
-<li>Needs Google service account to run submissions</li>
-</ul>
 </section>
 <section id="tools" class="level2">
 <h2 class="anchored" data-anchor-id="tools">Tools</h2>

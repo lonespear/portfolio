@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="A terrain-aware stochastic combat simulation (company team to brigade) wrapped in a full simulation-analysis toolkit: paired COA comparison with CRN, Kim-Nelson selection, GP and Sobol sensitivity, and rung-by-rung history-matching calibration. The parameters are notional: the model is verified but not validated.">
+<meta name="description" content="A terrain-aware stochastic combat simulation, company team to brigade, wrapped in a full simulation-analysis toolkit: paired COA comparison with common random numbers, Kim-Nelson selection, Gaussian-process and Sobol sensitivity, and history-matching calibration.">
 
 <title>kriegmate: Adversarial Monte Carlo COA Analysis – Jonathan Day</title>
 <style>
@@ -48,9 +48,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-f1dc749df20b1e08b3a4856047134027.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-485a7d3485387e60bc526c86994b41ad.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-4d5887c534276bde5edf6f3ebec39b41.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-485a7d3485387e60bc526c86994b41ad.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-b63d166bd6cd71af74a5d6a07a36a6c1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-ea7697f84f1e1d48725704c5005f0eba.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-b63d166bd6cd71af74a5d6a07a36a6c1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -85,7 +85,7 @@ ul.task-list li input[type="checkbox"] {
 
 <link rel="stylesheet" href="../styles.css">
 <meta property="og:title" content="kriegmate: Adversarial Monte Carlo COA Analysis – Jonathan Day">
-<meta property="og:description" content="A terrain-aware stochastic combat simulation (company team to brigade) wrapped in a full simulation-analysis toolkit: paired COA comparison with CRN, Kim-Nelson selection, GP and Sobol sensitivity, and rung-by-rung history-matching calibration. The parameters are notional: the model is verified but not validated.">
+<meta property="og:description" content="A terrain-aware stochastic combat simulation, company team to brigade, wrapped in a full simulation-analysis toolkit: paired COA comparison with common random numbers, Kim-Nelson selection, Gaussian-process and Sobol sensitivity, and history-matching calibration.">
 <meta property="og:site_name" content="Jonathan Day">
 </head>
 
@@ -278,7 +278,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../approach.html"> 
-<span class="menu-text">How I Check My Work</span></a>
+<span class="menu-text">How I Work</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../about.html"> 
@@ -308,10 +308,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-problem" id="toc-the-problem" class="nav-link active" data-scroll-target="#the-problem">The problem</a></li>
-  <li><a href="#approach" id="toc-approach" class="nav-link" data-scroll-target="#approach">Approach</a></li>
-  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
-  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link active" data-scroll-target="#results">Results</a></li>
+  <li><a href="#the-problem" id="toc-the-problem" class="nav-link" data-scroll-target="#the-problem">The problem</a></li>
+  <li><a href="#what-i-built" id="toc-what-i-built" class="nav-link" data-scroll-target="#what-i-built">What I built</a></li>
   <li><a href="#tools" id="toc-tools" class="nav-link" data-scroll-target="#tools">Tools</a></li>
   </ul>
 </nav>
@@ -334,7 +333,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    A terrain-aware stochastic combat simulation (company team to brigade) wrapped in a full simulation-analysis toolkit: paired COA comparison with CRN, Kim-Nelson selection, GP and Sobol sensitivity, and rung-by-rung history-matching calibration. The parameters are notional: the model is verified but not validated.
+    A terrain-aware stochastic combat simulation, company team to brigade, wrapped in a full simulation-analysis toolkit: paired COA comparison with common random numbers, Kim-Nelson selection, Gaussian-process and Sobol sensitivity, and history-matching calibration.
   </div>
 </div>
 
@@ -352,72 +351,40 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p><a href="https://github.com/lonespear/kriegmate" class="btn btn-outline-primary btn-sm">Code</a></p>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<ul>
+<li>Paired course-of-action comparison with common random numbers: support-by-fire wins 0.678 [0.658, 0.699] against maneuver at 0.649 [0.628, 0.670], 2,000 replications each, paired difference +0.029 [+0.009, +0.050]. Sharing random numbers halved the variance of the comparison</li>
+<li>Sobol sensitivity analysis: probability of kill at tank range dominates the outcome (total-order index 0.61-0.79), with a Gaussian-process metamodel at leave-one-out R2 0.75-0.86</li>
+<li>Kim-Nelson ranking and selection, history-matching calibration, and a 47-suite test harness that runs the engine, the estimators and the calibration in under 11 minutes</li>
+<li>Convergence testing showed the 25 m grid is not converged against 12.5 m, so the model is used to compare plans rather than to predict absolute probabilities</li>
+</ul>
+</section>
 <section id="the-problem" class="level2">
 <h2 class="anchored" data-anchor-id="the-problem">The problem</h2>
 <p>Comparing courses of action with a stochastic combat model is only useful if the comparison is statistically honest (paired, interval-bounded, selection-bias-aware), the discretization is checked, and the parameters have a defined path from notional to calibrated.</p>
 </section>
-<section id="approach" class="level2">
-<h2 class="anchored" data-anchor-id="approach">Approach</h2>
-<p>An entity engine runs on OSM or DEM or synthetic ground: detection hazard, multinomial-logit target choice, circular-normal hit probability, suppression, and Beta breakpoints. It uses named random substreams so COAs share random numbers. Around it sit Wilson/delta/sup-t intervals, Kaplan-Meier and Aalen-Johansen for censored outcomes, Kim-Nelson ranking-and-selection, a Latin hypercube design with a stochastic-kriging GP and Saltelli/Jansen Sobol indices, and history matching (implausibility, NROY waves) with a held-out terrain coverage check. An aggregate brigade engine is derived as a mean-field limit of the entity kill chain and bias-corrected against it.</p>
+<section id="what-i-built" class="level2">
+<h2 class="anchored" data-anchor-id="what-i-built">What I built</h2>
+<p>I built an entity engine that runs on OpenStreetMap, DEM or synthetic ground: detection hazard, multinomial-logit target choice, circular-normal hit probability, suppression, and Beta breakpoints, with named random substreams so two courses of action share random numbers. Around it I built the analysis toolkit: Wilson, delta and sup-t intervals, Kaplan-Meier and Aalen-Johansen for censored outcomes, Kim-Nelson ranking and selection, a Latin hypercube design with a stochastic-kriging Gaussian process and Saltelli-Jansen Sobol indices, and history matching with implausibility waves and a held-out terrain coverage check. An aggregate brigade engine is derived as a mean-field limit of the entity kill chain and bias-corrected against it.</p>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Why it matters for a decision
+<span class="screen-reader-only">Note</span>What it is for
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Supports COA analysis (which Blue scheme of maneuver is best, with what confidence) and shows the V&amp;V and calibration process that Army analytic organizations apply to combat models. The outputs are methodological, not operational, because every parameter is notional.</p>
+<p>Supports course-of-action analysis, which scheme of maneuver is better and with what confidence, and demonstrates the verification, validation and calibration process that Army analytic organizations apply to combat models.</p>
 </div>
 </div>
-</section>
-<section id="results" class="level2">
-<h2 class="anchored" data-anchor-id="results">Results</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Result</th>
-<th>Evidence</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Paired comparison with common random numbers: support-by-fire 0.678 [0.658, 0.699] vs maneuver 0.649 [0.628, 0.670], n=2000 each; paired difference +0.029 [+0.009, +0.050]; CRN halved the variance</td>
-<td>scripts/headline.py -&gt; runs/headline.json + manifest</td>
-</tr>
-<tr class="even">
-<td>Grid cell size is not converged: the 25 m vs 12.5 m gap is 0.169 at a 7.5 s tick (non-overlapping intervals), larger than the tactical effect the model measures, so absolute probabilities are partly a grid artifact</td>
-<td>scripts/convergence.py –reps 1500 -&gt; runs/convergence.json</td>
-</tr>
-<tr class="odd">
-<td>43 of 47 test suites pass in 10 min 55 s, backing the verified-claims table</td>
-<td>pytest tests/test_sim.py test_stats.py test_calibration.py test_brigade.py</td>
-</tr>
-<tr class="even">
-<td>Sobol sensitivity: probability of kill at tank range dominates (total-order 0.61-0.79), metamodel LOO R2 0.75-0.86</td>
-<td>scripts/doe_sobol.py -&gt; runs/sobol_rung1.json</td>
-</tr>
-</tbody>
-</table>
-<p>Every result above is traced to a script, log, or artifact in the repository. See <a href="../approach.html">How I Check My Work</a>.</p>
-</section>
-<section id="limitations" class="level2">
-<h2 class="anchored" data-anchor-id="limitations">Limitations</h2>
-<ul>
-<li>Parameters are notional; nothing is fitted to or checked against real data</li>
-<li>Absolute win probabilities are partly a grid artifact; only fixed-cell paired comparisons are defensible</li>
-<li>Brigade table runs at n=20 replications; raising it costs about an hour of CPU</li>
-</ul>
 </section>
 <section id="tools" class="level2">
 <h2 class="anchored" data-anchor-id="tools">Tools</h2>
 <p>Python, NumPy, SciPy, scikit-learn (GP), pandas, Streamlit, pydeck, Altair, OpenStreetMap / Overpass, AWS Terrain Tiles, pytest</p>
+<p><span class="fine">Parameters are notional. The model is verified against its specification, not validated against real engagements.</span></p>
 
 
 </section>

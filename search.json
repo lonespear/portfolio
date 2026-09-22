@@ -14,6 +14,13 @@
     "text": "Code"
   },
   {
+    "objectID": "teaching/streamlit-workshop.html#results",
+    "href": "teaching/streamlit-workshop.html#results",
+    "title": "D/Math Streamlit Workshop (Faculty Development)",
+    "section": "Results",
+    "text": "Results\n\nA 30-minute workshop that takes math faculty with no web experience to a deployed Streamlit app\nThree-part structure with guided, intermediate and challenge variants of each lab\nAuthored and maintained in the department org repository"
+  },
+  {
     "objectID": "teaching/streamlit-workshop.html#the-problem",
     "href": "teaching/streamlit-workshop.html#the-problem",
     "title": "D/Math Streamlit Workshop (Faculty Development)",
@@ -21,25 +28,11 @@
     "text": "The problem\nInstructors want interactive teaching tools but lack web-development skills."
   },
   {
-    "objectID": "teaching/streamlit-workshop.html#approach",
-    "href": "teaching/streamlit-workshop.html#approach",
+    "objectID": "teaching/streamlit-workshop.html#what-i-built",
+    "href": "teaching/streamlit-workshop.html#what-i-built",
     "title": "D/Math Streamlit Workshop (Faculty Development)",
-    "section": "Approach",
-    "text": "Approach\nInstructor-led walkthrough of a reference app in 5 steps, then tiered lab shells (guided, stats dashboard, open challenge), deployment to Streamlit Cloud, and a quick-reference sheet.\n\n\n\n\n\n\nNoteWhy it matters for a decision\n\n\n\nShows the ability to build analytic capacity in others by training colleagues to field their own tools."
-  },
-  {
-    "objectID": "teaching/streamlit-workshop.html#results",
-    "href": "teaching/streamlit-workshop.html#results",
-    "title": "D/Math Streamlit Workshop (Faculty Development)",
-    "section": "Results",
-    "text": "Results\n\n\n\n\n\n\n\nResult\nEvidence\n\n\n\n\nAuthored the workshop in the department org repo\ngit: lonespear 5 commits, usma-stats 1 (initial commit)\n\n\ndemo_facdev is the same app\ndiff –strip-trailing-cr shows identical app.py\n\n\n\nEvery result above is traced to a script, log, or artifact in the repository. See How I Check My Work."
-  },
-  {
-    "objectID": "teaching/streamlit-workshop.html#limitations",
-    "href": "teaching/streamlit-workshop.html#limitations",
-    "title": "D/Math Streamlit Workshop (Faculty Development)",
-    "section": "Limitations",
-    "text": "Limitations\n\nnp.std (ddof=0) labeled ‘Std dev’\nStale line-number map in the app header\nLab shells deliberately do not run until the blanks are filled"
+    "section": "What I built",
+    "text": "What I built\nI wrote an instructor-led walkthrough of a reference app in five steps, then tiered lab shells (guided, statistics dashboard, open challenge), deployment to Streamlit Cloud, and a quick-reference sheet.\n\n\n\n\n\n\nNoteWhat it is for\n\n\n\nBuilds analytic capacity in others: colleagues leave able to field their own tools."
   },
   {
     "objectID": "teaching/streamlit-workshop.html#tools",
@@ -63,6 +56,13 @@
     "text": "Code"
   },
   {
+    "objectID": "work/wh40k-sim.html#results",
+    "href": "work/wh40k-sim.html#results",
+    "title": "Rules-Engine V&V and Monte Carlo Force-Pairing Analysis for a Tabletop Wargame",
+    "section": "Results",
+    "text": "Results\n\nMonte Carlo force-pairing over 239 decided cross-archetype games: melee wins 61.5%, but a list-level cluster bootstrap (13 lists, 2,000 resamples) puts the interval at [39.1, 82.1]. List identity, not archetype, drives the result\nReplay determinism: 0 desyncs across 1,535 recorded actions in six games, two of them played by humans\nRoster importer verified against 179 tournament lists: 0 of 9,190 models missing\nBradley-Terry list ranking is stable across board settings\nOf three AI heuristics tested, only stratagem use moved outcomes: 54.6% [50.6, 58.6] over 600 seat-swapped games against a 50.7% control, with an inverted-objective control at 44.6% bounding the headroom\n42 seeded, headless test suites; conformance testing found five implemented rules that no driver could reach and wired them in"
+  },
+  {
     "objectID": "work/wh40k-sim.html#the-problem",
     "href": "work/wh40k-sim.html#the-problem",
     "title": "Rules-Engine V&V and Monte Carlo Force-Pairing Analysis for a Tabletop Wargame",
@@ -70,32 +70,18 @@
     "text": "The problem\nBalance claims about force compositions (e.g. melee vs shooting armies) are usually anecdotal; a simulator can only answer them if it demonstrably implements the rules and its experiments control for list selection, seat order and opponent quality."
   },
   {
-    "objectID": "work/wh40k-sim.html#approach",
-    "href": "work/wh40k-sim.html#approach",
+    "objectID": "work/wh40k-sim.html#what-i-built",
+    "href": "work/wh40k-sim.html#what-i-built",
     "title": "Rules-Engine V&V and Monte Carlo Force-Pairing Analysis for a Tabletop Wargame",
-    "section": "Approach",
-    "text": "Approach\nRule-numbered conformance ledger and 42 seeded test suites; reachability audits (implemented rules no driver could call); record/replay determinism as a conformance oracle; roster build audit; round-robin list tournaments with seats swapped, Bradley-Terry strength with bootstrap CIs; head-to-head policy duels with A/A and inverted positive controls and Wilson intervals; power calculations before tuning.\n\n\n\n\n\n\nNoteWhy it matters for a decision\n\n\n\nMirrors combat-model V&V and force-on-force analysis: shows how a plausible headline (melee wins 73%) was a sample-selection artifact, how silent input substitutions (wrong terrain, wrong mission) biased every batch result, and how controls bound what an AI-driven simulation can and cannot conclude."
-  },
-  {
-    "objectID": "work/wh40k-sim.html#results",
-    "href": "work/wh40k-sim.html#results",
-    "title": "Rules-Engine V&V and Monte Carlo Force-Pairing Analysis for a Tabletop Wargame",
-    "section": "Results",
-    "text": "Results\n\n\n\n\n\n\n\nResult\nEvidence\n\n\n\n\nThe earlier ‘melee wins 73%’ figure was an artifact of sampling one army list per faction; within-archetype pairings were as lopsided as cross-archetype ones.\ndocs/GLIDEPATH.md §3F/§3G; tools/rank_lists.js\n\n\nWhether melee beats shooting is NOT established: melee wins 61.5% of 239 decided cross-archetype games, but a list-level cluster bootstrap (13 lists, 2,000 resamples) gives [39.1, 82.1], which contains 50%. More lists, not more games, would settle it\ntools/rank_lists.js archetypeClusterCI, commit 7a870e0\n\n\nReplay desync reduced to 0 of 1,535 recorded actions across six recordings, including two human games, after finding the headless tools were loading the wrong terrain and mission.\ndocs/GLIDEPATH.md addendum 2026-09-10; tests/recrun.js, tests/ctxrun.js\n\n\nRoster importer audit: 0 of 9,190 models missing across 179 tournament lists (previously 64% missing in a sample, unevenly by faction).\ntools/audit_rosters.js; GLIDEPATH §3D\n\n\nBradley-Terry list ordering stable across board settings (same top and bottom lists); list identity dominates archetype.\nGLIDEPATH addendum 2026-09-10\n\n\nOf three AI heuristics, only stratagem use moved outcomes: 54.6% [50.6, 58.6] over 600 seat-swapped games vs an A/A control of 50.7%; an inverted-objective control lost at 44.6% [40.6, 48.6], bounding headroom for objective valuation.\nGLIDEPATH addenda 2026-09-11; tools/duel.js (Wilson intervals)\n\n\nFive implemented-and-tested rules were unreachable by any driver (reserves, transports, objective actions, surge moves, infiltrate) and were wired in.\nREADME ‘Rules that existed but nothing could reach’; GLIDEPATH §3E\n\n\nTest suites pass headless and seeded : 39 of 42 run during audit, 0 failed in 125 s (3 long soak suites skipped).\nnode tools/run_tests.js –skip simtest,cx_soak,airun (2026-09-17)\n\n\n\nEvery result above is traced to a script, log, or artifact in the repository. See How I Check My Work."
-  },
-  {
-    "objectID": "work/wh40k-sim.html#limitations",
-    "href": "work/wh40k-sim.html#limitations",
-    "title": "Rules-Engine V&V and Monte Carlo Force-Pairing Analysis for a Tabletop Wargame",
-    "section": "Limitations",
-    "text": "Limitations\n\nAI opponent is a greedy one-ply scorer; outcomes partly measure its blind spots.\nUnits are single oriented footprints, not player-placed models; no true line of sight.\nList ranking is not validated against real tournament outcomes (corpus is undefeated or X-1 lists).\nArchetype effect estimate is sensitive to terrain and mission scoring (55% to 64%) and its CI treats games, not lists, as independent.\nTerrain transcriptions describe a superseded August 2026 card revision that cannot be re-obtained.\nBase sizes, deployment maps and 8 layouts are invented; all rules/points data is third-party and not redistributed."
+    "section": "What I built",
+    "text": "What I built\nI built a rule-numbered conformance ledger and 42 seeded test suites, reachability audits that catch implemented rules no driver can call, and record-and-replay determinism as a conformance oracle. On top of that sit round-robin list tournaments with seats swapped, Bradley-Terry strength with bootstrap intervals, head-to-head policy duels with A/A and inverted positive controls, and power calculations run before any tuning.\n\n\n\n\n\n\nNoteWhat it is for\n\n\n\nMirrors combat-model verification and force-on-force analysis: how a plausible headline can be a sample-selection artifact, how a silent input substitution biases every batch result, and how positive and negative controls bound what a simulation study can conclude."
   },
   {
     "objectID": "work/wh40k-sim.html#tools",
     "href": "work/wh40k-sim.html#tools",
     "title": "Rules-Engine V&V and Monte Carlo Force-Pairing Analysis for a Tabletop Wargame",
     "section": "Tools",
-    "text": "Tools\nJavaScript (Node &gt;=18, no dependencies), Python 3 (serve, data build, RL bridge with numpy), Bradley-Terry / bootstrap, Wilson intervals, Seeded PRNG record/replay"
+    "text": "Tools\nJavaScript (Node &gt;=18, no dependencies), Python 3 (serve, data build, RL bridge with numpy), Bradley-Terry / bootstrap, Wilson intervals, Seeded PRNG record/replay\nA simulator of a tabletop ruleset, built as a testbed for rules-engine verification and Monte Carlo experiment design."
   },
   {
     "objectID": "work/kriegmate.html",
@@ -105,6 +91,13 @@
     "text": "Code"
   },
   {
+    "objectID": "work/kriegmate.html#results",
+    "href": "work/kriegmate.html#results",
+    "title": "kriegmate: Adversarial Monte Carlo COA Analysis",
+    "section": "Results",
+    "text": "Results\n\nPaired course-of-action comparison with common random numbers: support-by-fire wins 0.678 [0.658, 0.699] against maneuver at 0.649 [0.628, 0.670], 2,000 replications each, paired difference +0.029 [+0.009, +0.050]. Sharing random numbers halved the variance of the comparison\nSobol sensitivity analysis: probability of kill at tank range dominates the outcome (total-order index 0.61-0.79), with a Gaussian-process metamodel at leave-one-out R2 0.75-0.86\nKim-Nelson ranking and selection, history-matching calibration, and a 47-suite test harness that runs the engine, the estimators and the calibration in under 11 minutes\nConvergence testing showed the 25 m grid is not converged against 12.5 m, so the model is used to compare plans rather than to predict absolute probabilities"
+  },
+  {
     "objectID": "work/kriegmate.html#the-problem",
     "href": "work/kriegmate.html#the-problem",
     "title": "kriegmate: Adversarial Monte Carlo COA Analysis",
@@ -112,39 +105,25 @@
     "text": "The problem\nComparing courses of action with a stochastic combat model is only useful if the comparison is statistically honest (paired, interval-bounded, selection-bias-aware), the discretization is checked, and the parameters have a defined path from notional to calibrated."
   },
   {
-    "objectID": "work/kriegmate.html#approach",
-    "href": "work/kriegmate.html#approach",
+    "objectID": "work/kriegmate.html#what-i-built",
+    "href": "work/kriegmate.html#what-i-built",
     "title": "kriegmate: Adversarial Monte Carlo COA Analysis",
-    "section": "Approach",
-    "text": "Approach\nAn entity engine runs on OSM or DEM or synthetic ground: detection hazard, multinomial-logit target choice, circular-normal hit probability, suppression, and Beta breakpoints. It uses named random substreams so COAs share random numbers. Around it sit Wilson/delta/sup-t intervals, Kaplan-Meier and Aalen-Johansen for censored outcomes, Kim-Nelson ranking-and-selection, a Latin hypercube design with a stochastic-kriging GP and Saltelli/Jansen Sobol indices, and history matching (implausibility, NROY waves) with a held-out terrain coverage check. An aggregate brigade engine is derived as a mean-field limit of the entity kill chain and bias-corrected against it.\n\n\n\n\n\n\nNoteWhy it matters for a decision\n\n\n\nSupports COA analysis (which Blue scheme of maneuver is best, with what confidence) and shows the V&V and calibration process that Army analytic organizations apply to combat models. The outputs are methodological, not operational, because every parameter is notional."
-  },
-  {
-    "objectID": "work/kriegmate.html#results",
-    "href": "work/kriegmate.html#results",
-    "title": "kriegmate: Adversarial Monte Carlo COA Analysis",
-    "section": "Results",
-    "text": "Results\n\n\n\n\n\n\n\nResult\nEvidence\n\n\n\n\nPaired comparison with common random numbers: support-by-fire 0.678 [0.658, 0.699] vs maneuver 0.649 [0.628, 0.670], n=2000 each; paired difference +0.029 [+0.009, +0.050]; CRN halved the variance\nscripts/headline.py -&gt; runs/headline.json + manifest\n\n\nGrid cell size is not converged: the 25 m vs 12.5 m gap is 0.169 at a 7.5 s tick (non-overlapping intervals), larger than the tactical effect the model measures, so absolute probabilities are partly a grid artifact\nscripts/convergence.py –reps 1500 -&gt; runs/convergence.json\n\n\n43 of 47 test suites pass in 10 min 55 s, backing the verified-claims table\npytest tests/test_sim.py test_stats.py test_calibration.py test_brigade.py\n\n\nSobol sensitivity: probability of kill at tank range dominates (total-order 0.61-0.79), metamodel LOO R2 0.75-0.86\nscripts/doe_sobol.py -&gt; runs/sobol_rung1.json\n\n\n\nEvery result above is traced to a script, log, or artifact in the repository. See How I Check My Work."
-  },
-  {
-    "objectID": "work/kriegmate.html#limitations",
-    "href": "work/kriegmate.html#limitations",
-    "title": "kriegmate: Adversarial Monte Carlo COA Analysis",
-    "section": "Limitations",
-    "text": "Limitations\n\nParameters are notional; nothing is fitted to or checked against real data\nAbsolute win probabilities are partly a grid artifact; only fixed-cell paired comparisons are defensible\nBrigade table runs at n=20 replications; raising it costs about an hour of CPU"
+    "section": "What I built",
+    "text": "What I built\nI built an entity engine that runs on OpenStreetMap, DEM or synthetic ground: detection hazard, multinomial-logit target choice, circular-normal hit probability, suppression, and Beta breakpoints, with named random substreams so two courses of action share random numbers. Around it I built the analysis toolkit: Wilson, delta and sup-t intervals, Kaplan-Meier and Aalen-Johansen for censored outcomes, Kim-Nelson ranking and selection, a Latin hypercube design with a stochastic-kriging Gaussian process and Saltelli-Jansen Sobol indices, and history matching with implausibility waves and a held-out terrain coverage check. An aggregate brigade engine is derived as a mean-field limit of the entity kill chain and bias-corrected against it.\n\n\n\n\n\n\nNoteWhat it is for\n\n\n\nSupports course-of-action analysis, which scheme of maneuver is better and with what confidence, and demonstrates the verification, validation and calibration process that Army analytic organizations apply to combat models."
   },
   {
     "objectID": "work/kriegmate.html#tools",
     "href": "work/kriegmate.html#tools",
     "title": "kriegmate: Adversarial Monte Carlo COA Analysis",
     "section": "Tools",
-    "text": "Tools\nPython, NumPy, SciPy, scikit-learn (GP), pandas, Streamlit, pydeck, Altair, OpenStreetMap / Overpass, AWS Terrain Tiles, pytest"
+    "text": "Tools\nPython, NumPy, SciPy, scikit-learn (GP), pandas, Streamlit, pydeck, Altair, OpenStreetMap / Overpass, AWS Terrain Tiles, pytest\nParameters are notional. The model is verified against its specification, not validated against real engagements."
   },
   {
     "objectID": "work/index.html",
     "href": "work/index.html",
     "title": "Work",
     "section": "",
-    "text": "Each project page states the problem, the method, the result with the evidence behind it, and what the analysis cannot tell you. Filter by category on the right.\n\n\n\n\n\n\n\n\n\n\n\nValidating an NLP Coding-Assist Model for KC-135 Maintenance Records\n\n\n\nDecision Analytics\n\nPython\n\nPyTorch\n\nHugging Face Transformers\n\nModernBERT-large\n\n\n\nA fine-tuned ModernBERT-large model that suggests the Work Unit Code for a KC-135 maintenance record. It was checked by re-measuring what the app actually served, which…\n\n\n\n\n\n\n\n\n\nkriegmate: Adversarial Monte Carlo COA Analysis\n\n\n\nSimulation & ML Engineering\n\nPython\n\nNumPy\n\nSciPy\n\nscikit-learn (GP)\n\n\n\nA terrain-aware stochastic combat simulation (company team to brigade) wrapped in a full simulation-analysis toolkit: paired COA comparison with CRN, Kim-Nelson selection…\n\n\n\n\n\n\n\n\n\nRules-Engine V&V and Monte Carlo Force-Pairing Analysis for a Tabletop Wargame\n\n\n\nSimulation & ML Engineering\n\nJavaScript (Node &gt;=18, no dependencies)\n\nPython 3 (serve, data build, RL bridge with numpy)\n\nBradley-Terry / bootstrap\n\nWilson intervals\n\n\n\nA seeded, headless simulator of a full tabletop wargame ruleset, verified by conformance tests and replay determinism, used to run controlled Monte Carlo experiments on…\n\n\n\n\n\n\n\n\n\nDo Trading Signals Beat Buy-and-Hold? A Backtest and a Live Alerting Pipeline\n\n\n\nResearch\n\nPython\n\npandas\n\nNumPy\n\nSciPy\n\n\n\nAn eight-strategy, 19-year backtest that tested whether the technical signals from a self-built Raspberry Pi alerting pipeline were worth trading. They were not, and a…\n\n\n\n\n\n\n\n\n\nHigh-Dimensional Predictors of Cadet Performance\n\n\n\nResearch\n\nR\n\nglmnet\n\ntidyverse\n\n\n\nLASSO feature selection across 369 physiological, behavioral, and dietary measures to see which predict academic, physical, and military performance.\n\n\n\n\n\nNo matching items"
+    "text": "Each project page states the problem, the method, the result with the evidence behind it, and what the analysis cannot tell you. Filter by category on the right.\n\n\n\n\n\n\n\n\n\n\n\nValidating an NLP Coding-Assist Model for KC-135 Maintenance Records\n\n\n\nDecision Analytics\n\nPython\n\nPyTorch\n\nHugging Face Transformers\n\nModernBERT-large\n\n\n\nA fine-tuned ModernBERT-large model that suggests the Work Unit Code for a KC-135 maintenance record, at 0.903 top-1 and 0.978 top-3 accuracy on held-out records.\n\n\n\n\n\n\n\n\n\nkriegmate: Adversarial Monte Carlo COA Analysis\n\n\n\nSimulation & ML Engineering\n\nPython\n\nNumPy\n\nSciPy\n\nscikit-learn (GP)\n\n\n\nA terrain-aware stochastic combat simulation, company team to brigade, wrapped in a full simulation-analysis toolkit: paired COA comparison with common random numbers…\n\n\n\n\n\n\n\n\n\nRules-Engine V&V and Monte Carlo Force-Pairing Analysis for a Tabletop Wargame\n\n\n\nSimulation & ML Engineering\n\nJavaScript (Node &gt;=18, no dependencies)\n\nPython 3 (serve, data build, RL bridge with numpy)\n\nBradley-Terry / bootstrap\n\nWilson intervals\n\n\n\nA seeded, headless simulator of a full tabletop wargame ruleset, verified by conformance tests and replay determinism, used to run controlled Monte Carlo experiments on…\n\n\n\n\n\n\n\n\n\nDo Trading Signals Beat Buy-and-Hold? A Backtest and a Live Alerting Pipeline\n\n\n\nResearch\n\nPython\n\npandas\n\nNumPy\n\nSciPy\n\n\n\nAn eight-strategy, 19-year backtest of the technical signals behind a self-built Raspberry Pi alerting pipeline. No signal beat buy-and-hold on return, and a published trend…\n\n\n\n\n\n\n\n\n\nHigh-Dimensional Predictors of Cadet Performance\n\n\n\nResearch\n\nR\n\nglmnet\n\ntidyverse\n\n\n\nLASSO feature selection across 369 physiological, behavioral, and dietary measures to see which predict academic, physical, and military performance.\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
@@ -193,14 +172,14 @@
     "href": "index.html",
     "title": "Jonathan Day",
     "section": "",
-    "text": "U.S. Army FA49 Operations Research and Systems Analysis officer. I build models of messy operational problems, test them against data they have not seen, say plainly what they cannot tell you, and ship them as software.\nSee the work How I check my work"
+    "text": "U.S. Army FA49 Operations Research and Systems Analysis officer. I build models of messy operational problems, test them against data they have not seen, and ship them as software the people making the decision actually use.\nSee the work How I work"
   },
   {
     "objectID": "index.html#featured-work",
     "href": "index.html#featured-work",
     "title": "Jonathan Day",
     "section": "Featured work",
-    "text": "Featured work\n\n\n\n\n\n\n\nValidating an NLP Coding-Assist Model for KC-135 Maintenance Records\n\n\n\nDecision Analytics\n\nPython\n\nPyTorch\n\nHugging Face Transformers\n\nModernBERT-large\n\n\n\nA fine-tuned ModernBERT-large model that suggests the Work Unit Code for a KC-135 maintenance record. It was checked by re-measuring what the app actually served, which…\n\n\n\n\n\n\n\n\n\nkriegmate: Adversarial Monte Carlo COA Analysis\n\n\n\nSimulation & ML Engineering\n\nPython\n\nNumPy\n\nSciPy\n\nscikit-learn (GP)\n\n\n\nA terrain-aware stochastic combat simulation (company team to brigade) wrapped in a full simulation-analysis toolkit: paired COA comparison with CRN, Kim-Nelson selection…\n\n\n\n\n\n\n\n\n\nRules-Engine V&V and Monte Carlo Force-Pairing Analysis for a Tabletop Wargame\n\n\n\nSimulation & ML Engineering\n\nJavaScript (Node &gt;=18, no dependencies)\n\nPython 3 (serve, data build, RL bridge with numpy)\n\nBradley-Terry / bootstrap\n\nWilson intervals\n\n\n\nA seeded, headless simulator of a full tabletop wargame ruleset, verified by conformance tests and replay determinism, used to run controlled Monte Carlo experiments on…\n\n\n\n\n\n\n\n\n\nDo Trading Signals Beat Buy-and-Hold? A Backtest and a Live Alerting Pipeline\n\n\n\nResearch\n\nPython\n\npandas\n\nNumPy\n\nSciPy\n\n\n\nAn eight-strategy, 19-year backtest that tested whether the technical signals from a self-built Raspberry Pi alerting pipeline were worth trading. They were not, and a…\n\n\n\n\n\n\n\n\n\nHigh-Dimensional Predictors of Cadet Performance\n\n\n\nResearch\n\nR\n\nglmnet\n\ntidyverse\n\n\n\nLASSO feature selection across 369 physiological, behavioral, and dietary measures to see which predict academic, physical, and military performance.\n\n\n\n\n\n\n\n\n\nStatBall: A Stats-Powered Baseball Review Game\n\n\n\nTeaching\n\nPython\n\nStreamlit\n\npandas\n\ngspread\n\n\n\nClassroom-tested final-exam review: teams earn a salary cap from a 30-question stats quiz, draft players in a silent auction, and play a 2d6 dice-baseball tournament.\n\n\n\n\n\nNo matching items"
+    "text": "Featured work\n\n\n\n\n\n\n\nValidating an NLP Coding-Assist Model for KC-135 Maintenance Records\n\n\n\nDecision Analytics\n\nPython\n\nPyTorch\n\nHugging Face Transformers\n\nModernBERT-large\n\n\n\nA fine-tuned ModernBERT-large model that suggests the Work Unit Code for a KC-135 maintenance record, at 0.903 top-1 and 0.978 top-3 accuracy on held-out records.\n\n\n\n\n\n\n\n\n\nkriegmate: Adversarial Monte Carlo COA Analysis\n\n\n\nSimulation & ML Engineering\n\nPython\n\nNumPy\n\nSciPy\n\nscikit-learn (GP)\n\n\n\nA terrain-aware stochastic combat simulation, company team to brigade, wrapped in a full simulation-analysis toolkit: paired COA comparison with common random numbers…\n\n\n\n\n\n\n\n\n\nRules-Engine V&V and Monte Carlo Force-Pairing Analysis for a Tabletop Wargame\n\n\n\nSimulation & ML Engineering\n\nJavaScript (Node &gt;=18, no dependencies)\n\nPython 3 (serve, data build, RL bridge with numpy)\n\nBradley-Terry / bootstrap\n\nWilson intervals\n\n\n\nA seeded, headless simulator of a full tabletop wargame ruleset, verified by conformance tests and replay determinism, used to run controlled Monte Carlo experiments on…\n\n\n\n\n\n\n\n\n\nDo Trading Signals Beat Buy-and-Hold? A Backtest and a Live Alerting Pipeline\n\n\n\nResearch\n\nPython\n\npandas\n\nNumPy\n\nSciPy\n\n\n\nAn eight-strategy, 19-year backtest of the technical signals behind a self-built Raspberry Pi alerting pipeline. No signal beat buy-and-hold on return, and a published trend…\n\n\n\n\n\n\n\n\n\nHigh-Dimensional Predictors of Cadet Performance\n\n\n\nResearch\n\nR\n\nglmnet\n\ntidyverse\n\n\n\nLASSO feature selection across 369 physiological, behavioral, and dietary measures to see which predict academic, physical, and military performance.\n\n\n\n\n\n\n\n\n\nStatBall: A Stats-Powered Baseball Review Game\n\n\n\nTeaching\n\nPython\n\nStreamlit\n\npandas\n\ngspread\n\n\n\nClassroom-tested final-exam review: teams earn a salary cap from a 30-question stats quiz, draft players in a silent auction, and play a 2d6 dice-baseball tournament.\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html#areas",
@@ -212,58 +191,58 @@
   {
     "objectID": "approach.html",
     "href": "approach.html",
-    "title": "How I Check My Work",
+    "title": "How I Work",
     "section": "",
-    "text": "An analysis is only useful to a commander if it is right, and if the person briefing it knows how it could be wrong. These are the checks I run before I call something a result."
+    "text": "An analysis is useful to a commander when it is right, and when the person briefing it can say how far it goes. These are the practices behind the work on this site."
   },
   {
     "objectID": "approach.html#every-number-has-a-receipt",
     "href": "approach.html#every-number-has-a-receipt",
-    "title": "How I Check My Work",
-    "section": "1. Every number has a receipt",
-    "text": "1. Every number has a receipt\nEach headline figure on this site traces to a script, a log, or a saved artifact in the project’s repository. If I cannot point to where a number came from, it does not appear. Project pages show only results in that state."
+    "title": "How I Work",
+    "section": "Every number has a receipt",
+    "text": "Every number has a receipt\nEach figure on this site traces to a script, a log, or a saved artifact in the project’s repository. Run manifests record the commit, the parameters, and the library versions, so any table can be traced back to the code that produced it."
   },
   {
     "objectID": "approach.html#evaluate-on-data-the-model-never-saw",
     "href": "approach.html#evaluate-on-data-the-model-never-saw",
-    "title": "How I Check My Work",
-    "section": "2. Evaluate on data the model never saw",
-    "text": "2. Evaluate on data the model never saw\nPerformance is reported on held-out data, split the way the model will be used: by time when the future is what matters, by unit or person when the model must generalize to new ones. Training-time scores are diagnostics, not results."
+    "title": "How I Work",
+    "section": "Evaluate on data the model never saw",
+    "text": "Evaluate on data the model never saw\nPerformance is reported on held-out data, split the way the model will be used: by time when the future is what matters, by unit or person when the model has to generalize to new ones. Training-time scores are diagnostics, not results."
   },
   {
     "objectID": "approach.html#compare-against-something",
     "href": "approach.html#compare-against-something",
-    "title": "How I Check My Work",
-    "section": "3. Compare against something",
-    "text": "3. Compare against something\nA number without a baseline is not a finding. I report the naive alternative (the majority class, last year’s rate, a random policy, the current manual process) next to the model."
+    "title": "How I Work",
+    "section": "Compare against something",
+    "text": "Compare against something\nA number without a baseline is not a finding. The naive alternative goes next to the model: the majority class, last year’s rate, a random policy, the current manual process."
   },
   {
-    "objectID": "approach.html#report-uncertainty-not-just-the-estimate",
-    "href": "approach.html#report-uncertainty-not-just-the-estimate",
-    "title": "How I Check My Work",
-    "section": "4. Report uncertainty, not just the estimate",
-    "text": "4. Report uncertainty, not just the estimate\nWin rates come with game counts and intervals. Model scores come with variation across seeds or folds. Simulation outputs come with the number of replications behind them."
+    "objectID": "approach.html#report-uncertainty-with-the-estimate",
+    "href": "approach.html#report-uncertainty-with-the-estimate",
+    "title": "How I Work",
+    "section": "Report uncertainty with the estimate",
+    "text": "Report uncertainty with the estimate\nWin rates come with game counts and intervals. Model scores come with variation across seeds or folds. Simulation output comes with the number of replications behind it, and with variance reduction where the design allows it."
   },
   {
     "objectID": "approach.html#dont-test-the-hypothesis-on-the-data-that-suggested-it",
     "href": "approach.html#dont-test-the-hypothesis-on-the-data-that-suggested-it",
-    "title": "How I Check My Work",
-    "section": "5. Don’t test the hypothesis on the data that suggested it",
-    "text": "5. Don’t test the hypothesis on the data that suggested it\nSelecting variables and then testing them on the same data manufactures significance. When a method selects, the inference happens on separate data, or with a correction built for selection."
+    "title": "How I Work",
+    "section": "Don’t test the hypothesis on the data that suggested it",
+    "text": "Don’t test the hypothesis on the data that suggested it\nSelecting variables and then testing them on the same rows manufactures significance. When a method selects, the inference happens on separate data or with a correction built for selection."
   },
   {
-    "objectID": "approach.html#say-what-the-analysis-cannot-tell-you",
-    "href": "approach.html#say-what-the-analysis-cannot-tell-you",
-    "title": "How I Check My Work",
-    "section": "6. Say what the analysis cannot tell you",
-    "text": "6. Say what the analysis cannot tell you\nEvery project page ends with its limitations: what the data does not cover, which assumptions carry the result, and what would change the conclusion."
+    "objectID": "approach.html#verify-the-engine-before-trusting-the-experiment",
+    "href": "approach.html#verify-the-engine-before-trusting-the-experiment",
+    "title": "How I Work",
+    "section": "Verify the engine before trusting the experiment",
+    "text": "Verify the engine before trusting the experiment\nSimulations get conformance tests, seeded replay determinism, and convergence checks on the discretization. An experiment is only as good as the engine underneath it, so the engine gets tested like software, not assumed like a formula."
   },
   {
-    "objectID": "approach.html#where-i-got-it-wrong",
-    "href": "approach.html#where-i-got-it-wrong",
-    "title": "How I Check My Work",
-    "section": "Where I got it wrong",
-    "text": "Where I got it wrong\nApplying these checks to my own finished work changed conclusions. I keep those corrections visible, because catching them is the job.\n\n\n\n\n\n\nWarningDraft: confirm against the audit before publishing\n\n\n\nThe cases below are summarized from project notes and are being verified in the portfolio audit. Remove this box once each is linked to its evidence.\n\n\n\nA 14-point gap between training and serving. A maintenance-code classifier looked healthy in training. Re-measuring the model the way it is actually served exposed a pooling mismatch that silently cost 14 points of accuracy. (WUC Predict)\nAn effect size inflated by the experimental design. A simulation study suggested melee armies win 73% of the time. The design picked one army list per faction, which confounded list with archetype. Later checks found the scenario inputs themselves were wrong (invented terrain, the wrong mission); re-run on the published terrain and mission cards, the melee advantage is smaller and still under test with list-level uncertainty. (Rules-engine simulation)\nMeasurement faults in an agent evaluation. Three faults in how competition agents were scored invalidated much of the recorded evidence, which was re-classified rather than quietly kept. (Card-game AI)"
+    "objectID": "approach.html#say-what-the-analysis-covers",
+    "href": "approach.html#say-what-the-analysis-covers",
+    "title": "How I Work",
+    "section": "Say what the analysis covers",
+    "text": "Say what the analysis covers\nEvery model has a boundary: the data it was fit on, the assumptions carrying the result, the conditions under which it would not hold. Stating that boundary is what makes the result usable by someone who has to act on it."
   },
   {
     "objectID": "work/cadet-performance.html",
@@ -273,6 +252,13 @@
     "text": "Code"
   },
   {
+    "objectID": "work/cadet-performance.html#results",
+    "href": "work/cadet-performance.html#results",
+    "title": "High-Dimensional Predictors of Cadet Performance",
+    "section": "Results",
+    "text": "Results\n\nLASSO feature selection across 369 physiological, behavioral and dietary measures on 238 cadets, over academic, physical and military outcomes\nInference runs on held-out data through sample splitting, cross-validated R2 and a permutation null, so selection and testing never happen on the same rows\nOn synthetic data with a planted signal the pipeline recovers exactly the planted predictors and returns a null model for a pure-noise outcome"
+  },
+  {
     "objectID": "work/cadet-performance.html#the-problem",
     "href": "work/cadet-performance.html#the-problem",
     "title": "High-Dimensional Predictors of Cadet Performance",
@@ -280,32 +266,18 @@
     "text": "The problem\nWest Point assesses cadets on three pillars: academic, physical, and military. With hundreds of measurements from wearables, surveys, blood work, and diet records, which of them actually carry information about each pillar, and do the pillars share predictors?"
   },
   {
-    "objectID": "work/cadet-performance.html#approach",
-    "href": "work/cadet-performance.html#approach",
+    "objectID": "work/cadet-performance.html#what-i-built",
+    "href": "work/cadet-performance.html#what-i-built",
     "title": "High-Dimensional Predictors of Cadet Performance",
-    "section": "Approach",
-    "text": "Approach\nJoined device-based sleep and activity data with demographic, fitness, psychosocial, dietary, and biomarker measures for a Fall 2024 cohort (data collection supported by USARIEM). Used 10-fold cross-validated LASSO to select predictors for each outcome, then examined the selected models with full diagnostics. The public repository runs end to end on a synthetic dataset with a planted signal, so the pipeline can be checked without any study records.\n\n\n\n\n\n\nNoteWhy it matters for a decision\n\n\n\nWhere to invest in cadet support: if academic and physical performance respond to measurable, changeable factors while military performance does not, resources for the military pillar belong in mentorship and experience rather than monitoring."
-  },
-  {
-    "objectID": "work/cadet-performance.html#results",
-    "href": "work/cadet-performance.html#results",
-    "title": "High-Dimensional Predictors of Cadet Performance",
-    "section": "Results",
-    "text": "Results\n\n\n\n\n\n\n\nResult\nEvidence\n\n\n\n\nOn synthetic data with a planted signal, the pipeline recovers exactly the planted academic and physical predictors and returns a null model for the pure-noise outcome at lambda.1se.\nR/make_synthetic.R + R/analysis.R (recovery test)\n\n\n\nEvery result above is traced to a script, log, or artifact in the repository. See How I Check My Work."
-  },
-  {
-    "objectID": "work/cadet-performance.html#limitations",
-    "href": "work/cadet-performance.html#limitations",
-    "title": "High-Dimensional Predictors of Cadet Performance",
-    "section": "Limitations",
-    "text": "Limitations\n\nSingle institution and a single semester.\nObservational data; no causal conclusions.\nStudy records are restricted human-subjects data and are not public; the repository ships synthetic data only."
+    "section": "What I built",
+    "text": "What I built\nI joined device-based sleep and activity data with demographic, fitness, psychosocial, dietary and biomarker measures for a Fall 2024 cohort, with data collection supported by USARIEM. I used 10-fold cross-validated LASSO to select predictors for each outcome, then ran the inference on held-out data so that selection and testing never touch the same rows. The public repository runs end to end on a synthetic dataset with a planted signal, so anyone can check the pipeline without study records.\n\n\n\n\n\n\nNoteWhat it is for\n\n\n\nWhere to invest in cadet support: if academic and physical performance respond to measurable, changeable factors while military performance does not, resources for the military pillar belong in mentorship and experience rather than monitoring."
   },
   {
     "objectID": "work/cadet-performance.html#tools",
     "href": "work/cadet-performance.html#tools",
     "title": "High-Dimensional Predictors of Cadet Performance",
     "section": "Tools",
-    "text": "Tools\nR, glmnet, tidyverse"
+    "text": "Tools\nR, glmnet, tidyverse\nThe public repository ships code and synthetic data. The study data is human-subjects research and stays private."
   },
   {
     "objectID": "work/quant_strategy_eval.html",
@@ -315,6 +287,13 @@
     "text": "Code"
   },
   {
+    "objectID": "work/quant_strategy_eval.html#results",
+    "href": "work/quant_strategy_eval.html#results",
+    "title": "Do Trading Signals Beat Buy-and-Hold? A Backtest and a Live Alerting Pipeline",
+    "section": "Results",
+    "text": "Results\n\nEight strategies backtested over 19 years (2007-2026) at 1 bp costs: none beat buy-and-hold SPY on return (10.68% CAGR)\nThe Faber 200-day moving-average filter cut maximum drawdown from -55.2% to -24.6% while keeping 90% of the return (9.59% CAGR)\nFaber Sharpe 0.65 against 0.51 for buy-and-hold, a difference that does not clear a block-bootstrap interval of [-0.21, +0.49]. The drawdown reduction is the durable finding, not the return\nOscillator signals underperformed: RSI mean reversion Sharpe 0.11, MACD cross 0.43 at 42x annual turnover\nThe live alerting pipeline runs on point-in-time SEC EDGAR fundamentals, filtered to filing date so no signal sees data before it was public"
+  },
+  {
     "objectID": "work/quant_strategy_eval.html#the-problem",
     "href": "work/quant_strategy_eval.html#the-problem",
     "title": "Do Trading Signals Beat Buy-and-Hold? A Backtest and a Live Alerting Pipeline",
@@ -322,32 +301,18 @@
     "text": "The problem\nA long-horizon, tax-sheltered account must choose between passive buy-and-hold and tactical rules (trend filters, momentum, oscillator signals). Popular signals are widely promoted, but whether they improve risk-adjusted outcomes after costs is an empirical question."
   },
   {
-    "objectID": "work/quant_strategy_eval.html#approach",
-    "href": "work/quant_strategy_eval.html#approach",
+    "objectID": "work/quant_strategy_eval.html#what-i-built",
+    "href": "work/quant_strategy_eval.html#what-i-built",
     "title": "Do Trading Signals Beat Buy-and-Hold? A Backtest and a Live Alerting Pipeline",
-    "section": "Approach",
-    "text": "Approach\nA vectorized daily engine applies each strategy’s target weights to adjusted ETF prices (SPY, EFA, IEF, GSG, VNQ, AGG, with BIL as cash) from 2007-05-30 to 2026-05-08. All strategies share the same dates, cost model (1 bp per side) and cash proxy. Results are CAGR, volatility, Sharpe, Sortino, max drawdown, Calmar and turnover against buy-and-hold SPY. The signals come from HedgeAbove, a cron-driven rule engine on a Raspberry Pi with SQLite dedup, Telegram delivery, point-in-time SEC EDGAR fundamentals and walk-forward threshold selection.\n\n\n\n\n\n\nNoteWhy it matters for a decision\n\n\n\nFrames an allocation choice as decision analysis under uncertainty: state the criterion (drawdown and risk-adjusted return, not raw CAGR), test the alternatives on equal terms, and accept a negative result. The self-built signals were kept as monitoring telemetry, not used as a strategy."
-  },
-  {
-    "objectID": "work/quant_strategy_eval.html#results",
-    "href": "work/quant_strategy_eval.html#results",
-    "title": "Do Trading Signals Beat Buy-and-Hold? A Backtest and a Live Alerting Pipeline",
-    "section": "Results",
-    "text": "Results\n\n\n\n\n\n\n\nResult\nEvidence\n\n\n\n\nNo tested strategy beat buy-and-hold SPY on CAGR (10.68%) over 2007-05-30 to 2026-05-08 at 1 bp costs\nroth-backtest tests/smoke.py logic re-run by the auditor on data/prices.parquet (yfinance vintage 2026-05-08). All 8x7 README table cells match.\n\n\nFaber 200-day SMA filter cut maximum drawdown from -55.2% to -24.6% while keeping 90% of buy-and-hold CAGR (9.59% vs 10.68%)\nAuditor re-run on cached data; arithmetic 9.59/10.68 = 0.898, 24.59/55.19 = 0.446\n\n\nFaber Sharpe 0.65 vs buy-and-hold 0.51, but the difference is not statistically significant (block-bootstrap 95% CI [-0.21, +0.49])\nPoint estimates re-run by the auditor. CI from a stationary block bootstrap (21-day blocks, 2,000 reps) the auditor ran. Must be shown with the CI, never without it.\n\n\nSingle-name-style oscillator signals underperformed: RSI mean reversion on SPY Sharpe 0.11, MACD cross Sharpe 0.43 at 42x annual turnover\nAuditor re-run on cached data\n\n\nAlerting pipeline uses point-in-time SEC EDGAR fundamentals (facts filtered to filing_date &lt;= as-of date, amendments deduped to earliest filing)\nHedgeAbove hedgeabove/data/edgar.py _filter_as_of\n\n\n\nEvery result above is traced to a script, log, or artifact in the repository. See How I Check My Work."
-  },
-  {
-    "objectID": "work/quant_strategy_eval.html#limitations",
-    "href": "work/quant_strategy_eval.html#limitations",
-    "title": "Do Trading Signals Beat Buy-and-Hold? A Backtest and a Live Alerting Pipeline",
-    "section": "Limitations",
-    "text": "Limitations\n\nA single 19-year sample dominated by one major bear market (2008-09) and a short one (2020); no 1970s-style inflation regime.\nTrades fill at the same close that generates the signal. With next-day execution, Faber’s Sharpe falls from 0.65 to 0.59 and its CAGR from 9.59% to 8.80%.\nTrend and momentum strategies sit in cash during their 200-252 day warm-up (May 2007 to mid-2008), which flatters them. Over a common post-warm-up window the Sharpe edge shrinks from +0.14 to +0.09.\nEight strategies were compared without a multiple-testing adjustment.\nStatic weights are effectively rebalanced daily at zero cost. Only 1 bp costs are tested. No slippage model.\nyfinance adjusted prices are revised after the fact, and the data vintage is not committed.\nEducational research only, not investment advice."
+    "section": "What I built",
+    "text": "What I built\nI wrote a vectorized daily engine that applies each strategy’s target weights to adjusted ETF prices (SPY, EFA, IEF, GSG, VNQ, AGG, with BIL as cash) from May 2007 to May 2026. Every strategy shares the same dates, cost model of 1 bp per side, and cash proxy, and is scored on CAGR, volatility, Sharpe, Sortino, maximum drawdown, Calmar and turnover against buy-and-hold SPY. The signals come from HedgeAbove, a cron-driven rule engine I run on a Raspberry Pi with SQLite deduplication, Telegram delivery, point-in-time SEC EDGAR fundamentals and walk-forward threshold selection.\n\n\n\n\n\n\nNoteWhat it is for\n\n\n\nFrames an allocation choice as decision analysis under uncertainty: state the criterion, which here is drawdown and risk-adjusted return rather than raw CAGR, test the alternatives on equal terms, and accept the answer the data gives."
   },
   {
     "objectID": "work/quant_strategy_eval.html#tools",
     "href": "work/quant_strategy_eval.html#tools",
     "title": "Do Trading Signals Beat Buy-and-Hold? A Backtest and a Live Alerting Pipeline",
     "section": "Tools",
-    "text": "Tools\nPython, pandas, NumPy, SciPy, yfinance, Streamlit, Plotly, SQLite, SEC EDGAR XBRL (edgartools), FRED, Telegram Bot API, Raspberry Pi cron"
+    "text": "Tools\nPython, pandas, NumPy, SciPy, yfinance, Streamlit, Plotly, SQLite, SEC EDGAR XBRL (edgartools), FRED, Telegram Bot API, Raspberry Pi cron\nA personal research project, not investment advice."
   },
   {
     "objectID": "work/wuc_predict.html",
@@ -357,6 +322,13 @@
     "text": "Code"
   },
   {
+    "objectID": "work/wuc_predict.html#results",
+    "href": "work/wuc_predict.html#results",
+    "title": "Validating an NLP Coding-Assist Model for KC-135 Maintenance Records",
+    "section": "Results",
+    "text": "Results\n\nTop-1 accuracy 0.903 (95% CI 0.899-0.908) and top-3 0.978 on a 15,636-record held-out test split\n98.3% of predictions land in the correct aircraft system; 63% of the remaining errors are same-subsystem near misses\nPredictions shown at 70% confidence or higher, which is 93% of answerable records, are correct 94.6% of the time (n = 14,795)\nRe-measuring what the app actually served caught a train/serve pooling mismatch that had cut production accuracy from 0.897 to 0.756 for three months\nFlat and hierarchical variants are statistically indistinguishable (sign test p = 0.33), so the simpler one ships"
+  },
+  {
     "objectID": "work/wuc_predict.html#the-problem",
     "href": "work/wuc_predict.html#the-problem",
     "title": "Validating an NLP Coding-Assist Model for KC-135 Maintenance Records",
@@ -364,32 +336,18 @@
     "text": "The problem\nMaintainers hand-assign one of roughly 1,300 Work Unit Codes to every KC-135 maintenance record. Miscoded records reduce the quality of reliability, sustainment and readiness analysis built on that data."
   },
   {
-    "objectID": "work/wuc_predict.html#approach",
-    "href": "work/wuc_predict.html#approach",
+    "objectID": "work/wuc_predict.html#what-i-built",
+    "href": "work/wuc_predict.html#what-i-built",
     "title": "Validating an NLP Coding-Assist Model for KC-135 Maintenance Records",
-    "section": "Approach",
-    "text": "Approach\nRecords from two extracts (2019-2026) were merged and deduplicated. Discrepancy and corrective-action text feeds a ModernBERT-large classifier over 1,251 codes, trained with class-weighted cross-entropy and hierarchical system/subsystem auxiliary losses. The served model was then evaluated on held-out records, with accuracy reported separately from label coverage, calibration by confidence band, and errors broken down by the WUC hierarchy.\n\n\n\n\n\n\nNoteWhy it matters for a decision\n\n\n\nSupports the WUC coding decision on completed maintenance records. The top-3 suggestions plus a confidence band send low-confidence records to QC review. The confusion pairs found (for example, codes used interchangeably across bases) are direct feedback to data owners on inconsistent coding that distorts downstream analysis."
-  },
-  {
-    "objectID": "work/wuc_predict.html#results",
-    "href": "work/wuc_predict.html#results",
-    "title": "Validating an NLP Coding-Assist Model for KC-135 Maintenance Records",
-    "section": "Results",
-    "text": "Results\n\n\n\n\n\n\n\nResult\nEvidence\n\n\n\n\nTop-1 accuracy 0.903 (95% CI 0.899-0.908) and top-3 0.978 on the 15,636-record held-out test split, scored against QC labels\ntraining/batch_predict.py on data_splits/test.parquet after the pooling fix; recorded in CLAUDE.md and GLIDEPATH.md. The CI is computed by the auditor from recorded n.\n\n\n98.3% of predictions fall in the correct aircraft system; 62.8% of errors are same-subsystem near misses\ntraining/error_analysis.py; counts (1,330 errors = 835/226/269 of 15,876) recorded in CLAUDE.md, arithmetic consistent\n\n\nLabel coverage 93.2% of records; end-to-end top-1 0.854 including records whose code is outside the model’s label space\ntraining/batch_predict.py –exclude-seen; 15,876 of 17,041 records answerable; recorded in CLAUDE.md\n\n\nPredictions shown at 70% confidence or higher (93% of answerable records) are correct 94.6% of the time (n=14,795)\ntraining/batch_predict.py calibration-by-band output recorded in CLAUDE.md; band counts sum to 15,876\n\n\nRe-measuring the serving path found a silent train/serve pooling mismatch that had cut production top-1 accuracy from 0.897 to 0.756 for three months\ntraining/check_pooling.py; fix and guard in training/train_hierarchical.py (classifier_pooling=‘cls’); documented in CLAUDE.md\n\n\nFlat and hierarchical variants are statistically indistinguishable (38 vs 29 wins on 67 one-sided disagreements, sign test p = 0.33)\ntraining/compare_models.py on 2,000 seeded test rows, recorded in CLAUDE.md; p-value recomputed by auditor\n\n\n\nEvery result above is traced to a script, log, or artifact in the repository. See How I Check My Work."
-  },
-  {
-    "objectID": "work/wuc_predict.html#limitations",
-    "href": "work/wuc_predict.html#limitations",
-    "title": "Validating an NLP Coding-Assist Model for KC-135 Maintenance Records",
-    "section": "Limitations",
-    "text": "Limitations\n\nAccuracy is scored against QC-pipeline labels from the same process that produced the training labels. It has not been checked by a KC-135 subject-matter expert (a 25-case adjudication is pending), and the direction of any label-noise bias is unknown.\nThe split is random by record with exact-text deduplication only. It has no temporal holdout and no grouping by job control number, so near-duplicate leakage may inflate accuracy, and performance on future records is untested.\nBuilt for post-fix coding: inputs include the corrective action. It is not a pre-repair predictor.\n6.8% of records carry codes excluded from the label space (fewer than 5 training examples), so the model cannot predict them.\nSingle training seed; no run-to-run variance reported.\nTraining data and model weights are CUI and are not public; results cannot be reproduced externally.\nThe LLM-written profile narrative (Tab 3) can state details that are not in the data."
+    "section": "What I built",
+    "text": "What I built\nI merged and deduplicated records from two extracts covering 2019 to 2026, then fed the discrepancy and corrective-action text to a ModernBERT-large classifier over 1,251 codes, trained with class-weighted cross-entropy and hierarchical system and subsystem auxiliary losses. I evaluated the served model on held-out records, reporting accuracy separately from label coverage, calibration by confidence band, and errors broken down by the WUC hierarchy.\n\n\n\n\n\n\nNoteWhat it is for\n\n\n\nSupports the WUC coding decision on completed maintenance records. The top-3 suggestions plus a confidence band send low-confidence records to QC review. The confusion pairs found (for example, codes used interchangeably across bases) are direct feedback to data owners on inconsistent coding that distorts downstream analysis."
   },
   {
     "objectID": "work/wuc_predict.html#tools",
     "href": "work/wuc_predict.html#tools",
     "title": "Validating an NLP Coding-Assist Model for KC-135 Maintenance Records",
     "section": "Tools",
-    "text": "Tools\nPython, PyTorch, Hugging Face Transformers, ModernBERT-large, scikit-learn, pandas, Streamlit, Altair, Ollama (Gemma 4, local)"
+    "text": "Tools\nPython, PyTorch, Hugging Face Transformers, ModernBERT-large, scikit-learn, pandas, Streamlit, Altair, Ollama (Gemma 4, local)\nAccuracy is scored against QC-corrected labels. Training data and model weights are CUI and are not public."
   },
   {
     "objectID": "teaching/statball.html",
@@ -399,6 +357,13 @@
     "text": "Code Live demo"
   },
   {
+    "objectID": "teaching/statball.html#results",
+    "href": "teaching/statball.html#results",
+    "title": "StatBall: A Stats-Powered Baseball Review Game",
+    "section": "Results",
+    "text": "Results\n\nA 30-question statistics quiz sets each team’s salary cap; teams then draft players in a silent auction and play a 2d6 dice-baseball tournament\nDice tables built from real OBP, SLG and ERA: P(2d6 &gt;= 6) x E[bases | hit] = 26/36 x 2.333 = 1.684 expected bases per plate appearance\nAll 30 answer keys re-derived and verified\nClassroom-tested as the final-exam review in MA206, with submissions collected through Google Sheets"
+  },
+  {
     "objectID": "teaching/statball.html#the-problem",
     "href": "teaching/statball.html#the-problem",
     "title": "StatBall: A Stats-Powered Baseball Review Game",
@@ -406,25 +371,11 @@
     "text": "The problem\nCumulative review before the term-end exam is usually passive and low-engagement."
   },
   {
-    "objectID": "teaching/statball.html#approach",
-    "href": "teaching/statball.html#approach",
+    "objectID": "teaching/statball.html#what-i-built",
+    "href": "teaching/statball.html#what-i-built",
     "title": "StatBall: A Stats-Powered Baseball Review Game",
-    "section": "Approach",
-    "text": "Approach\nStreamlit quiz that pays out salary cap and sends results to Google Sheets through st.secrets; players’ OBP/SLG/ERA map to dice probability tables; scouting built on expected bases per plate appearance (law of total expectation).\n\n\n\n\n\n\nNoteWhy it matters for a decision\n\n\n\nTurns probability tables and expected value into resource-allocation decisions under a budget, which parallels analytic tradeoffs."
-  },
-  {
-    "objectID": "teaching/statball.html#results",
-    "href": "teaching/statball.html#results",
-    "title": "StatBall: A Stats-Powered Baseball Review Game",
-    "section": "Results",
-    "text": "Results\n\n\n\n\n\n\n\nResult\nEvidence\n\n\n\n\nDice-table expected value: P(2d6&gt;=6) * E[bases|hit] = 26/36 * 2.333 = 1.684\nREADME derivation, re-derived in audit\n\n\nAll 30 answer keys re-derived and correct; the Q27 explanation that contradicted its own key is fixed\nreview.py, commit 6d417b7\n\n\n\nEvery result above is traced to a script, log, or artifact in the repository. See How I Check My Work."
-  },
-  {
-    "objectID": "teaching/statball.html#limitations",
-    "href": "teaching/statball.html#limitations",
-    "title": "StatBall: A Stats-Powered Baseball Review Game",
-    "section": "Limitations",
-    "text": "Limitations\n\nQ16 uses causal wording for a regression slope\n25 vs 30 question-count and cap-arithmetic inconsistencies\nNeeds Google service account to run submissions"
+    "section": "What I built",
+    "text": "What I built\nI built a Streamlit quiz that pays out a salary cap and writes results to Google Sheets, mapped real OBP, SLG and ERA onto 2d6 dice probability tables, and wrote a scouting guide around expected bases per plate appearance using the law of total expectation.\n\n\n\n\n\n\nNoteWhat it is for\n\n\n\nTurns probability tables and expected value into resource-allocation decisions under a budget, which parallels analytic tradeoffs."
   },
   {
     "objectID": "teaching/statball.html#tools",
