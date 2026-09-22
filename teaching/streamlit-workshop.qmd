@@ -4,7 +4,7 @@ description: "30-minute workshop that teaches math faculty with no web experienc
 categories: ["Teaching", "Python", "Streamlit", "numpy", "pandas"]
 order: 100
 featured: false
-draft: true
+draft: false
 ---
 
 [Code](https://github.com/usma-stats/streamlit-workshop){.btn .btn-outline-primary .btn-sm}

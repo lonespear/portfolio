@@ -1,7 +1,14 @@
 # Site curation. Card content lives in _data/projects/*.json (from the portfolio audit).
 
-# Shown on the home page, in this order. Fill after the audit results are reviewed.
-featured: []
+# Shown on the home page, in this order.
+featured: [wuc_predict, kriegmate, wh40k-sim, quant_strategy_eval, cadet-performance, statball]
 
-# Slugs to publish even though their card still lists blockers (owner's explicit call).
-publish: []
+# Slugs to publish even though their card still lists blockers (owner's call).
+publish:
+  - wuc_predict
+  - kriegmate
+  - wh40k-sim
+  - quant_strategy_eval
+  - cadet-performance
+  - statball
+  - streamlit-workshop

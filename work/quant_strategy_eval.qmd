@@ -2,9 +2,9 @@
 title: "Do Trading Signals Beat Buy-and-Hold? A Backtest and a Live Alerting Pipeline"
 description: "An eight-strategy, 19-year backtest that tested whether the technical signals from a self-built Raspberry Pi alerting pipeline were worth trading. They were not, and a published trend filter cut drawdown by more than half at a cost of about 1 point of annual return."
 categories: ["Research", "Python", "pandas", "NumPy", "SciPy"]
-order: 100
-featured: false
-draft: true
+order: 4
+featured: true
+draft: false
 ---
 
 [Code](https://github.com/lonespear/roth-backtest){.btn .btn-outline-primary .btn-sm}

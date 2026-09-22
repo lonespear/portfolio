@@ -2,9 +2,9 @@
 title: "Rules-Engine V&V and Monte Carlo Force-Pairing Analysis for a Tabletop Wargame"
 description: "A seeded, headless simulator of a full tabletop wargame ruleset, verified by conformance tests and replay determinism, used to run controlled Monte Carlo experiments on which force compositions win."
 categories: ["Simulation & ML Engineering", "JavaScript (Node >=18, no dependencies)", "Python 3 (serve, data build, RL bridge with numpy)", "Bradley-Terry / bootstrap", "Wilson intervals"]
-order: 100
-featured: false
-draft: true
+order: 3
+featured: true
+draft: false
 ---
 
 ## The problem

@@ -2,9 +2,9 @@
 title: "StatBall: A Stats-Powered Baseball Review Game"
 description: "Classroom-tested final-exam review: teams earn a salary cap from a 30-question stats quiz, draft players in a silent auction, and play a 2d6 dice-baseball tournament."
 categories: ["Teaching", "Python", "Streamlit", "pandas", "gspread"]
-order: 100
-featured: false
-draft: true
+order: 6
+featured: true
+draft: false
 ---
 
 [Code](https://github.com/lonespear/ma206-review){.btn .btn-outline-primary .btn-sm} [Live demo](https://statball.streamlit.app/){.btn .btn-primary .btn-sm}

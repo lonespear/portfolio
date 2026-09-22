@@ -2,9 +2,9 @@
 title: "Validating an NLP Coding-Assist Model for KC-135 Maintenance Records"
 description: "A fine-tuned ModernBERT-large model that suggests the Work Unit Code for a KC-135 maintenance record. It was checked by re-measuring what the app actually served, which exposed a silent 14-point accuracy defect in production."
 categories: ["Decision Analytics", "Python", "PyTorch", "Hugging Face Transformers", "ModernBERT-large"]
-order: 100
-featured: false
-draft: true
+order: 1
+featured: true
+draft: false
 ---
 
 [Code](https://github.com/lonespear/wuc_predict){.btn .btn-outline-primary .btn-sm}
