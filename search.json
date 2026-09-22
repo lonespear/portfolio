@@ -60,14 +60,14 @@
     "href": "work/wh40k-sim.html",
     "title": "Rules-Engine V&V and Monte Carlo Force-Pairing Analysis for a Tabletop Wargame",
     "section": "",
-    "text": "Balance claims about force compositions (e.g. melee vs shooting armies) are usually anecdotal; a simulator can only answer them if it demonstrably implements the rules and its experiments control for list selection, seat order and opponent quality."
+    "text": "Code"
   },
   {
     "objectID": "work/wh40k-sim.html#the-problem",
     "href": "work/wh40k-sim.html#the-problem",
     "title": "Rules-Engine V&V and Monte Carlo Force-Pairing Analysis for a Tabletop Wargame",
-    "section": "",
-    "text": "Balance claims about force compositions (e.g. melee vs shooting armies) are usually anecdotal; a simulator can only answer them if it demonstrably implements the rules and its experiments control for list selection, seat order and opponent quality."
+    "section": "The problem",
+    "text": "The problem\nBalance claims about force compositions (e.g. melee vs shooting armies) are usually anecdotal; a simulator can only answer them if it demonstrably implements the rules and its experiments control for list selection, seat order and opponent quality."
   },
   {
     "objectID": "work/wh40k-sim.html#approach",
