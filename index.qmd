@@ -7,6 +7,7 @@ listing:
   id: featured
   contents:
     - work/*.qmd
+    - teaching/*.qmd
   include:
     featured: true
   type: grid
@@ -18,7 +19,7 @@ listing:
 ---
 
 ::: {.hero}
-Army officer entering **FA49, Operations Research and Systems Analysis**. I build models
+U.S. Army **FA49 Operations Research and Systems Analysis** officer. I build models
 of messy operational problems, test them against data they have not seen, say plainly
 what they cannot tell you, and ship them as software.
 
