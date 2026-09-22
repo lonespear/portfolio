@@ -7,6 +7,8 @@ featured: true
 draft: false
 ---
 
+[Code](https://github.com/lonespear/wh40k-sim){.btn .btn-outline-primary .btn-sm}
+
 ## The problem
 
 Balance claims about force compositions (e.g. melee vs shooting armies) are usually anecdotal; a simulator can only answer them if it demonstrably implements the rules and its experiments control for list selection, seat order and opponent quality.

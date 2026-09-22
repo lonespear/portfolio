@@ -1,7 +1,7 @@
 {
   "slug": "wh40k-sim",
   "display_title": "Rules-Engine V&V and Monte Carlo Force-Pairing Analysis for a Tabletop Wargame",
-  "repo_url": "",
+  "repo_url": "https://github.com/lonespear/wh40k-sim",
   "local_path": "C:\\Users\\jonathan.day\\Documents\\wh40k-sim",
   "site_section": "simulation",
   "one_liner": "A seeded, headless simulator of a full tabletop wargame ruleset, verified by conformance tests and replay determinism, used to run controlled Monte Carlo experiments on which force compositions win.",
@@ -66,7 +66,7 @@
     "Seeded PRNG record/replay"
   ],
   "links": {
-    "github": "",
+    "github": "https://github.com/lonespear/wh40k-sim",
     "demo": "",
     "paper": ""
   },
