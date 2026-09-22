@@ -3,20 +3,15 @@ title: "About"
 toc: false
 ---
 
-::: {.callout-important appearance="simple"}
-## Owner to complete before publishing
-Confirm rank, education, assignments, and contact details. Nothing below the line
-has been filled in from records; only facts already public on the GitHub profile are
-used.
-:::
+I'm Jonathan Day, a Major in the U.S. Army and a Functional Area 49 (Operations Research
+and Systems Analysis) officer.
 
-I'm Jonathan Day, a U.S. Army officer transitioning into Functional Area 49,
-Operations Research and Systems Analysis.
-
-I came up as an Airborne Infantry leader and have taught probability and statistics
-in the Department of Mathematical Sciences at the United States Military Academy. My
-work sits where statistics, simulation, and software meet: building the model, checking
-it honestly, and delivering it as a tool the people who make decisions will actually use.
+I spent my first seven years as an Airborne Infantry officer, including a deployment to
+Afghanistan and command of a rifle company in the 82d Airborne Division. Since 2023 I have
+taught probability and statistics in the Department of Mathematical Sciences at the United
+States Military Academy, where I direct the MA206 course. My work sits where statistics,
+simulation, and software meet: building the model, checking it honestly, and delivering it
+as a tool that decision-makers will actually use.
 
 ## What I bring to an ORSA team
 
@@ -32,13 +27,31 @@ it honestly, and delivering it as a tool the people who make decisions will actu
 
 ## Education
 
-<!-- TODO: degrees, institutions, years -->
+- **M.S., Applied Statistics**, University of Michigan, Ann Arbor, 2024. Focus: machine
+  learning, statistical inference, stochastic processes.
+- **B.S., Mathematical Sciences and Arabic**, United States Military Academy, 2015.
 
 ## Experience
 
-<!-- TODO: key assignments -->
+- **Instructor and Course Director, MA206/MA206X Probability and Statistics**,
+  Department of Mathematical Sciences, USMA, West Point, NY. 2023 to present.
+- **Rifle Company Commander**, A Company, 2-505 PIR, 82d Airborne Division, Fort Bragg,
+  NC. 2020 to 2022.
+- **Platoon Leader and S-3 Planner**, 1-501 IN (Airborne), JBER, Alaska, and Nangarhar,
+  Afghanistan (Operation Freedom's Sentinel). 2016 to 2019.
+
+## Publications
+
+- Day, J., et al. "AI-Based Thematic Analysis of Biomedical Literature for Precision
+  Nutrition." *Journal of Nutrition*.
+  [doi:10.1016/j.tjnut.2026.101472](https://doi.org/10.1016/j.tjnut.2026.101472)
+- Day, J. (2025). "Comparative Analysis of Sliced Inverse Regression in Mental Health
+  Screening Data." Joint Statistical Meetings, Nashville.
+  [doi:10.5281/zenodo.17351806](https://doi.org/10.5281/zenodo.17351806)
 
 ## Contact
 
+- Email: [jonathan.day808@gmail.com](mailto:jonathan.day808@gmail.com) ·
+  [jonathan.day@westpoint.edu](mailto:jonathan.day@westpoint.edu)
+- LinkedIn: [linkedin.com/in/jonathan-day-29388318a](https://www.linkedin.com/in/jonathan-day-29388318a/)
 - GitHub: [github.com/lonespear](https://github.com/lonespear)
-<!-- TODO: LinkedIn and a durable email (not a .edu address that ends at PCS) -->
