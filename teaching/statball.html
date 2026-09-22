@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Classroom-tested final-exam review: teams earn a salary cap from a 30-question stats quiz, draft players in a silent auction, and play a 2d6 dice-baseball tournament.">
 
-<title>Jonathan Day</title>
+<title>StatBall: A Stats-Powered Baseball Review Game – Jonathan Day</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -29,29 +30,27 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-f1dc749df20b1e08b3a4856047134027.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-55d0e057869ad88b5495b2227f7019fc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-f1dc749df20b1e08b3a4856047134027.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-b63d166bd6cd71af74a5d6a07a36a6c1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-ea7697f84f1e1d48725704c5005f0eba.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-b63d166bd6cd71af74a5d6a07a36a6c1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f1dc749df20b1e08b3a4856047134027.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-55d0e057869ad88b5495b2227f7019fc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f1dc749df20b1e08b3a4856047134027.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-b63d166bd6cd71af74a5d6a07a36a6c1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-ea7697f84f1e1d48725704c5005f0eba.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-b63d166bd6cd71af74a5d6a07a36a6c1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -79,72 +78,14 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-featured .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-featured'] = new List('listing-featured', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <style>html{ scroll-behavior: smooth; }</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet">
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="Jonathan Day">
-<meta property="og:description" content="Operations research, statistics, and simulation, delivered as tools people use.">
+<link rel="stylesheet" href="../styles.css">
+<meta property="og:title" content="StatBall: A Stats-Powered Baseball Review Game – Jonathan Day">
+<meta property="og:description" content="Classroom-tested final-exam review: teams earn a salary cap from a 30-question stats quiz, draft players in a silent auction, and play a 2d6 dice-baseball tournament.">
 <meta property="og:site_name" content="Jonathan Day">
 </head>
 
@@ -317,7 +258,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Jonathan Day</span>
     </a>
   </div>
@@ -328,19 +269,19 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./work/index.html"> 
+    <a class="nav-link" href="../work/index.html"> 
 <span class="menu-text">Work</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./teaching/index.html"> 
+    <a class="nav-link" href="../teaching/index.html"> 
 <span class="menu-text">Teaching</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./approach.html"> 
+    <a class="nav-link" href="../approach.html"> 
 <span class="menu-text">How I Check My Work</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -359,23 +300,46 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-problem" id="toc-the-problem" class="nav-link active" data-scroll-target="#the-problem">The problem</a></li>
+  <li><a href="#approach" id="toc-approach" class="nav-link" data-scroll-target="#approach">Approach</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
+  <li><a href="#tools" id="toc-tools" class="nav-link" data-scroll-target="#tools">Tools</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Jonathan Day</h1>
-<p class="subtitle lead">Operations research, statistics, and simulation, delivered as tools people use.</p>
+<h1 class="title">StatBall: A Stats-Powered Baseball Review Game</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Teaching</div>
+    <div class="quarto-category">Python</div>
+    <div class="quarto-category">Streamlit</div>
+    <div class="quarto-category">pandas</div>
+    <div class="quarto-category">gspread</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Classroom-tested final-exam review: teams earn a salary cap from a 30-question stats quiz, draft players in a silent auction, and play a 2d6 dice-baseball tournament.
+  </div>
 </div>
 
 
-
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta">
 
     
   
@@ -387,193 +351,65 @@ window.Quarto = {
 </header>
 
 
-<div class="hero">
-<p>U.S. Army <strong>FA49 Operations Research and Systems Analysis</strong> officer. I build models of messy operational problems, test them against data they have not seen, say plainly what they cannot tell you, and ship them as software.</p>
-<p><a href="./work/index.html" class="btn btn-primary">See the work</a> <a href="./approach.html" class="btn btn-outline-primary">How I check my work</a></p>
+<p><a href="https://github.com/lonespear/ma206-review" class="btn btn-outline-primary btn-sm">Code</a> <a href="https://statball.streamlit.app/" class="btn btn-primary btn-sm">Live demo</a></p>
+<section id="the-problem" class="level2">
+<h2 class="anchored" data-anchor-id="the-problem">The problem</h2>
+<p>Cumulative review before the term-end exam is usually passive and low-engagement.</p>
+</section>
+<section id="approach" class="level2">
+<h2 class="anchored" data-anchor-id="approach">Approach</h2>
+<p>Streamlit quiz that pays out salary cap and sends results to Google Sheets through st.secrets; players’ OBP/SLG/ERA map to dice probability tables; scouting built on expected bases per plate appearance (law of total expectation).</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<section id="featured-work" class="level2">
-<h2 class="anchored" data-anchor-id="featured-work">Featured work</h2>
-<div id="listing-featured" class="quarto-listing quarto-listing-container-grid">
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="RGVjaXNpb24lMjBBbmFseXRpY3MlMkNQeXRob24lMkNQeVRvcmNoJTJDSHVnZ2luZyUyMEZhY2UlMjBUcmFuc2Zvcm1lcnMlMkNNb2Rlcm5CRVJULWxhcmdl" data-listing-file-modified-sort="1790087073886" data-listing-reading-time-sort="3" data-listing-word-count-sort="533">
-<a href="./work/wuc_predict.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Validating an NLP Coding-Assist Model for KC-135 Maintenance Records
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('RGVjaXNpb24lMjBBbmFseXRpY3M='); return false;">Decision Analytics</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHlUb3JjaA=='); return false;">PyTorch</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('SHVnZ2luZyUyMEZhY2UlMjBUcmFuc2Zvcm1lcnM='); return false;">Hugging Face Transformers</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TW9kZXJuQkVSVC1sYXJnZQ=='); return false;">ModernBERT-large</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>A fine-tuned ModernBERT-large model that suggests the Work Unit Code for a KC-135 maintenance record. It was checked by re-measuring what the app actually served, which…</p>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Why it matters for a decision
 </div>
 </div>
-</div></a>
+<div class="callout-body-container callout-body">
+<p>Turns probability tables and expected value into resource-allocation decisions under a budget, which parallels analytic tradeoffs.</p>
 </div>
-<div class="g-col-1" data-index="1" data-categories="U2ltdWxhdGlvbiUyMCUyNiUyME1MJTIwRW5naW5lZXJpbmclMkNQeXRob24lMkNOdW1QeSUyQ1NjaVB5JTJDc2Npa2l0LWxlYXJuJTIwKEdQKQ==" data-listing-file-modified-sort="1790087073886" data-listing-reading-time-sort="2" data-listing-word-count-sort="374">
-<a href="./work/kriegmate.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-kriegmate: Adversarial Monte Carlo COA Analysis
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U2ltdWxhdGlvbiUyMCUyNiUyME1MJTIwRW5naW5lZXJpbmc='); return false;">Simulation &amp; ML Engineering</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TnVtUHk='); return false;">NumPy</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('U2NpUHk='); return false;">SciPy</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('c2Npa2l0LWxlYXJuJTIwKEdQKQ=='); return false;">scikit-learn (GP)</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>A terrain-aware stochastic combat simulation (company team to brigade) wrapped in a full simulation-analysis toolkit: paired COA comparison with CRN, Kim-Nelson selection…</p>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="2" data-categories="U2ltdWxhdGlvbiUyMCUyNiUyME1MJTIwRW5naW5lZXJpbmclMkNKYXZhU2NyaXB0JTIwKE5vZGUlMjAlM0UlM0QxOCUyQyUyMG5vJTIwZGVwZW5kZW5jaWVzKSUyQ1B5dGhvbiUyMDMlMjAoc2VydmUlMkMlMjBkYXRhJTIwYnVpbGQlMkMlMjBSTCUyMGJyaWRnZSUyMHdpdGglMjBudW1weSklMkNCcmFkbGV5LVRlcnJ5JTIwJTJGJTIwYm9vdHN0cmFwJTJDV2lsc29uJTIwaW50ZXJ2YWxz" data-listing-file-modified-sort="1790087073886" data-listing-reading-time-sort="3" data-listing-word-count-sort="537">
-<a href="./work/wh40k-sim.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Rules-Engine V&amp;V and Monte Carlo Force-Pairing Analysis for a Tabletop Wargame
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U2ltdWxhdGlvbiUyMCUyNiUyME1MJTIwRW5naW5lZXJpbmc='); return false;">Simulation &amp; ML Engineering</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('SmF2YVNjcmlwdCUyMChOb2RlJTIwJTNFJTNEMTglMkMlMjBubyUyMGRlcGVuZGVuY2llcyk='); return false;">JavaScript (Node &gt;=18, no dependencies)</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9uJTIwMyUyMChzZXJ2ZSUyQyUyMGRhdGElMjBidWlsZCUyQyUyMFJMJTIwYnJpZGdlJTIwd2l0aCUyMG51bXB5KQ=='); return false;">Python 3 (serve, data build, RL bridge with numpy)</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('QnJhZGxleS1UZXJyeSUyMCUyRiUyMGJvb3RzdHJhcA=='); return false;">Bradley-Terry / bootstrap</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('V2lsc29uJTIwaW50ZXJ2YWxz'); return false;">Wilson intervals</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>A seeded, headless simulator of a full tabletop wargame ruleset, verified by conformance tests and replay determinism, used to run controlled Monte Carlo experiments on…</p>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="3" data-categories="UmVzZWFyY2glMkNQeXRob24lMkNwYW5kYXMlMkNOdW1QeSUyQ1NjaVB5" data-listing-file-modified-sort="1790087073886" data-listing-reading-time-sort="3" data-listing-word-count-sort="507">
-<a href="./work/quant_strategy_eval.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Do Trading Signals Beat Buy-and-Hold? A Backtest and a Live Alerting Pipeline
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UmVzZWFyY2g='); return false;">Research</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('cGFuZGFz'); return false;">pandas</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TnVtUHk='); return false;">NumPy</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('U2NpUHk='); return false;">SciPy</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>An eight-strategy, 19-year backtest that tested whether the technical signals from a self-built Raspberry Pi alerting pipeline were worth trading. They were not, and a…</p>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="4" data-categories="UmVzZWFyY2glMkNSJTJDZ2xtbmV0JTJDdGlkeXZlcnNl" data-listing-file-modified-sort="1790087073885" data-listing-reading-time-sort="2" data-listing-word-count-sort="238">
-<a href="./work/cadet-performance.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-High-Dimensional Predictors of Cadet Performance
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UmVzZWFyY2g='); return false;">Research</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z2xtbmV0'); return false;">glmnet</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('dGlkeXZlcnNl'); return false;">tidyverse</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>LASSO feature selection across 369 physiological, behavioral, and dietary measures to see which predict academic, physical, and military performance.</p>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="5" data-categories="VGVhY2hpbmclMkNQeXRob24lMkNTdHJlYW1saXQlMkNwYW5kYXMlMkNnc3ByZWFk" data-listing-file-modified-sort="1790087073885" data-listing-reading-time-sort="1" data-listing-word-count-sort="166">
-<a href="./teaching/statball.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-StatBall: A Stats-Powered Baseball Review Game
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('VGVhY2hpbmc='); return false;">Teaching</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('U3RyZWFtbGl0'); return false;">Streamlit</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('cGFuZGFz'); return false;">pandas</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z3NwcmVhZA=='); return false;">gspread</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Classroom-tested final-exam review: teams earn a salary cap from a 30-question stats quiz, draft players in a silent auction, and play a 2d6 dice-baseball tournament.</p>
-</div>
-</div>
-</div></a>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
 </div>
 </section>
-<section id="areas" class="level2">
-<h2 class="anchored" data-anchor-id="areas">Areas</h2>
-<div class="grid">
-<section id="decision-analytics" class="level3 g-col-12 g-col-md-6 g-col-lg-3">
-<h3 class="anchored" data-anchor-id="decision-analytics">Decision analytics</h3>
-<p>Predictive models on operational data, built for the people who act on them.</p>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Result</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Dice-table expected value: P(2d6&gt;=6) * E[bases|hit] = 26/36 * 2.333 = 1.684</td>
+<td>README derivation, re-derived in audit</td>
+</tr>
+<tr class="even">
+<td>All 30 answer keys re-derived and correct; the Q27 explanation that contradicted its own key is fixed</td>
+<td>review.py, commit 6d417b7</td>
+</tr>
+</tbody>
+</table>
+<p>Every result above is traced to a script, log, or artifact in the repository. See <a href="../approach.html">How I Check My Work</a>.</p>
 </section>
-<section id="simulation-wargaming" class="level3 g-col-12 g-col-md-6 g-col-lg-3">
-<h3 class="anchored" data-anchor-id="simulation-wargaming">Simulation &amp; wargaming</h3>
-<p>Rules engines, Monte Carlo experiments, and reinforcement learning for stress-testing.</p>
+<section id="limitations" class="level2">
+<h2 class="anchored" data-anchor-id="limitations">Limitations</h2>
+<ul>
+<li>Q16 uses causal wording for a regression slope</li>
+<li>25 vs 30 question-count and cap-arithmetic inconsistencies</li>
+<li>Needs Google service account to run submissions</li>
+</ul>
 </section>
-<section id="research" class="level3 g-col-12 g-col-md-6 g-col-lg-3">
-<h3 class="anchored" data-anchor-id="research">Research</h3>
-<p>Text mining, high-dimensional regression, and image quantification.</p>
-</section>
-<section id="teaching" class="level3 g-col-12 g-col-md-6 g-col-lg-3">
-<h3 class="anchored" data-anchor-id="teaching">Teaching</h3>
-<p>Probability and statistics at West Point, and workshops on building analytic tools.</p>
-</section>
-</div>
-
+<section id="tools" class="level2">
+<h2 class="anchored" data-anchor-id="tools">Tools</h2>
+<p>Python, Streamlit, pandas, gspread</p>
 
 
 </section>
@@ -1015,5 +851,5 @@ StatBall: A Stats-Powered Baseball Review Game
 
 
 
-<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

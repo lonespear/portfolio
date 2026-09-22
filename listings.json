@@ -1,0 +1,30 @@
+[
+  {
+    "listing": "/teaching/index.html",
+    "items": [
+      "/teaching/statball.html",
+      "/teaching/streamlit-workshop.html"
+    ]
+  },
+  {
+    "listing": "/work/index.html",
+    "items": [
+      "/work/wuc_predict.html",
+      "/work/kriegmate.html",
+      "/work/wh40k-sim.html",
+      "/work/quant_strategy_eval.html",
+      "/work/cadet-performance.html"
+    ]
+  },
+  {
+    "listing": "/index.html",
+    "items": [
+      "/work/wuc_predict.html",
+      "/work/kriegmate.html",
+      "/work/wh40k-sim.html",
+      "/work/quant_strategy_eval.html",
+      "/work/cadet-performance.html",
+      "/teaching/statball.html"
+    ]
+  }
+]

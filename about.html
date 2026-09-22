@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Jonathan Day</title>
+<title>About – Jonathan Day</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -36,8 +36,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -79,76 +77,18 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-featured .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-featured'] = new List('listing-featured', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <style>html{ scroll-behavior: smooth; }</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet">
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="Jonathan Day">
-<meta property="og:description" content="Operations research, statistics, and simulation, delivered as tools people use.">
+<meta property="og:title" content="About – Jonathan Day">
+<meta property="og:description" content="Operations research, statistics, and simulation. Portfolio of Jonathan Day.">
 <meta property="og:site_name" content="Jonathan Day">
 </head>
 
-<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -340,7 +280,7 @@ window.Quarto = {
 <span class="menu-text">How I Check My Work</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link active" href="./about.html" aria-current="page"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -359,23 +299,22 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Jonathan Day</h1>
-<p class="subtitle lead">Operations research, statistics, and simulation, delivered as tools people use.</p>
+<h1 class="title">About</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta">
 
     
   
@@ -387,193 +326,47 @@ window.Quarto = {
 </header>
 
 
-<div class="hero">
-<p>U.S. Army <strong>FA49 Operations Research and Systems Analysis</strong> officer. I build models of messy operational problems, test them against data they have not seen, say plainly what they cannot tell you, and ship them as software.</p>
-<p><a href="./work/index.html" class="btn btn-primary">See the work</a> <a href="./approach.html" class="btn btn-outline-primary">How I check my work</a></p>
-</div>
-<section id="featured-work" class="level2">
-<h2 class="anchored" data-anchor-id="featured-work">Featured work</h2>
-<div id="listing-featured" class="quarto-listing quarto-listing-container-grid">
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="RGVjaXNpb24lMjBBbmFseXRpY3MlMkNQeXRob24lMkNQeVRvcmNoJTJDSHVnZ2luZyUyMEZhY2UlMjBUcmFuc2Zvcm1lcnMlMkNNb2Rlcm5CRVJULWxhcmdl" data-listing-file-modified-sort="1790087073886" data-listing-reading-time-sort="3" data-listing-word-count-sort="533">
-<a href="./work/wuc_predict.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Validating an NLP Coding-Assist Model for KC-135 Maintenance Records
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('RGVjaXNpb24lMjBBbmFseXRpY3M='); return false;">Decision Analytics</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHlUb3JjaA=='); return false;">PyTorch</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('SHVnZ2luZyUyMEZhY2UlMjBUcmFuc2Zvcm1lcnM='); return false;">Hugging Face Transformers</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TW9kZXJuQkVSVC1sYXJnZQ=='); return false;">ModernBERT-large</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>A fine-tuned ModernBERT-large model that suggests the Work Unit Code for a KC-135 maintenance record. It was checked by re-measuring what the app actually served, which…</p>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="U2ltdWxhdGlvbiUyMCUyNiUyME1MJTIwRW5naW5lZXJpbmclMkNQeXRob24lMkNOdW1QeSUyQ1NjaVB5JTJDc2Npa2l0LWxlYXJuJTIwKEdQKQ==" data-listing-file-modified-sort="1790087073886" data-listing-reading-time-sort="2" data-listing-word-count-sort="374">
-<a href="./work/kriegmate.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-kriegmate: Adversarial Monte Carlo COA Analysis
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U2ltdWxhdGlvbiUyMCUyNiUyME1MJTIwRW5naW5lZXJpbmc='); return false;">Simulation &amp; ML Engineering</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TnVtUHk='); return false;">NumPy</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('U2NpUHk='); return false;">SciPy</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('c2Npa2l0LWxlYXJuJTIwKEdQKQ=='); return false;">scikit-learn (GP)</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>A terrain-aware stochastic combat simulation (company team to brigade) wrapped in a full simulation-analysis toolkit: paired COA comparison with CRN, Kim-Nelson selection…</p>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="2" data-categories="U2ltdWxhdGlvbiUyMCUyNiUyME1MJTIwRW5naW5lZXJpbmclMkNKYXZhU2NyaXB0JTIwKE5vZGUlMjAlM0UlM0QxOCUyQyUyMG5vJTIwZGVwZW5kZW5jaWVzKSUyQ1B5dGhvbiUyMDMlMjAoc2VydmUlMkMlMjBkYXRhJTIwYnVpbGQlMkMlMjBSTCUyMGJyaWRnZSUyMHdpdGglMjBudW1weSklMkNCcmFkbGV5LVRlcnJ5JTIwJTJGJTIwYm9vdHN0cmFwJTJDV2lsc29uJTIwaW50ZXJ2YWxz" data-listing-file-modified-sort="1790087073886" data-listing-reading-time-sort="3" data-listing-word-count-sort="537">
-<a href="./work/wh40k-sim.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Rules-Engine V&amp;V and Monte Carlo Force-Pairing Analysis for a Tabletop Wargame
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U2ltdWxhdGlvbiUyMCUyNiUyME1MJTIwRW5naW5lZXJpbmc='); return false;">Simulation &amp; ML Engineering</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('SmF2YVNjcmlwdCUyMChOb2RlJTIwJTNFJTNEMTglMkMlMjBubyUyMGRlcGVuZGVuY2llcyk='); return false;">JavaScript (Node &gt;=18, no dependencies)</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9uJTIwMyUyMChzZXJ2ZSUyQyUyMGRhdGElMjBidWlsZCUyQyUyMFJMJTIwYnJpZGdlJTIwd2l0aCUyMG51bXB5KQ=='); return false;">Python 3 (serve, data build, RL bridge with numpy)</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('QnJhZGxleS1UZXJyeSUyMCUyRiUyMGJvb3RzdHJhcA=='); return false;">Bradley-Terry / bootstrap</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('V2lsc29uJTIwaW50ZXJ2YWxz'); return false;">Wilson intervals</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>A seeded, headless simulator of a full tabletop wargame ruleset, verified by conformance tests and replay determinism, used to run controlled Monte Carlo experiments on…</p>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="3" data-categories="UmVzZWFyY2glMkNQeXRob24lMkNwYW5kYXMlMkNOdW1QeSUyQ1NjaVB5" data-listing-file-modified-sort="1790087073886" data-listing-reading-time-sort="3" data-listing-word-count-sort="507">
-<a href="./work/quant_strategy_eval.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Do Trading Signals Beat Buy-and-Hold? A Backtest and a Live Alerting Pipeline
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UmVzZWFyY2g='); return false;">Research</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('cGFuZGFz'); return false;">pandas</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TnVtUHk='); return false;">NumPy</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('U2NpUHk='); return false;">SciPy</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>An eight-strategy, 19-year backtest that tested whether the technical signals from a self-built Raspberry Pi alerting pipeline were worth trading. They were not, and a…</p>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="4" data-categories="UmVzZWFyY2glMkNSJTJDZ2xtbmV0JTJDdGlkeXZlcnNl" data-listing-file-modified-sort="1790087073885" data-listing-reading-time-sort="2" data-listing-word-count-sort="238">
-<a href="./work/cadet-performance.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-High-Dimensional Predictors of Cadet Performance
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UmVzZWFyY2g='); return false;">Research</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z2xtbmV0'); return false;">glmnet</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('dGlkeXZlcnNl'); return false;">tidyverse</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>LASSO feature selection across 369 physiological, behavioral, and dietary measures to see which predict academic, physical, and military performance.</p>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="5" data-categories="VGVhY2hpbmclMkNQeXRob24lMkNTdHJlYW1saXQlMkNwYW5kYXMlMkNnc3ByZWFk" data-listing-file-modified-sort="1790087073885" data-listing-reading-time-sort="1" data-listing-word-count-sort="166">
-<a href="./teaching/statball.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-StatBall: A Stats-Powered Baseball Review Game
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('VGVhY2hpbmc='); return false;">Teaching</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('U3RyZWFtbGl0'); return false;">Streamlit</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('cGFuZGFz'); return false;">pandas</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z3NwcmVhZA=='); return false;">gspread</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Classroom-tested final-exam review: teams earn a salary cap from a 30-question stats quiz, draft players in a silent auction, and play a 2d6 dice-baseball tournament.</p>
-</div>
-</div>
-</div></a>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div>
+<p>I’m Jonathan Day, a Major in the U.S. Army and a Functional Area 49 (Operations Research and Systems Analysis) officer.</p>
+<p>I spent my first seven years as an Airborne Infantry officer, including a deployment to Afghanistan and command of a rifle company in the 82d Airborne Division. Since 2023 I have taught probability and statistics in the Department of Mathematical Sciences at the United States Military Academy, where I direct the MA206 course. My work sits where statistics, simulation, and software meet: building the model, checking it honestly, and delivering it as a tool that decision-makers will actually use.</p>
+<section id="what-i-bring-to-an-orsa-team" class="level2">
+<h2 class="anchored" data-anchor-id="what-i-bring-to-an-orsa-team">What I bring to an ORSA team</h2>
+<ul>
+<li><strong>Predictive modeling on operational data.</strong> Classifying aircraft maintenance discrepancies from free text for a KC-135 fleet.</li>
+<li><strong>Simulation and wargaming analytics.</strong> Rules engines with automated verification, Monte Carlo experiments, and reinforcement learning for balance testing.</li>
+<li><strong>Research methods.</strong> Literature-mining pipelines, high-dimensional regression, and dimension reduction on public health data.</li>
+<li><strong>Delivery.</strong> Streamlit decision tools, production pipelines, and a mobile app built through a full release process.</li>
+<li><strong>Teaching.</strong> Turning statistical reasoning into something cadets and staff can use.</li>
+</ul>
 </section>
-<section id="areas" class="level2">
-<h2 class="anchored" data-anchor-id="areas">Areas</h2>
-<div class="grid">
-<section id="decision-analytics" class="level3 g-col-12 g-col-md-6 g-col-lg-3">
-<h3 class="anchored" data-anchor-id="decision-analytics">Decision analytics</h3>
-<p>Predictive models on operational data, built for the people who act on them.</p>
+<section id="education" class="level2">
+<h2 class="anchored" data-anchor-id="education">Education</h2>
+<ul>
+<li><strong>M.S., Applied Statistics</strong>, University of Michigan, Ann Arbor, 2024. Focus: machine learning, statistical inference, stochastic processes.</li>
+<li><strong>B.S., Mathematical Sciences and Arabic</strong>, United States Military Academy, 2015.</li>
+</ul>
 </section>
-<section id="simulation-wargaming" class="level3 g-col-12 g-col-md-6 g-col-lg-3">
-<h3 class="anchored" data-anchor-id="simulation-wargaming">Simulation &amp; wargaming</h3>
-<p>Rules engines, Monte Carlo experiments, and reinforcement learning for stress-testing.</p>
+<section id="experience" class="level2">
+<h2 class="anchored" data-anchor-id="experience">Experience</h2>
+<ul>
+<li><strong>Instructor and Course Director, MA206/MA206X Probability and Statistics</strong>, Department of Mathematical Sciences, USMA, West Point, NY. 2023 to present.</li>
+<li><strong>Rifle Company Commander</strong>, A Company, 2-505 PIR, 82d Airborne Division, Fort Bragg, NC. 2020 to 2022.</li>
+<li><strong>Platoon Leader and S-3 Planner</strong>, 1-501 IN (Airborne), JBER, Alaska, and Nangarhar, Afghanistan (Operation Freedom’s Sentinel). 2016 to 2019.</li>
+</ul>
 </section>
-<section id="research" class="level3 g-col-12 g-col-md-6 g-col-lg-3">
-<h3 class="anchored" data-anchor-id="research">Research</h3>
-<p>Text mining, high-dimensional regression, and image quantification.</p>
+<section id="publications" class="level2">
+<h2 class="anchored" data-anchor-id="publications">Publications</h2>
+<ul>
+<li>Day, J., et al.&nbsp;“AI-Based Thematic Analysis of Biomedical Literature for Precision Nutrition.” <em>Journal of Nutrition</em>. <a href="https://doi.org/10.1016/j.tjnut.2026.101472">doi:10.1016/j.tjnut.2026.101472</a></li>
+<li>Day, J. (2025). “Comparative Analysis of Sliced Inverse Regression in Mental Health Screening Data.” Joint Statistical Meetings, Nashville. <a href="https://doi.org/10.5281/zenodo.17351806">doi:10.5281/zenodo.17351806</a></li>
+</ul>
 </section>
-<section id="teaching" class="level3 g-col-12 g-col-md-6 g-col-lg-3">
-<h3 class="anchored" data-anchor-id="teaching">Teaching</h3>
-<p>Probability and statistics at West Point, and workshops on building analytic tools.</p>
-</section>
-</div>
-
+<section id="contact" class="level2">
+<h2 class="anchored" data-anchor-id="contact">Contact</h2>
+<ul>
+<li>Email: <a href="mailto:jonathan.day808@gmail.com">jonathan.day808@gmail.com</a> · <a href="mailto:jonathan.day@westpoint.edu">jonathan.day@westpoint.edu</a></li>
+<li>LinkedIn: <a href="https://www.linkedin.com/in/jonathan-day-29388318a/">linkedin.com/in/jonathan-day-29388318a</a></li>
+<li>GitHub: <a href="https://github.com/lonespear">github.com/lonespear</a></li>
+</ul>
 
 
 </section>
