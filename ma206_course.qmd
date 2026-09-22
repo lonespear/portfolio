@@ -6,7 +6,7 @@ geometry: margin=1in
 ---
 
 *To Cadets:*\
-This course, MA206, introduces you to the foundational principles of probability and statistics, emphasizing data literacy and inference. It begins with Block I, covering data types, visualization, and basic probability rules including counting and the behavior of random variables. Block II builds on this by exploring discrete and continuous distributions, the Central Limit Theorem, and tools for one-sample inference such as confidence intervals and hypothesis testing for proportions and means. Finally, Block III develops cadets’ ability to analyze relationships between variables through two-sample tests, linear regression, ANOVA, and goodness-of-fit testing. By the end of the course, cadets will be equipped to make sound, data-driven decisions grounded in statistical reasoning.
+This course, MA206, introduces you to the foundational principles of probability and statistics, emphasizing data literacy and inference. It begins with Block I, covering data types, visualization, and basic probability rules including counting and the behavior of random variables. Block II builds on this by exploring discrete and continuous distributions, the Central Limit Theorem, and tools for one-sample inference such as confidence intervals and hypothesis testing for proportions and means. Finally, Block III develops cadets’ ability to analyze relationships between variables through two-sample tests, linear regression, ANOVA, and chi-square tests of independence. By the end of the course, cadets will be equipped to make sound, data-driven decisions grounded in statistical reasoning.
 
 Every statistical analysis begins with a clear, repeatable process that transforms curious questions into reliable insights. The Six Step Method serves as your roadmap—guiding you from formulating a meaningful research question through data collection, exploration, inference, and finally thoughtful reflection—so that every conclusion you draw is both rigorous and reproducible.
 
@@ -280,11 +280,11 @@ df %>%
   row_spec(0, bold = TRUE)
 ```
 
-Correlation is the only multivariate summary statistic we will be using in this course, used to describe how two variables tend to move in tandem with one another. A perfect linear association evokes a correlation of 1, the opposite being a perfect negative association with a correlation of -1. No association is implied by a correlation near 0.
+Correlation is the only multivariate summary statistic we will be using in this course, used to describe how two variables tend to move in tandem with one another. A perfect linear association evokes a correlation of 1, the opposite being a perfect negative association with a correlation of -1. A correlation near 0 means there is no *linear* association; the variables can still be related in a non-linear way.
 
 Mathematically: \> Definition \> For any two variables X,Y, the correlation of X and Y are: 
 $$
-r = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i-\bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2\sum_{i=1}^n (y_i - \bar{y})^2}
+r = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^n (x_i - \bar{x})^2\sum_{i=1}^n (y_i - \bar{y})^2}}
 $$
 
 ## Probability
@@ -309,10 +309,10 @@ $$
 
 **Examples:**
 
--   Tossing a coin once: $\Omega = {\text{Heads}, \text{Tails}}$
--   Rolling a 6-sided die: $\Omega = {1, 2, 3, 4, 5, 6}$
--   Letter grade in MA206: $\Omega = {A, B, C, D, F}$
--   Number of emails received in an hour: $\Omega = {0, 1, 2, \dots}$
+-   Tossing a coin once: $\Omega = \{\text{Heads}, \text{Tails}\}$
+-   Rolling a 6-sided die: $\Omega = \{1, 2, 3, 4, 5, 6\}$
+-   Letter grade in MA206: $\Omega = \{A, B, C, D, F\}$
+-   Number of emails received in an hour: $\Omega = \{0, 1, 2, \dots\}$
 
 ------------------------------------------------------------------------
 
@@ -347,7 +347,7 @@ A **probability measure** is a rule, denoted $\mathbb{P}$, that assigns a number
 **Example (Simple):**\
 Let $A$, $B$, and $C$ be outcomes when rolling a die:
 
--   $A = \{1\}$, \$B = {3} \$, $C = \{5\}$\
+-   $A = \{1\}$, $B = \{3\}$, $C = \{5\}$\
 -   These are disjoint events (they don't overlap).\
 -   Then: $$
     \mathbb{P}(A \cup B \cup C) = \mathbb{P}(A) + \mathbb{P}(B) + \mathbb{P}(C) = \frac{1}{6} + \frac{1}{6} + \frac{1}{6} = \frac{1}{2}
@@ -608,10 +608,12 @@ Let $X \sim \text{Geometric}(p)$ be the number of trials until the first success
 ## Continuous Random Variables
 
 ::: {.callout-note title="Continuous Random Variable"}
-A continuous random variable takes infinitely many values in $\mathbb{R}$. Its *probability density function* is given by:\
+A continuous random variable takes infinitely many values in $\mathbb{R}$. Its *probability density function* $f_X(x)$ is the function whose area gives probabilities:\
 $$
-f_X(x) = \mathbb{P}(X = x)
+\mathbb{P}(a \le X \le b) = \int_a^b f_X(x)\,dx
 $$
+
+$f_X(x)$ itself is a density, not a probability: for a continuous random variable, $\mathbb{P}(X = x) = 0$ for every $x$.
 
 ***Note: We do not find probabilities with the pdf like the pmf of a discrete random variable. We integrate over a neighborhood of the support of X, as there is no probability mass at any single point for a continuous distribution.***
 
@@ -621,7 +623,7 @@ $$
 $$
 
 **Definition (Variance):**\
-The *variance* of a discrete random variable $X$ is:\
+The *variance* of a continuous random variable $X$ is:\
 $$
 \mathrm{Var}(X) = \mathbb{E}\left[(X - \mathbb{E}[X])^2\right] = \int_{-\infty}^\infty (x - \mathbb{E}[X])^2 f_X(x)dx = \mathbb{E}[X^2] - \mathbb{E}[X]^2
 $$
@@ -732,7 +734,7 @@ Where:
 This structure applies to many common settings:
 
 -   CI for a **population mean**: $$
-    \bar{x} \pm z^* \cdot \frac{s}{\sqrt{n}}
+    \bar{x} \pm t^*_{n-1} \cdot \frac{s}{\sqrt{n}}
     $$
 
 -   CI for a **population proportion**: $$
@@ -747,7 +749,7 @@ This does **not** mean there's a 95% probability the parameter is in the interva
 
 ## One Sample Hypothesis Testing
 
-Hypothesis testing is a formal method for making inferences about a population using sample data. The whole *test* aspect is questioning if the statistic your sample shows is *significantly different* than a certain value in question. You have two underlying premises, referred to as the null and alternative hypotheses. The null hypothesis assumes that there is no difference: the statistic from your value is the same as the value you are testing. The alternative **conflicts** the null and says they are different. The process involves:
+Hypothesis testing is a formal method for making inferences about a population using sample data. The whole *test* aspect is questioning if the statistic your sample shows is *significantly different* than a certain value in question. You have two underlying premises, referred to as the null and alternative hypotheses. The null hypothesis assumes that there is no difference: the population parameter equals the value you are testing. The alternative **conflicts** the null and says they are different. The process involves:
 
 1.  **State the null and alternative hypotheses**. There are three different variants to create your hypotheses statements depending on what the question being asked entails.
 
@@ -788,7 +790,7 @@ This is the only two-sided hypothesis test, denoted with the not equal to altern
 
 2.  **Choose a significance level** $\alpha$.
 
-This is the *threshold* you will also decide to inform your certainty in your conclusions. As seen previously, unless you are finding the probability that something will happen in the entire sample space (which happens probability 1); ie, there are no absolutes. Therefore there is always a chance that your conclusion will be wrong. Here is where you decide how "often" you are willing to be wrong. Is it 1% of the time? 5% of the time? Think of the significance level as choosing the percentage of the time you are willing to be wrong in your conclusion, (I know this sounds weird). A common $\alpha$ is 5%.
+This is the *threshold* for how much evidence you require before rejecting the null hypothesis. Because we only ever see a sample, there is always a chance of rejecting a null hypothesis that is actually true (a Type I error). The significance level is the probability of that error you are willing to accept: if the null hypothesis is true, a test at level $\alpha$ will wrongly reject it $\alpha$ of the time. It is not the chance that your particular conclusion is wrong. A common $\alpha$ is 5%.
 
 3.  **Compute the test statistic**.
 
@@ -808,7 +810,7 @@ This step transforms your statistic so it can be treated as a random variable fr
 
 5.  **Determine the p-value**.
 
-Once we have the standardized statistic, it can be treated as either a Standard Normal Random Variable or Student's-t Random Variable. This is where the alternative hypotheses come in to play to determine the **p-value: the probability that if the null hypothesis is indeed true you choose to make an argument supporting the alternative**. To find the probability of a certain event happening in a continuous random variable, you integrate the probability density function with the limits of integration being the range of values the random variable could take. Both the Standard Normal and Student's-t are continuous, so depending on your alternative hypothesis, your p-value is calculated by either of the following:
+Once we have the standardized statistic, it can be treated as either a Standard Normal Random Variable or Student's-t Random Variable. This is where the alternative hypotheses come in to play to determine the **p-value: assuming the null hypothesis is true, the probability of getting a standardized statistic at least as extreme as the one you observed, in the direction of the alternative**. It is not the probability that the null hypothesis is true. To find the probability of a certain event happening in a continuous random variable, you integrate the probability density function with the limits of integration being the range of values the random variable could take. Both the Standard Normal and Student's-t are continuous, so depending on your alternative hypothesis, your p-value is calculated by either of the following:
 
 $$
 \begin{align}
@@ -874,7 +876,7 @@ Once a p-value is obtained, reference it to the significance level chosen. If th
 We conduct inference on a population proportion $\pi$ relative to a hypothesized value $\pi_0$. The test statistic is:
 
 $$
-z = \frac{\hat{p} - \pi}{\sqrt{\frac{\pi(1 - \pi)}{n}}}
+z = \frac{\hat{p} - \pi_0}{\sqrt{\frac{\pi_0(1 - \pi_0)}{n}}}
 $$
 
 #### Example: Test if more than 40% of diamonds are “Ideal” cut
@@ -976,10 +978,10 @@ $$
 
 Where $\hat{p}$ is the pooled proportion.
 
-#### Example: Are “Ideal” cuts more common among Premium vs. Good color grades?
+#### Example: Are “Ideal” cuts more common among color D than color E diamonds?
 
 ```{r}
-# Subset to just Premium and Good clarity levels
+# Subset to just color grades D and E
 df <- diamonds %>% filter(color =="D" | color=="E")
 
 table(df$cut, df$color)
@@ -1061,9 +1063,9 @@ This tests whether the mean price before and after a simulated discount differs 
 
 ## Regression
 
-\say{All models are wrong, but some are useful. -George E.P. Box}
+> All models are wrong, but some are useful. — George E. P. Box
 
-In this section we continue our multivariate inference with creating models for the purpose of identifying significance between *explanatory* (predictor) variables and the *response*. The function used to create the model, $\hat{y_i}=f(x_i)$ will make predictions, known as *fitted values*. Do to the variability in the data, these fitted values will not exactly predict the response (ie. $y_i \neq \hat{y}$) for all values in the response. These errors are the deviations from the response and the fitted values and are referred as *residuals*, with notation $\epsilon_i = y_i - \hat{y}_i$.
+In this section we continue our multivariate inference with creating models for the purpose of identifying significance between *explanatory* (predictor) variables and the *response*. The function used to create the model, $\hat{y_i}=f(x_i)$ will make predictions, known as *fitted values*. Due to the variability in the data, these fitted values will not exactly predict the response (ie. $y_i \neq \hat{y}$) for all values in the response. These errors are the deviations from the response and the fitted values and are referred as *residuals*, with notation $\epsilon_i = y_i - \hat{y}_i$.
 
 To assess how well a model performs, the residuals are summarized in a few different methods:
 
@@ -1267,18 +1269,28 @@ We want residuals to be roughly normally distributed and randomly scattered arou
 
 #### Theoretical Foundation
 
-ANOVA works by partitioning the **total variability** in the data into two components: - **Between-group variability**: how much the group means differ from the overall mean. - **Within-group variability**: how much individual observations vary within each group.
+ANOVA works by partitioning the **total variability** in the data into two components:
+
+- **Between-group variability**: how much the group means differ from the overall mean.
+- **Within-group variability**: how much individual observations vary within each group.
 
 The core idea is that if the **between-group variability** is large relative to the **within-group variability**, then at least one group mean is likely different.
 
-\[ F = \frac{\text{Mean Square Between (MSB)}}{\text{Mean Square Within (MSW)}} = \frac{SSB / (k - 1)}{SSW / (n - k)} \]
+$$
+F = \frac{\text{Mean Square Between (MSB)}}{\text{Mean Square Within (MSW)}} = \frac{SSB / (k - 1)}{SSW / (n - k)}
+$$
 
-Where: - ( SSB ) = Sum of Squares Between - ( SSW ) = Sum of Squares Within - ( k ) = number of groups - ( n ) = total number of observations
+Where:
+
+- $SSB$ = Sum of Squares Between
+- $SSW$ = Sum of Squares Within
+- $k$ = number of groups
+- $n$ = total number of observations
 
 If the calculated **F-statistic** is large, and the **p-value** is small (typically \< 0.05), we reject the null hypothesis:
 
--   ( H_0: \mu\_1 = \mu\_2 = \cdots = \mu\_k ) (all group means are equal)
--   ( H_A: ) At least one group mean is different
+-   $H_0: \mu_1 = \mu_2 = \cdots = \mu_k$ (all group means are equal)
+-   $H_A$: At least one group mean is different
 
 ------------------------------------------------------------------------
 
