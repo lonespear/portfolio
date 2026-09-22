@@ -6,48 +6,32 @@
   "site_section": "simulation",
   "one_liner": "A seeded, headless simulator of a full tabletop wargame ruleset, verified by conformance tests and replay determinism, used to run controlled Monte Carlo experiments on which force compositions win.",
   "problem": "Balance claims about force compositions (e.g. melee vs shooting armies) are usually anecdotal; a simulator can only answer them if it demonstrably implements the rules and its experiments control for list selection, seat order and opponent quality.",
-  "approach": "Rule-numbered conformance ledger and 42 seeded test suites; reachability audits (implemented rules no driver could call); record/replay determinism as a conformance oracle; roster build audit; round-robin list tournaments with seats swapped, Bradley-Terry strength with bootstrap CIs; head-to-head policy duels with A/A and inverted positive controls and Wilson intervals; power calculations before tuning.",
-  "decision_relevance": "Mirrors combat-model V&V and force-on-force analysis: shows how a plausible headline (melee wins 73%) was a sample-selection artifact, how silent input substitutions (wrong terrain, wrong mission) biased every batch result, and how controls bound what an AI-driven simulation can and cannot conclude.",
+  "approach": "I built a rule-numbered conformance ledger and 42 seeded test suites, reachability audits that catch implemented rules no driver can call, and record-and-replay determinism as a conformance oracle. On top of that sit round-robin list tournaments with seats swapped, Bradley-Terry strength with bootstrap intervals, head-to-head policy duels with A/A and inverted positive controls, and power calculations run before any tuning.",
+  "decision_relevance": "Mirrors combat-model verification and force-on-force analysis: how a plausible headline can be a sample-selection artifact, how a silent input substitution biases every batch result, and how positive and negative controls bound what a simulation study can conclude.",
   "headline_results": [
     {
-      "claim": "The earlier 'melee wins 73%' figure was an artifact of sampling one army list per faction; within-archetype pairings were as lopsided as cross-archetype ones.",
-      "evidence": "docs/GLIDEPATH.md §3F/§3G; tools/rank_lists.js",
+      "claim": "Monte Carlo force-pairing over 239 decided cross-archetype games: melee wins 61.5%, but a list-level cluster bootstrap (13 lists, 2,000 resamples) puts the interval at [39.1, 82.1]. List identity, not archetype, drives the result",
       "status": "traceable"
     },
     {
-      "claim": "Whether melee beats shooting is NOT established: melee wins 61.5% of 239 decided cross-archetype games, but a list-level cluster bootstrap (13 lists, 2,000 resamples) gives [39.1, 82.1], which contains 50%. More lists, not more games, would settle it",
-      "evidence": "tools/rank_lists.js archetypeClusterCI, commit 7a870e0",
-      "status": "verified"
-    },
-    {
-      "claim": "Replay desync reduced to 0 of 1,535 recorded actions across six recordings, including two human games, after finding the headless tools were loading the wrong terrain and mission.",
-      "evidence": "docs/GLIDEPATH.md addendum 2026-09-10; tests/recrun.js, tests/ctxrun.js",
+      "claim": "Replay determinism: 0 desyncs across 1,535 recorded actions in six games, two of them played by humans",
       "status": "traceable"
     },
     {
-      "claim": "Roster importer audit: 0 of 9,190 models missing across 179 tournament lists (previously 64% missing in a sample, unevenly by faction).",
-      "evidence": "tools/audit_rosters.js; GLIDEPATH §3D",
+      "claim": "Roster importer verified against 179 tournament lists: 0 of 9,190 models missing",
       "status": "traceable"
     },
     {
-      "claim": "Bradley-Terry list ordering stable across board settings (same top and bottom lists); list identity dominates archetype.",
-      "evidence": "GLIDEPATH addendum 2026-09-10",
+      "claim": "Bradley-Terry list ranking is stable across board settings",
       "status": "traceable"
     },
     {
-      "claim": "Of three AI heuristics, only stratagem use moved outcomes: 54.6% [50.6, 58.6] over 600 seat-swapped games vs an A/A control of 50.7%; an inverted-objective control lost at 44.6% [40.6, 48.6], bounding headroom for objective valuation.",
-      "evidence": "GLIDEPATH addenda 2026-09-11; tools/duel.js (Wilson intervals)",
+      "claim": "Of three AI heuristics tested, only stratagem use moved outcomes: 54.6% [50.6, 58.6] over 600 seat-swapped games against a 50.7% control, with an inverted-objective control at 44.6% bounding the headroom",
       "status": "traceable"
     },
     {
-      "claim": "Five implemented-and-tested rules were unreachable by any driver (reserves, transports, objective actions, surge moves, infiltrate) and were wired in.",
-      "evidence": "README 'Rules that existed but nothing could reach'; GLIDEPATH §3E",
+      "claim": "42 seeded, headless test suites; conformance testing found five implemented rules that no driver could reach and wired them in",
       "status": "traceable"
-    },
-    {
-      "claim": "Test suites pass headless and seeded : 39 of 42 run during audit, 0 failed in 125 s (3 long soak suites skipped).",
-      "evidence": "node tools/run_tests.js --skip simtest,cx_soak,airun (2026-09-17)",
-      "status": "verified"
     }
   ],
   "limitations": [
@@ -83,5 +67,6 @@
     "No git remote exists yet",
     "The other three settings (55.5 / 58.4 / 64.4%) still carry game-level intervals only; each needs a ~20-minute re-run with the cluster bootstrap",
     "No pinned corpus snapshot, so balance tables are reproducible by seed on one machine only"
-  ]
+  ],
+  "caveat": "A simulator of a tabletop ruleset, built as a testbed for rules-engine verification and Monte Carlo experiment design."
 }

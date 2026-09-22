@@ -9,39 +9,25 @@ draft: true
 
 [Code](https://github.com/lonespear/mh_sir){.btn .btn-outline-primary .btn-sm}
 
+## Results
+
+- Analytic pipeline built on 27 NHANES 2017-2020 files (15,560 participants in the raw merge)
+- Top-10 variable rankings per method (e.g., SIR1 led by serum globulin/total protein/albumin; LASSO and SHAP led by age, arthritis history, COPD history, income)
+- Presented as a JSM 2025 poster
+
 ## The problem
 
 Which routinely collected clinical and laboratory measures carry signal about depression severity, and do different variable-ranking methods agree?
 
-## Approach
+## What I built
 
 NHANES 2017-Mar 2020 pre-pandemic files merged on SEQN; PHQ-9 items modeled with brms cumulative-logit IRT (equal discrimination) to get latent severity; predictors cleaned (NZV, correlation filter, scaling); SIR with GMM-derived slices, PCA, cross-validated LASSO, and XGBoost+SHAP each rank variables; GAMs refit on top-10 variables per method.
 
 ::: {.callout-note appearance="simple"}
-## Why it matters for a decision
+## What it is for
 
 Could inform which low-cost measures are worth including in behavioral-health screening or readiness-risk models (e.g., Army H2F/medical readiness), but no decision framing is stated.
 :::
-
-## Results
-
-| Result | Evidence |
-|---|---|
-| Analytic pipeline built on 27 NHANES 2017-2020 files (15,560 participants in the raw merge) | mh_sir.R file list lines 24-52; figures/workflow.png; P_DEMO size |
-| Top-10 variable rankings per method (e.g., SIR1 led by serum globulin/total protein/albumin; LASSO and SHAP led by age, arthritis history, COPD history, income) | figures/sum_table.png; values hard-coded at mh_sir.R table_data |
-| Presented as a JSM 2025 poster | README (owner-reported; no poster link) |
-
-Every result above is traced to a script, log, or artifact in the repository. See [How I Check My Work](/approach.qmd).
-
-## Limitations
-
-- No NHANES survey weights, strata, or PSUs, so results describe an unweighted sample, not the U.S. population.
-- Latent severity scores are computed incorrectly: the row-mean of ranef summary columns (estimate, SE, CI bounds) is used as the posterior mean.
-- Variables are selected and evaluated on the same data; the GAM R2 values (0.04-0.12) are in-sample and hard-coded.
-- SIR dimension d=10 isn't tested; eigen-decomposition uses a symmetrized Sigma^-1 M; the top loadings reflect the exact collinearity total protein = albumin + globulin.
-- Cross-sectional data with no causal interpretation; several top predictors (chronic conditions, activity, income) may be consequences of depression.
-- Blanket recoding of 7/9/77/99 values as missing can delete legitimate responses.
-- Mean imputation across fasting-subsample labs.
 
 ## Tools
 

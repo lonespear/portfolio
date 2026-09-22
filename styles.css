@@ -30,3 +30,8 @@ table { font-size: 0.95rem; }
 @media (max-width: 576px) {
   .hero { font-size: 1.05rem; }
 }
+
+.fine {
+  color: var(--bs-secondary-color, #6c757d);
+  font-size: .85rem;
+}

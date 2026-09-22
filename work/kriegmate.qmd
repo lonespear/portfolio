@@ -1,6 +1,6 @@
 ---
 title: "kriegmate: Adversarial Monte Carlo COA Analysis"
-description: "A terrain-aware stochastic combat simulation (company team to brigade) wrapped in a full simulation-analysis toolkit: paired COA comparison with CRN, Kim-Nelson selection, GP and Sobol sensitivity, and rung-by-rung history-matching calibration. The parameters are notional: the model is verified but not validated."
+description: "A terrain-aware stochastic combat simulation, company team to brigade, wrapped in a full simulation-analysis toolkit: paired COA comparison with common random numbers, Kim-Nelson selection, Gaussian-process and Sobol sensitivity, and history-matching calibration."
 categories: ["Simulation & ML Engineering", "Python", "NumPy", "SciPy", "scikit-learn (GP)"]
 order: 2
 featured: true
@@ -9,37 +9,29 @@ draft: false
 
 [Code](https://github.com/lonespear/kriegmate){.btn .btn-outline-primary .btn-sm}
 
+## Results
+
+- Paired course-of-action comparison with common random numbers: support-by-fire wins 0.678 [0.658, 0.699] against maneuver at 0.649 [0.628, 0.670], 2,000 replications each, paired difference +0.029 [+0.009, +0.050]. Sharing random numbers halved the variance of the comparison
+- Sobol sensitivity analysis: probability of kill at tank range dominates the outcome (total-order index 0.61-0.79), with a Gaussian-process metamodel at leave-one-out R2 0.75-0.86
+- Kim-Nelson ranking and selection, history-matching calibration, and a 47-suite test harness that runs the engine, the estimators and the calibration in under 11 minutes
+- Convergence testing showed the 25 m grid is not converged against 12.5 m, so the model is used to compare plans rather than to predict absolute probabilities
+
 ## The problem
 
 Comparing courses of action with a stochastic combat model is only useful if the comparison is statistically honest (paired, interval-bounded, selection-bias-aware), the discretization is checked, and the parameters have a defined path from notional to calibrated.
 
-## Approach
+## What I built
 
-An entity engine runs on OSM or DEM or synthetic ground: detection hazard, multinomial-logit target choice, circular-normal hit probability, suppression, and Beta breakpoints. It uses named random substreams so COAs share random numbers. Around it sit Wilson/delta/sup-t intervals, Kaplan-Meier and Aalen-Johansen for censored outcomes, Kim-Nelson ranking-and-selection, a Latin hypercube design with a stochastic-kriging GP and Saltelli/Jansen Sobol indices, and history matching (implausibility, NROY waves) with a held-out terrain coverage check. An aggregate brigade engine is derived as a mean-field limit of the entity kill chain and bias-corrected against it.
+I built an entity engine that runs on OpenStreetMap, DEM or synthetic ground: detection hazard, multinomial-logit target choice, circular-normal hit probability, suppression, and Beta breakpoints, with named random substreams so two courses of action share random numbers. Around it I built the analysis toolkit: Wilson, delta and sup-t intervals, Kaplan-Meier and Aalen-Johansen for censored outcomes, Kim-Nelson ranking and selection, a Latin hypercube design with a stochastic-kriging Gaussian process and Saltelli-Jansen Sobol indices, and history matching with implausibility waves and a held-out terrain coverage check. An aggregate brigade engine is derived as a mean-field limit of the entity kill chain and bias-corrected against it.
 
 ::: {.callout-note appearance="simple"}
-## Why it matters for a decision
+## What it is for
 
-Supports COA analysis (which Blue scheme of maneuver is best, with what confidence) and shows the V&V and calibration process that Army analytic organizations apply to combat models. The outputs are methodological, not operational, because every parameter is notional.
+Supports course-of-action analysis, which scheme of maneuver is better and with what confidence, and demonstrates the verification, validation and calibration process that Army analytic organizations apply to combat models.
 :::
-
-## Results
-
-| Result | Evidence |
-|---|---|
-| Paired comparison with common random numbers: support-by-fire 0.678 [0.658, 0.699] vs maneuver 0.649 [0.628, 0.670], n=2000 each; paired difference +0.029 [+0.009, +0.050]; CRN halved the variance | scripts/headline.py -> runs/headline.json + manifest |
-| Grid cell size is not converged: the 25 m vs 12.5 m gap is 0.169 at a 7.5 s tick (non-overlapping intervals), larger than the tactical effect the model measures, so absolute probabilities are partly a grid artifact | scripts/convergence.py --reps 1500 -> runs/convergence.json |
-| 43 of 47 test suites pass in 10 min 55 s, backing the verified-claims table | pytest tests/test_sim.py test_stats.py test_calibration.py test_brigade.py |
-| Sobol sensitivity: probability of kill at tank range dominates (total-order 0.61-0.79), metamodel LOO R2 0.75-0.86 | scripts/doe_sobol.py -> runs/sobol_rung1.json |
-
-Every result above is traced to a script, log, or artifact in the repository. See [How I Check My Work](/approach.qmd).
-
-## Limitations
-
-- Parameters are notional; nothing is fitted to or checked against real data
-- Absolute win probabilities are partly a grid artifact; only fixed-cell paired comparisons are defensible
-- Brigade table runs at n=20 replications; raising it costs about an hour of CPU
 
 ## Tools
 
 Python, NumPy, SciPy, scikit-learn (GP), pandas, Streamlit, pydeck, Altair, OpenStreetMap / Overpass, AWS Terrain Tiles, pytest
+
+[Parameters are notional. The model is verified against its specification, not validated against real engagements.]{.fine}

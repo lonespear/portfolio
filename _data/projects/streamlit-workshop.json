@@ -6,18 +6,20 @@
   "site_section": "teaching",
   "one_liner": "30-minute workshop that teaches math faculty with no web experience to build and deploy an interactive course app.",
   "problem": "Instructors want interactive teaching tools but lack web-development skills.",
-  "approach": "Instructor-led walkthrough of a reference app in 5 steps, then tiered lab shells (guided, stats dashboard, open challenge), deployment to Streamlit Cloud, and a quick-reference sheet.",
-  "decision_relevance": "Shows the ability to build analytic capacity in others by training colleagues to field their own tools.",
+  "approach": "I wrote an instructor-led walkthrough of a reference app in five steps, then tiered lab shells (guided, statistics dashboard, open challenge), deployment to Streamlit Cloud, and a quick-reference sheet.",
+  "decision_relevance": "Builds analytic capacity in others: colleagues leave able to field their own tools.",
   "headline_results": [
     {
-      "claim": "Authored the workshop in the department org repo",
-      "evidence": "git: lonespear 5 commits, usma-stats 1 (initial commit)",
-      "status": "verified"
+      "claim": "A 30-minute workshop that takes math faculty with no web experience to a deployed Streamlit app",
+      "status": "traceable"
     },
     {
-      "claim": "demo_facdev is the same app",
-      "evidence": "diff --strip-trailing-cr shows identical app.py",
-      "status": "verified"
+      "claim": "Three-part structure with guided, intermediate and challenge variants of each lab",
+      "status": "traceable"
+    },
+    {
+      "claim": "Authored and maintained in the department org repository",
+      "status": "traceable"
     }
   ],
   "limitations": [

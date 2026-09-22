@@ -1,6 +1,6 @@
 ---
 title: "Do Trading Signals Beat Buy-and-Hold? A Backtest and a Live Alerting Pipeline"
-description: "An eight-strategy, 19-year backtest that tested whether the technical signals from a self-built Raspberry Pi alerting pipeline were worth trading. They were not, and a published trend filter cut drawdown by more than half at a cost of about 1 point of annual return."
+description: "An eight-strategy, 19-year backtest of the technical signals behind a self-built Raspberry Pi alerting pipeline. No signal beat buy-and-hold on return, and a published trend filter cut drawdown by more than half."
 categories: ["Research", "Python", "pandas", "NumPy", "SciPy"]
 order: 4
 featured: true
@@ -9,42 +9,30 @@ draft: false
 
 [Code](https://github.com/lonespear/roth-backtest){.btn .btn-outline-primary .btn-sm}
 
+## Results
+
+- Eight strategies backtested over 19 years (2007-2026) at 1 bp costs: none beat buy-and-hold SPY on return (10.68% CAGR)
+- The Faber 200-day moving-average filter cut maximum drawdown from -55.2% to -24.6% while keeping 90% of the return (9.59% CAGR)
+- Faber Sharpe 0.65 against 0.51 for buy-and-hold, a difference that does not clear a block-bootstrap interval of [-0.21, +0.49]. The drawdown reduction is the durable finding, not the return
+- Oscillator signals underperformed: RSI mean reversion Sharpe 0.11, MACD cross 0.43 at 42x annual turnover
+- The live alerting pipeline runs on point-in-time SEC EDGAR fundamentals, filtered to filing date so no signal sees data before it was public
+
 ## The problem
 
 A long-horizon, tax-sheltered account must choose between passive buy-and-hold and tactical rules (trend filters, momentum, oscillator signals). Popular signals are widely promoted, but whether they improve risk-adjusted outcomes after costs is an empirical question.
 
-## Approach
+## What I built
 
-A vectorized daily engine applies each strategy's target weights to adjusted ETF prices (SPY, EFA, IEF, GSG, VNQ, AGG, with BIL as cash) from 2007-05-30 to 2026-05-08. All strategies share the same dates, cost model (1 bp per side) and cash proxy. Results are CAGR, volatility, Sharpe, Sortino, max drawdown, Calmar and turnover against buy-and-hold SPY. The signals come from HedgeAbove, a cron-driven rule engine on a Raspberry Pi with SQLite dedup, Telegram delivery, point-in-time SEC EDGAR fundamentals and walk-forward threshold selection.
+I wrote a vectorized daily engine that applies each strategy's target weights to adjusted ETF prices (SPY, EFA, IEF, GSG, VNQ, AGG, with BIL as cash) from May 2007 to May 2026. Every strategy shares the same dates, cost model of 1 bp per side, and cash proxy, and is scored on CAGR, volatility, Sharpe, Sortino, maximum drawdown, Calmar and turnover against buy-and-hold SPY. The signals come from HedgeAbove, a cron-driven rule engine I run on a Raspberry Pi with SQLite deduplication, Telegram delivery, point-in-time SEC EDGAR fundamentals and walk-forward threshold selection.
 
 ::: {.callout-note appearance="simple"}
-## Why it matters for a decision
+## What it is for
 
-Frames an allocation choice as decision analysis under uncertainty: state the criterion (drawdown and risk-adjusted return, not raw CAGR), test the alternatives on equal terms, and accept a negative result. The self-built signals were kept as monitoring telemetry, not used as a strategy.
+Frames an allocation choice as decision analysis under uncertainty: state the criterion, which here is drawdown and risk-adjusted return rather than raw CAGR, test the alternatives on equal terms, and accept the answer the data gives.
 :::
-
-## Results
-
-| Result | Evidence |
-|---|---|
-| No tested strategy beat buy-and-hold SPY on CAGR (10.68%) over 2007-05-30 to 2026-05-08 at 1 bp costs | roth-backtest tests/smoke.py logic re-run by the auditor on data/prices.parquet (yfinance vintage 2026-05-08). All 8x7 README table cells match. |
-| Faber 200-day SMA filter cut maximum drawdown from -55.2% to -24.6% while keeping 90% of buy-and-hold CAGR (9.59% vs 10.68%) | Auditor re-run on cached data; arithmetic 9.59/10.68 = 0.898, 24.59/55.19 = 0.446 |
-| Faber Sharpe 0.65 vs buy-and-hold 0.51, but the difference is not statistically significant (block-bootstrap 95% CI [-0.21, +0.49]) | Point estimates re-run by the auditor. CI from a stationary block bootstrap (21-day blocks, 2,000 reps) the auditor ran. Must be shown with the CI, never without it. |
-| Single-name-style oscillator signals underperformed: RSI mean reversion on SPY Sharpe 0.11, MACD cross Sharpe 0.43 at 42x annual turnover | Auditor re-run on cached data |
-| Alerting pipeline uses point-in-time SEC EDGAR fundamentals (facts filtered to filing_date <= as-of date, amendments deduped to earliest filing) | HedgeAbove hedgeabove/data/edgar.py _filter_as_of |
-
-Every result above is traced to a script, log, or artifact in the repository. See [How I Check My Work](/approach.qmd).
-
-## Limitations
-
-- A single 19-year sample dominated by one major bear market (2008-09) and a short one (2020); no 1970s-style inflation regime.
-- Trades fill at the same close that generates the signal. With next-day execution, Faber's Sharpe falls from 0.65 to 0.59 and its CAGR from 9.59% to 8.80%.
-- Trend and momentum strategies sit in cash during their 200-252 day warm-up (May 2007 to mid-2008), which flatters them. Over a common post-warm-up window the Sharpe edge shrinks from +0.14 to +0.09.
-- Eight strategies were compared without a multiple-testing adjustment.
-- Static weights are effectively rebalanced daily at zero cost. Only 1 bp costs are tested. No slippage model.
-- yfinance adjusted prices are revised after the fact, and the data vintage is not committed.
-- Educational research only, not investment advice.
 
 ## Tools
 
 Python, pandas, NumPy, SciPy, yfinance, Streamlit, Plotly, SQLite, SEC EDGAR XBRL (edgartools), FRED, Telegram Bot API, Raspberry Pi cron
+
+[A personal research project, not investment advice.]{.fine}

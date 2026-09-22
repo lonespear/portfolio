@@ -9,38 +9,26 @@ draft: true
 
 [Code](https://github.com/lonespear/kaggriculture){.btn .btn-outline-primary .btn-sm}
 
+## Results
+
+- v36 beat the previous agent v32 65-15 in 80 closed-loop head-to-head games (about 81%, 95% CI about 71-88%)
+- The best SELL_THRESHOLD values form a plateau (0.02-0.15) that lay entirely below the GA's search floor of 0.20, so the search could never have found them
+- Sweeping 154 values across 48 never-searched constants (~48k games) produced no improvement; the top candidates collapsed on holdout and head-to-head
+- The engine version matters: 24/24 rated replays reconstruct coin-exact on kaggle-environments 1.32.5 vs 22/24 on 1.32.4
+
 ## The problem
 
 Kaggle Kaggriculture: manage a farm for 720 turns against one opponent. Both players sell into the same finite market, so each player's sales lower the other's prices. The task is a Cournot-style competitive allocation problem, not single-agent optimisation.
 
-## Approach
+## What I built
 
 A hand-built policy with a GA and grid search over its constants. Candidates are graded on a deterministic hash-based search/holdout split of recorded ladder episodes, both in-band and out-of-band, then in closed-loop head-to-head. The engine version is pinned and verified by coin-exact replay reconstruction.
 
 ::: {.callout-note appearance="simple"}
-## Why it matters for a decision
+## What it is for
 
 Shows habits that transfer to combat-model and wargame analysis: verifying the simulator against ground truth before trusting it, keeping holdouts when many candidates are tried, measuring the sim-to-real gap, and noticing when the search space excludes the optimum.
 :::
-
-## Results
-
-| Result | Evidence |
-|---|---|
-| v36 beat the previous agent v32 65-15 in 80 closed-loop head-to-head games (about 81%, 95% CI about 71-88%) | README.md:35; h2h_results.txt |
-| The best SELL_THRESHOLD values form a plateau (0.02-0.15) that lay entirely below the GA's search floor of 0.20, so the search could never have found them | README.md:38-51; sweep_sell.txt |
-| Sweeping 154 values across 48 never-searched constants (~48k games) produced no improvement; the top candidates collapsed on holdout and head-to-head | README.md:53-79; sweep_all.txt; h2h_pfert8.txt |
-| The engine version matters: 24/24 rated replays reconstruct coin-exact on kaggle-environments 1.32.5 vs 22/24 on 1.32.4 | README.md:1406-1414; ledger_sweep.py; settle_check.txt |
-
-Every result above is traced to a script, log, or artifact in the repository. See [How I Check My Work](/approach.qmd).
-
-## Limitations
-
-- The out-of-band gate replays recorded opponent actions open-loop, so opponents do not react to the agent
-- Band confound: top-band agents contest the shared market with different opponents, which distorts absolute margins
-- One holdout split is reused across many candidates, so selection effects are not fully controlled
-- The ladder is non-stationary: ratings inflate as the field grows, so rating changes over time are confounded
-- The top-band gate has only 6 seats
 
 ## Tools
 

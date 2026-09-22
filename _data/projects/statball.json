@@ -6,18 +6,24 @@
   "site_section": "teaching",
   "one_liner": "Classroom-tested final-exam review: teams earn a salary cap from a 30-question stats quiz, draft players in a silent auction, and play a 2d6 dice-baseball tournament.",
   "problem": "Cumulative review before the term-end exam is usually passive and low-engagement.",
-  "approach": "Streamlit quiz that pays out salary cap and sends results to Google Sheets through st.secrets; players' OBP/SLG/ERA map to dice probability tables; scouting built on expected bases per plate appearance (law of total expectation).",
+  "approach": "I built a Streamlit quiz that pays out a salary cap and writes results to Google Sheets, mapped real OBP, SLG and ERA onto 2d6 dice probability tables, and wrote a scouting guide around expected bases per plate appearance using the law of total expectation.",
   "decision_relevance": "Turns probability tables and expected value into resource-allocation decisions under a budget, which parallels analytic tradeoffs.",
   "headline_results": [
     {
-      "claim": "Dice-table expected value: P(2d6>=6) * E[bases|hit] = 26/36 * 2.333 = 1.684",
-      "evidence": "README derivation, re-derived in audit",
-      "status": "verified"
+      "claim": "A 30-question statistics quiz sets each team's salary cap; teams then draft players in a silent auction and play a 2d6 dice-baseball tournament",
+      "status": "traceable"
     },
     {
-      "claim": "All 30 answer keys re-derived and correct; the Q27 explanation that contradicted its own key is fixed",
-      "evidence": "review.py, commit 6d417b7",
-      "status": "verified"
+      "claim": "Dice tables built from real OBP, SLG and ERA: P(2d6 >= 6) x E[bases | hit] = 26/36 x 2.333 = 1.684 expected bases per plate appearance",
+      "status": "traceable"
+    },
+    {
+      "claim": "All 30 answer keys re-derived and verified",
+      "status": "traceable"
+    },
+    {
+      "claim": "Classroom-tested as the final-exam review in MA206, with submissions collected through Google Sheets",
+      "status": "traceable"
     }
   ],
   "limitations": [

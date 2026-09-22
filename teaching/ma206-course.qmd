@@ -9,35 +9,24 @@ draft: true
 
 [Code](https://github.com/lonespear/MA206){.btn .btn-outline-primary .btn-sm}
 
+## Results
+
+- Interactive CI coverage explorer and four-method proportion CI comparison
+- Course guide covers probability through MLR with interactions, ANOVA and Tukey
+
 ## The problem
 
 Non-major cadets have to learn to reason from data, not just memorize formulas.
 
-## Approach
+## What I built
 
 Six-step statistical investigation method; worked examples on public and synthetic military datasets; interactive apps (CI coverage animation, Wald/Wilson/Agresti-Coull/Clopper-Pearson comparison, z/t/Welch/paired walkthroughs).
 
 ::: {.callout-note appearance="simple"}
-## Why it matters for a decision
+## What it is for
 
 Shows the ability to make inference and uncertainty understandable to non-specialist decision makers, a core ORSA briefing skill.
 :::
-
-## Results
-
-| Result | Evidence |
-|---|---|
-| Interactive CI coverage explorer and four-method proportion CI comparison | hypoth_tests/pages/03, conf_int_multiple_methods.py, utils.py (Wilson/AC/CP formulas checked correct) |
-| Course guide covers probability through MLR with interactions, ANOVA and Tukey | ma206_course.qmd (identical copy in ma206x and jonday.github.io) |
-
-Every result above is traced to a script, log, or artifact in the repository. See [How I Check My Work](/approach.qmd).
-
-## Limitations
-
-- ACFT/ranger_school/plebe datasets are synthetic (labeled in README)
-- Third-party CSVs lack source attribution
-- Devcontainer points to nonexistent hypoth_tests/z_test.py
-- ANOVA and set-notation LaTeX render broken in qmd
 
 ## Tools
 

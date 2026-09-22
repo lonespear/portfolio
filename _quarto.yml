@@ -23,7 +23,7 @@ website:
       - href: teaching/index.qmd
         text: Teaching
       - href: approach.qmd
-        text: How I Check My Work
+        text: How I Work
       - href: about.qmd
         text: About
     right:

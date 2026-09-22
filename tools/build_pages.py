@@ -64,24 +64,19 @@ def page(card):
     body = []
     if buttons:
         body += [" ".join(buttons), ""]
+    if shown:
+        body += ["## Results", ""] + [f"- {r['claim']}" for r in shown] + [""]
     body += [
         "## The problem", "", card.get("problem", ""), "",
-        "## Approach", "", card.get("approach", ""), "",
+        "## What I built", "", card.get("approach", ""), "",
     ]
     if card.get("decision_relevance"):
-        body += ["::: {.callout-note appearance=\"simple\"}", "## Why it matters for a decision", "",
+        body += ["::: {.callout-note appearance=\"simple\"}", "## What it is for", "",
                  card["decision_relevance"], ":::", ""]
-    if shown:
-        body += ["## Results", "", "| Result | Evidence |", "|---|---|"]
-        for r in shown:
-            evidence = r.get("evidence", "").replace("|", "\\|")
-            body.append(f"| {r['claim'].replace('|', '\\|')} | {evidence} |")
-        body += ["", "Every result above is traced to a script, log, or artifact in the repository. "
-                 "See [How I Check My Work](/approach.qmd).", ""]
-    if card.get("limitations"):
-        body += ["## Limitations", ""] + [f"- {x}" for x in card["limitations"]] + [""]
     if card.get("tech"):
         body += ["## Tools", "", ", ".join(card["tech"]), ""]
+    if card.get("caveat"):
+        body += [f"[{card['caveat']}]{{.fine}}", ""]
     return "\n".join(front + [""] + body)
 
 

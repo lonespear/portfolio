@@ -9,34 +9,25 @@ draft: false
 
 [Code](https://github.com/usma-stats/streamlit-workshop){.btn .btn-outline-primary .btn-sm}
 
+## Results
+
+- A 30-minute workshop that takes math faculty with no web experience to a deployed Streamlit app
+- Three-part structure with guided, intermediate and challenge variants of each lab
+- Authored and maintained in the department org repository
+
 ## The problem
 
 Instructors want interactive teaching tools but lack web-development skills.
 
-## Approach
+## What I built
 
-Instructor-led walkthrough of a reference app in 5 steps, then tiered lab shells (guided, stats dashboard, open challenge), deployment to Streamlit Cloud, and a quick-reference sheet.
+I wrote an instructor-led walkthrough of a reference app in five steps, then tiered lab shells (guided, statistics dashboard, open challenge), deployment to Streamlit Cloud, and a quick-reference sheet.
 
 ::: {.callout-note appearance="simple"}
-## Why it matters for a decision
+## What it is for
 
-Shows the ability to build analytic capacity in others by training colleagues to field their own tools.
+Builds analytic capacity in others: colleagues leave able to field their own tools.
 :::
-
-## Results
-
-| Result | Evidence |
-|---|---|
-| Authored the workshop in the department org repo | git: lonespear 5 commits, usma-stats 1 (initial commit) |
-| demo_facdev is the same app | diff --strip-trailing-cr shows identical app.py |
-
-Every result above is traced to a script, log, or artifact in the repository. See [How I Check My Work](/approach.qmd).
-
-## Limitations
-
-- np.std (ddof=0) labeled 'Std dev'
-- Stale line-number map in the app header
-- Lab shells deliberately do not run until the blanks are filled
 
 ## Tools
 

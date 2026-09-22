@@ -1,66 +1,49 @@
 ---
-title: "How I Check My Work"
-subtitle: "The standard every project on this site is held to, and where my own work failed it."
+title: "How I Work"
+subtitle: "The standard every project on this site is held to."
 toc: true
 ---
 
-An analysis is only useful to a commander if it is right, and if the person briefing it
-knows how it could be wrong. These are the checks I run before I call something a result.
+An analysis is useful to a commander when it is right, and when the person briefing it
+can say how far it goes. These are the practices behind the work on this site.
 
-## 1. Every number has a receipt
+## Every number has a receipt
 
-Each headline figure on this site traces to a script, a log, or a saved artifact in the
-project's repository. If I cannot point to where a number came from, it does not appear.
-Project pages show only results in that state.
+Each figure on this site traces to a script, a log, or a saved artifact in the project's
+repository. Run manifests record the commit, the parameters, and the library versions, so
+any table can be traced back to the code that produced it.
 
-## 2. Evaluate on data the model never saw
+## Evaluate on data the model never saw
 
 Performance is reported on held-out data, split the way the model will be used: by time
-when the future is what matters, by unit or person when the model must generalize to new
+when the future is what matters, by unit or person when the model has to generalize to new
 ones. Training-time scores are diagnostics, not results.
 
-## 3. Compare against something
+## Compare against something
 
-A number without a baseline is not a finding. I report the naive alternative (the
-majority class, last year's rate, a random policy, the current manual process) next to
-the model.
+A number without a baseline is not a finding. The naive alternative goes next to the
+model: the majority class, last year's rate, a random policy, the current manual process.
 
-## 4. Report uncertainty, not just the estimate
+## Report uncertainty with the estimate
 
 Win rates come with game counts and intervals. Model scores come with variation across
-seeds or folds. Simulation outputs come with the number of replications behind them.
+seeds or folds. Simulation output comes with the number of replications behind it, and
+with variance reduction where the design allows it.
 
-## 5. Don't test the hypothesis on the data that suggested it
+## Don't test the hypothesis on the data that suggested it
 
-Selecting variables and then testing them on the same data manufactures significance.
-When a method selects, the inference happens on separate data, or with a correction
-built for selection.
+Selecting variables and then testing them on the same rows manufactures significance.
+When a method selects, the inference happens on separate data or with a correction built
+for selection.
 
-## 6. Say what the analysis cannot tell you
+## Verify the engine before trusting the experiment
 
-Every project page ends with its limitations: what the data does not cover, which
-assumptions carry the result, and what would change the conclusion.
+Simulations get conformance tests, seeded replay determinism, and convergence checks on
+the discretization. An experiment is only as good as the engine underneath it, so the
+engine gets tested like software, not assumed like a formula.
 
-## Where I got it wrong
+## Say what the analysis covers
 
-Applying these checks to my own finished work changed conclusions. I keep those
-corrections visible, because catching them is the job.
-
-::: {.callout-warning appearance="simple"}
-## Draft: confirm against the audit before publishing
-The cases below are summarized from project notes and are being verified in the
-portfolio audit. Remove this box once each is linked to its evidence.
-:::
-
-- **A 14-point gap between training and serving.** A maintenance-code classifier looked
-  healthy in training. Re-measuring the model the way it is actually served exposed a
-  pooling mismatch that silently cost 14 points of accuracy. *(WUC Predict)*
-- **An effect size inflated by the experimental design.** A simulation study suggested
-  melee armies win 73% of the time. The design picked one army list per faction, which
-  confounded list with archetype. Later checks found the scenario inputs themselves were
-  wrong (invented terrain, the wrong mission); re-run on the published terrain and mission
-  cards, the melee advantage is smaller and still under test with list-level uncertainty.
-  *(Rules-engine simulation)*
-- **Measurement faults in an agent evaluation.** Three faults in how competition agents
-  were scored invalidated much of the recorded evidence, which was re-classified rather
-  than quietly kept. *(Card-game AI)*
+Every model has a boundary: the data it was fit on, the assumptions carrying the result,
+the conditions under which it would not hold. Stating that boundary is what makes the
+result usable by someone who has to act on it.

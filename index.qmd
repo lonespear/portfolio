@@ -19,12 +19,12 @@ listing:
 ---
 
 ::: {.hero}
-U.S. Army **FA49 Operations Research and Systems Analysis** officer. I build models
-of messy operational problems, test them against data they have not seen, say plainly
-what they cannot tell you, and ship them as software.
+U.S. Army **FA49 Operations Research and Systems Analysis** officer. I build models of
+messy operational problems, test them against data they have not seen, and ship them as
+software the people making the decision actually use.
 
 [See the work](work/index.qmd){.btn .btn-primary}
-[How I check my work](approach.qmd){.btn .btn-outline-primary}
+[How I work](approach.qmd){.btn .btn-outline-primary}
 :::
 
 ## Featured work

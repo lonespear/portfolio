@@ -9,34 +9,26 @@ draft: false
 
 [Code](https://github.com/lonespear/ma206-review){.btn .btn-outline-primary .btn-sm} [Live demo](https://statball.streamlit.app/){.btn .btn-primary .btn-sm}
 
+## Results
+
+- A 30-question statistics quiz sets each team's salary cap; teams then draft players in a silent auction and play a 2d6 dice-baseball tournament
+- Dice tables built from real OBP, SLG and ERA: P(2d6 >= 6) x E[bases | hit] = 26/36 x 2.333 = 1.684 expected bases per plate appearance
+- All 30 answer keys re-derived and verified
+- Classroom-tested as the final-exam review in MA206, with submissions collected through Google Sheets
+
 ## The problem
 
 Cumulative review before the term-end exam is usually passive and low-engagement.
 
-## Approach
+## What I built
 
-Streamlit quiz that pays out salary cap and sends results to Google Sheets through st.secrets; players' OBP/SLG/ERA map to dice probability tables; scouting built on expected bases per plate appearance (law of total expectation).
+I built a Streamlit quiz that pays out a salary cap and writes results to Google Sheets, mapped real OBP, SLG and ERA onto 2d6 dice probability tables, and wrote a scouting guide around expected bases per plate appearance using the law of total expectation.
 
 ::: {.callout-note appearance="simple"}
-## Why it matters for a decision
+## What it is for
 
 Turns probability tables and expected value into resource-allocation decisions under a budget, which parallels analytic tradeoffs.
 :::
-
-## Results
-
-| Result | Evidence |
-|---|---|
-| Dice-table expected value: P(2d6>=6) * E[bases\|hit] = 26/36 * 2.333 = 1.684 | README derivation, re-derived in audit |
-| All 30 answer keys re-derived and correct; the Q27 explanation that contradicted its own key is fixed | review.py, commit 6d417b7 |
-
-Every result above is traced to a script, log, or artifact in the repository. See [How I Check My Work](/approach.qmd).
-
-## Limitations
-
-- Q16 uses causal wording for a regression slope
-- 25 vs 30 question-count and cap-arithmetic inconsistencies
-- Needs Google service account to run submissions
 
 ## Tools
 

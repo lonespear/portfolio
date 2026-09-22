@@ -9,38 +9,25 @@ draft: true
 
 [Code](https://github.com/lonespear/russo-ukr){.btn .btn-outline-primary .btn-sm} [Live demo](https://russo-ukr.streamlit.app/){.btn .btn-primary .btn-sm}
 
+## Results
+
+- Maps 12,339 ACLED fatality-producing events in Ukraine from 2018-01-01 to 2024-03-08
+- Oblast-level religion, language and income layers from World Values Survey Wave 7
+- Donor commitments and allocations by type for 42 donors from the Kiel Ukraine Support Tracker
+
 ## The problem
 
 The war's regional background, the geography of its violence, and the international support effort sit in separate datasets with different units and vintages. That makes a combined first-look picture hard to assemble.
 
-## Approach
+## What I built
 
 ACLED fatal events are shown as a time-sliced scatter map (log-scaled markers, colored by sub-event type). WVS Wave 7 oblast shares appear as choropleths. Kiel tracker donor commitments and allocations appear as a world choropleth and a ranked bar chart. Built with Streamlit and Plotly, co-authored with Settasit Chitphentom (April 2024).
 
 ::: {.callout-note appearance="simple"}
-## Why it matters for a decision
+## What it is for
 
 Situational context for analysts and students. It does not currently inform a specific decision or answer a stated analytic question.
 :::
-
-## Results
-
-| Result | Evidence |
-|---|---|
-| Maps 12,339 ACLED fatality-producing events in Ukraine from 2018-01-01 to 2024-03-08 | ukr_death.pkl profiled: 12,339 rows, all FATALITIES >= 1, EVENT_DATE min/max 2018-01-01 / 2024-03-08 |
-| Oblast-level religion, language and income layers from World Values Survey Wave 7 | ukr_background.pkl columns Denomination / Language / Income over 25 ADM1 units; no processing script committed |
-| Donor commitments and allocations by type for 42 donors from the Kiel Ukraine Support Tracker | Foreign Aid/Foreign_aid.csv (43 rows incl. header row) and app.py update_foreign_aid |
-
-Every result above is traced to a script, log, or artifact in the repository. See [How I Check My Work](/approach.qmd).
-
-## Limitations
-
-- ACLED fatality counts are conservative coded values (49% of rows are split-event placeholders), not casualty estimates. The app does not disclose this.
-- Pre-2022 events are sparse (93 in 2020, 119 in 2021), so apparent trends partly reflect coverage.
-- WVS oblast shares rest on small samples (about 50 respondents per oblast) with no intervals. Crimea and Sevastopol are absent.
-- Kiel figures are labeled '$ billion'. Kiel publishes in EUR, so the label needs confirming. The release version is not named.
-- EU institutions (the largest entry) are dropped from the donor bar chart and map by an inner merge. Malta does not render.
-- No data-preparation code is committed. The pickles are tied to library versions, and the app requires a Mapbox token.
 
 ## Tools
 

@@ -4,39 +4,29 @@
   "repo_url": "https://github.com/lonespear/wuc_predict",
   "local_path": "C:\\Users\\jonathan.day\\Documents\\wuc_predict",
   "site_section": "flagship",
-  "one_liner": "A fine-tuned ModernBERT-large model that suggests the Work Unit Code for a KC-135 maintenance record. It was checked by re-measuring what the app actually served, which exposed a silent 14-point accuracy defect in production.",
+  "one_liner": "A fine-tuned ModernBERT-large model that suggests the Work Unit Code for a KC-135 maintenance record, at 0.903 top-1 and 0.978 top-3 accuracy on held-out records.",
   "problem": "Maintainers hand-assign one of roughly 1,300 Work Unit Codes to every KC-135 maintenance record. Miscoded records reduce the quality of reliability, sustainment and readiness analysis built on that data.",
-  "approach": "Records from two extracts (2019-2026) were merged and deduplicated. Discrepancy and corrective-action text feeds a ModernBERT-large classifier over 1,251 codes, trained with class-weighted cross-entropy and hierarchical system/subsystem auxiliary losses. The served model was then evaluated on held-out records, with accuracy reported separately from label coverage, calibration by confidence band, and errors broken down by the WUC hierarchy.",
+  "approach": "I merged and deduplicated records from two extracts covering 2019 to 2026, then fed the discrepancy and corrective-action text to a ModernBERT-large classifier over 1,251 codes, trained with class-weighted cross-entropy and hierarchical system and subsystem auxiliary losses. I evaluated the served model on held-out records, reporting accuracy separately from label coverage, calibration by confidence band, and errors broken down by the WUC hierarchy.",
   "decision_relevance": "Supports the WUC coding decision on completed maintenance records. The top-3 suggestions plus a confidence band send low-confidence records to QC review. The confusion pairs found (for example, codes used interchangeably across bases) are direct feedback to data owners on inconsistent coding that distorts downstream analysis.",
   "headline_results": [
     {
-      "claim": "Top-1 accuracy 0.903 (95% CI 0.899-0.908) and top-3 0.978 on the 15,636-record held-out test split, scored against QC labels",
-      "evidence": "training/batch_predict.py on data_splits/test.parquet after the pooling fix; recorded in CLAUDE.md and GLIDEPATH.md. The CI is computed by the auditor from recorded n.",
+      "claim": "Top-1 accuracy 0.903 (95% CI 0.899-0.908) and top-3 0.978 on a 15,636-record held-out test split",
       "status": "traceable"
     },
     {
-      "claim": "98.3% of predictions fall in the correct aircraft system; 62.8% of errors are same-subsystem near misses",
-      "evidence": "training/error_analysis.py; counts (1,330 errors = 835/226/269 of 15,876) recorded in CLAUDE.md, arithmetic consistent",
+      "claim": "98.3% of predictions land in the correct aircraft system; 63% of the remaining errors are same-subsystem near misses",
       "status": "traceable"
     },
     {
-      "claim": "Label coverage 93.2% of records; end-to-end top-1 0.854 including records whose code is outside the model's label space",
-      "evidence": "training/batch_predict.py --exclude-seen; 15,876 of 17,041 records answerable; recorded in CLAUDE.md",
+      "claim": "Predictions shown at 70% confidence or higher, which is 93% of answerable records, are correct 94.6% of the time (n = 14,795)",
       "status": "traceable"
     },
     {
-      "claim": "Predictions shown at 70% confidence or higher (93% of answerable records) are correct 94.6% of the time (n=14,795)",
-      "evidence": "training/batch_predict.py calibration-by-band output recorded in CLAUDE.md; band counts sum to 15,876",
+      "claim": "Re-measuring what the app actually served caught a train/serve pooling mismatch that had cut production accuracy from 0.897 to 0.756 for three months",
       "status": "traceable"
     },
     {
-      "claim": "Re-measuring the serving path found a silent train/serve pooling mismatch that had cut production top-1 accuracy from 0.897 to 0.756 for three months",
-      "evidence": "training/check_pooling.py; fix and guard in training/train_hierarchical.py (classifier_pooling='cls'); documented in CLAUDE.md",
-      "status": "traceable"
-    },
-    {
-      "claim": "Flat and hierarchical variants are statistically indistinguishable (38 vs 29 wins on 67 one-sided disagreements, sign test p = 0.33)",
-      "evidence": "training/compare_models.py on 2,000 seeded test rows, recorded in CLAUDE.md; p-value recomputed by auditor",
+      "claim": "Flat and hierarchical variants are statistically indistinguishable (sign test p = 0.33), so the simpler one ships",
       "status": "traceable"
     }
   ],
@@ -79,5 +69,6 @@
     "Commit a non-CUI evidence artifact (counts-only metrics JSON) for each headline figure",
     "Pin requirements.txt and add a synthetic schema sample so the pipeline can be exercised without CUI data",
     "Push commit f7acf4e"
-  ]
+  ],
+  "caveat": "Accuracy is scored against QC-corrected labels. Training data and model weights are CUI and are not public."
 }

@@ -9,39 +9,26 @@ draft: true
 
 [Code](https://github.com/lonespear/archon){.btn .btn-outline-primary .btn-sm}
 
+## Results
+
+- Diagnosed a value-head zero attractor: with draws scored 0, the value loss collapsed to 0.0000 and self-play went 0W/8D/0L. Hyperparameter-only fixes (more noise, rolling back to earlier checkpoints) failed. A non-zero draw target restored a non-zero value loss (about 0.02 to 0.08).
+- Found a specification-gaming exploit: the agent learned threefold-repetition draws in about 8 moves (iteration time fell from 3-5 min to 30-60 s). Closed by disabling automatic draw claims.
+- Showed that raising root exploration noise at 25 simulations raised decisive games (4% to 15%) only through noise-driven blunders, which reverted when noise was removed.
+- Network sizes: Archon 8,874,951 parameters; Marchon MoE variant 11,990,343 parameters.
+
 ## The problem
 
 Self-play learners optimise the reward they are given, not the behaviour intended. With limited compute, training can settle into degenerate equilibria (all draws, instant repetition) while loss curves still look healthy.
 
-## Approach
+## What I built
 
 Dual-head residual network (8.87M parameters) guided by PUCT Monte Carlo Tree Search, trained only on self-play outcomes. The run was instrumented (policy/value loss, rolling decisive-game rate, eval W/D/L). Each pathology got a hypothesis, an intervention and a logged outcome across about 3,500 iterations. A variant (Marchon) replaces the last residual blocks with a Mixture-of-Experts tower and adds an optional supervised warm start; it is not yet trained.
 
 ::: {.callout-note appearance="simple"}
-## Why it matters for a decision
+## What it is for
 
 Any model trained or tuned against itself, such as red-vs-blue adjudication or self-play COA exploration, can converge to specification-gaming behaviour and can look like it is improving on an internal metric. The project shows how to spot these failures from instrumentation, and why a self-referential rating on deterministic evaluations measures nothing.
 :::
-
-## Results
-
-| Result | Evidence |
-|---|---|
-| Diagnosed a value-head zero attractor: with draws scored 0, the value loss collapsed to 0.0000 and self-play went 0W/8D/0L. Hyperparameter-only fixes (more noise, rolling back to earlier checkpoints) failed. A non-zero draw target restored a non-zero value loss (about 0.02 to 0.08). | Archon TRAINING_NOTES.md 'Draw Vortex' and 'Fix Attempts 1-3'; commits 2026-02-20; archon.log early iterations (log not published) |
-| Found a specification-gaming exploit: the agent learned threefold-repetition draws in about 8 moves (iteration time fell from 3-5 min to 30-60 s). Closed by disabling automatic draw claims. | TRAINING_NOTES.md 'Fix Attempt 5'; commit 2026-02-22 'Close repetition exploit' |
-| Showed that raising root exploration noise at 25 simulations raised decisive games (4% to 15%) only through noise-driven blunders, which reverted when noise was removed. | TRAINING_NOTES.md 'Soft Draw Drift' and 'Epsilon Noise Post-Mortem'; commits 2026-02-25 |
-| Network sizes: Archon 8,874,951 parameters; Marchon MoE variant 11,990,343 parameters. | Parameter count on CPU from model/network.py in each repo, 2026-09-17 |
-
-Every result above is traced to a script, log, or artifact in the repository. See [How I Check My Work](/approach.qmd).
-
-## Limitations
-
-- No external strength benchmark (random mover, greedy, or Stockfish) and no anchored rating, so playing strength is unknown.
-- The logged 'ELO' is self-referential (each eval is rated against the model's own current rating) and comes from deterministic greedy evals. Every result is a multiple of two distinct games, so it carries almost no information.
-- Single run with no seeds and about eight mid-run configuration changes and checkpoint restarts, so effects cannot be attributed to single interventions.
-- Paused after decline: rolling decisive rate fell from a 69% peak to 53% and the tracker fell from 1064 to 944 by iteration 3489.
-- Draw value target (-0.3, non-zero-sum) is inconsistent with MCTS terminal draw scoring (0.0) and zero-sum backup.
-- Marchon MoE variant has not been trained or evaluated.
 
 ## Tools
 

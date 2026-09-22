@@ -9,39 +9,25 @@ draft: true
 
 [Code](https://github.com/lonespear/threnody_rl){.btn .btn-outline-primary .btn-sm}
 
+## Results
+
+- The Python engine's unit data matches the live game's source: all 15 units across 5 factions agree on movement, toughness, skills, wounds, saves, objective control and both weapon profiles.
+- Engine self-consistency test suite (wound table, closed-form vs Monte Carlo ranged and melee damage, line of sight, pathfinding, deployment zones, action masking) passes.
+- Built a counterfactual balance tool: stat overrides applied in memory, then baseline and modified 5x5 matchup matrices, per-matchup deltas and a JSON dump, with decisive-game (W/(W+L)) re-analysis.
+
 ## The problem
 
 Balancing a five-faction wargame by hand is slow, and play-testers are scarce. The question is whether AI-vs-AI round-robins with counterfactual stat changes can detect over- or under-powered units before release.
 
-## Approach
+## What I built
 
 A Python port of the game's combat, board and turn engine, with unit data checked against the live game's source. A masked actor-critic trained with PPO against periodically frozen copies of itself. A 5x5 faction round-robin evaluator, and a counterfactual tool that applies stat overrides in memory and compares matchup matrices. A predecessor prototype on a tabletop ruleset developed the self-play env and a premature-convergence (entropy) monitor.
 
 ::: {.callout-note appearance="simple"}
-## Why it matters for a decision
+## What it is for
 
 Automated adjudication and COA stress-testing face the same threat: an optimising agent exploits the scoring rule, so outcome deltas stop measuring the effect of interest. The project shows the design of a counterfactual round-robin, the need for a measured noise floor before reading deltas, and how draw-rate confounding produced wrong-sign conclusions.
 :::
-
-## Results
-
-| Result | Evidence |
-|---|---|
-| The Python engine's unit data matches the live game's source: all 15 units across 5 factions agree on movement, toughness, skills, wounds, saves, objective control and both weapon profiles. | Script diff of threnody_rl/env/factions.py against threnody/src/data/{accord,harrow,ironveil,drift,voidborn}.js, run 2026-09-17 (0 mismatches; keywords and abilities not compared) |
-| Engine self-consistency test suite (wound table, closed-form vs Monte Carlo ranged and melee damage, line of sight, pathfinding, deployment zones, action masking) passes. | python -m threnody_rl.tests.test_parity -> 'all 9 tests passed' (2026-09-17) |
-| Built a counterfactual balance tool: stat overrides applied in memory, then baseline and modified 5x5 matchup matrices, per-matchup deltas and a JSON dump, with decisive-game (W/(W+L)) re-analysis. | threnody_rl/tune.py, threnody_rl/analyze_tune.py, threnody_rl/eval.py |
-
-Every result above is traced to a script, log, or artifact in the repository. See [How I Check My Work](/approach.qmd).
-
-## Limitations
-
-- The trained agent learned to win on the turn-limit alive-count tiebreak rather than by eliminating opponents, so its win rates are not yet a valid proxy for player-level balance.
-- Aggregate win rate is confounded by draws; stat nerfs that turn draws into decisive games can look like buffs.
-- Single training seed and single checkpoint; checkpoints are not published.
-- The counterfactual tool holds the policy fixed, so the agent does not re-optimise for the changed stats.
-- Baseline and modified runs are not common-random-number paired; there are no confidence intervals in tool output.
-- Combat-rule and turn-logic parity with the live JavaScript engine has no cross-engine test; only unit data was diffed.
-- Predecessor (tabletop prototype) RL code is not in its repository, and its headline metric (win rate against a frozen, first-moving snapshot in one matchup) is not a strength measure.
 
 ## Tools
 

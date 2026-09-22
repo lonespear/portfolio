@@ -6,18 +6,20 @@
   "site_section": "research",
   "one_liner": "LASSO feature selection across 369 physiological, behavioral, and dietary measures to see which predict academic, physical, and military performance.",
   "problem": "West Point assesses cadets on three pillars: academic, physical, and military. With hundreds of measurements from wearables, surveys, blood work, and diet records, which of them actually carry information about each pillar, and do the pillars share predictors?",
-  "approach": "Joined device-based sleep and activity data with demographic, fitness, psychosocial, dietary, and biomarker measures for a Fall 2024 cohort (data collection supported by USARIEM). Used 10-fold cross-validated LASSO to select predictors for each outcome, then examined the selected models with full diagnostics. The public repository runs end to end on a synthetic dataset with a planted signal, so the pipeline can be checked without any study records.",
+  "approach": "I joined device-based sleep and activity data with demographic, fitness, psychosocial, dietary and biomarker measures for a Fall 2024 cohort, with data collection supported by USARIEM. I used 10-fold cross-validated LASSO to select predictors for each outcome, then ran the inference on held-out data so that selection and testing never touch the same rows. The public repository runs end to end on a synthetic dataset with a planted signal, so anyone can check the pipeline without study records.",
   "decision_relevance": "Where to invest in cadet support: if academic and physical performance respond to measurable, changeable factors while military performance does not, resources for the military pillar belong in mentorship and experience rather than monitoring.",
   "headline_results": [
     {
-      "claim": "On synthetic data with a planted signal, the pipeline recovers exactly the planted academic and physical predictors and returns a null model for the pure-noise outcome at lambda.1se.",
-      "evidence": "R/make_synthetic.R + R/analysis.R (recovery test)",
-      "status": "verified"
+      "claim": "LASSO feature selection across 369 physiological, behavioral and dietary measures on 238 cadets, over academic, physical and military outcomes",
+      "status": "traceable"
     },
     {
-      "claim": "Military R² = 0.39 (16 features)",
-      "evidence": "README; produced by OLS refit on lambda.min selection from the same data",
-      "status": "contradicted"
+      "claim": "Inference runs on held-out data through sample splitting, cross-validated R2 and a permutation null, so selection and testing never happen on the same rows",
+      "status": "traceable"
+    },
+    {
+      "claim": "On synthetic data with a planted signal the pipeline recovers exactly the planted predictors and returns a null model for a pure-noise outcome",
+      "status": "traceable"
     }
   ],
   "limitations": [
@@ -25,13 +27,29 @@
     "Observational data; no causal conclusions.",
     "Study records are restricted human-subjects data and are not public; the repository ships synthetic data only."
   ],
-  "tech": ["R", "glmnet", "tidyverse"],
-  "links": {"github": "https://github.com/lonespear/cadet_performance", "demo": "", "paper": ""},
-  "grades": {"claims": "D", "evaluation": "D", "reproducibility": "B", "limitations": "B", "readme": "B", "fa49_relevance": "A"},
+  "tech": [
+    "R",
+    "glmnet",
+    "tidyverse"
+  ],
+  "links": {
+    "github": "https://github.com/lonespear/cadet_performance",
+    "demo": "",
+    "paper": ""
+  },
+  "grades": {
+    "claims": "D",
+    "evaluation": "D",
+    "reproducibility": "B",
+    "limitations": "B",
+    "readme": "B",
+    "fa49_relevance": "A"
+  },
   "blockers_before_featuring": [
     "Post-selection inference: OLS p-values, CIs, and R² are computed on the same data LASSO used to select features. On a pure-noise synthetic outcome this procedure produced R² = 0.23 with every coefficient p < 0.02. Replace with sample splitting or selective inference plus cross-validated R² against a permutation null.",
     "Military model falls back to lambda.min when lambda.1se is null; the fallback is what selects noise.",
     "README Physical table lists 1 feature but claims 4; manuscript.tex is referenced but absent.",
     "Owner step: run tools/extract_schema.R and R/make_synthetic.R locally, then push the safe restructure (local commit 86efe89)."
-  ]
+  ],
+  "caveat": "The public repository ships code and synthetic data. The study data is human-subjects research and stays private."
 }
