@@ -2,7 +2,6 @@ project:
   type: website
   render:
     - index.qmd
-    - approach.qmd
     - about.qmd
     - work/*.qmd
     - teaching/*.qmd
@@ -22,8 +21,6 @@ website:
         text: Work
       - href: teaching/index.qmd
         text: Teaching
-      - href: approach.qmd
-        text: How I Work
       - href: about.qmd
         text: About
     right:

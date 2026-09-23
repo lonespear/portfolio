@@ -20,11 +20,11 @@ listing:
 
 ::: {.hero}
 U.S. Army **FA49 Operations Research and Systems Analysis** officer. I build models of
-messy operational problems, test them against data they have not seen, and ship them as
-software the people making the decision actually use.
+messy operational problems and ship them as software the people making the decision use:
+predictive models on operational data, combat simulation, and decision-support tools.
 
-[See the work](work/index.qmd){.btn .btn-primary}
-[How I work](approach.qmd){.btn .btn-outline-primary}
+[Projects](work/index.qmd){.btn .btn-primary}
+[About](about.qmd){.btn .btn-outline-primary}
 :::
 
 ## Featured work
