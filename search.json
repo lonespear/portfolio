@@ -172,7 +172,7 @@
     "href": "index.html",
     "title": "Jonathan Day",
     "section": "",
-    "text": "U.S. Army FA49 Operations Research and Systems Analysis officer. I build models of messy operational problems, test them against data they have not seen, and ship them as software the people making the decision actually use.\nSee the work How I work"
+    "text": "U.S. Army FA49 Operations Research and Systems Analysis officer. I build models of messy operational problems and ship them as software the people making the decision use: predictive models on operational data, combat simulation, and decision-support tools.\nProjects About"
   },
   {
     "objectID": "index.html#featured-work",
@@ -187,62 +187,6 @@
     "title": "Jonathan Day",
     "section": "Areas",
     "text": "Areas\n\n\nDecision analytics\nPredictive models on operational data, built for the people who act on them.\n\n\nSimulation & wargaming\nRules engines, Monte Carlo experiments, and reinforcement learning for stress-testing.\n\n\nResearch\nText mining, high-dimensional regression, and image quantification.\n\n\nTeaching\nProbability and statistics at West Point, and workshops on building analytic tools."
-  },
-  {
-    "objectID": "approach.html",
-    "href": "approach.html",
-    "title": "How I Work",
-    "section": "",
-    "text": "An analysis is useful to a commander when it is right, and when the person briefing it can say how far it goes. These are the practices behind the work on this site."
-  },
-  {
-    "objectID": "approach.html#every-number-has-a-receipt",
-    "href": "approach.html#every-number-has-a-receipt",
-    "title": "How I Work",
-    "section": "Every number has a receipt",
-    "text": "Every number has a receipt\nEach figure on this site traces to a script, a log, or a saved artifact in the project’s repository. Run manifests record the commit, the parameters, and the library versions, so any table can be traced back to the code that produced it."
-  },
-  {
-    "objectID": "approach.html#evaluate-on-data-the-model-never-saw",
-    "href": "approach.html#evaluate-on-data-the-model-never-saw",
-    "title": "How I Work",
-    "section": "Evaluate on data the model never saw",
-    "text": "Evaluate on data the model never saw\nPerformance is reported on held-out data, split the way the model will be used: by time when the future is what matters, by unit or person when the model has to generalize to new ones. Training-time scores are diagnostics, not results."
-  },
-  {
-    "objectID": "approach.html#compare-against-something",
-    "href": "approach.html#compare-against-something",
-    "title": "How I Work",
-    "section": "Compare against something",
-    "text": "Compare against something\nA number without a baseline is not a finding. The naive alternative goes next to the model: the majority class, last year’s rate, a random policy, the current manual process."
-  },
-  {
-    "objectID": "approach.html#report-uncertainty-with-the-estimate",
-    "href": "approach.html#report-uncertainty-with-the-estimate",
-    "title": "How I Work",
-    "section": "Report uncertainty with the estimate",
-    "text": "Report uncertainty with the estimate\nWin rates come with game counts and intervals. Model scores come with variation across seeds or folds. Simulation output comes with the number of replications behind it, and with variance reduction where the design allows it."
-  },
-  {
-    "objectID": "approach.html#dont-test-the-hypothesis-on-the-data-that-suggested-it",
-    "href": "approach.html#dont-test-the-hypothesis-on-the-data-that-suggested-it",
-    "title": "How I Work",
-    "section": "Don’t test the hypothesis on the data that suggested it",
-    "text": "Don’t test the hypothesis on the data that suggested it\nSelecting variables and then testing them on the same rows manufactures significance. When a method selects, the inference happens on separate data or with a correction built for selection."
-  },
-  {
-    "objectID": "approach.html#verify-the-engine-before-trusting-the-experiment",
-    "href": "approach.html#verify-the-engine-before-trusting-the-experiment",
-    "title": "How I Work",
-    "section": "Verify the engine before trusting the experiment",
-    "text": "Verify the engine before trusting the experiment\nSimulations get conformance tests, seeded replay determinism, and convergence checks on the discretization. An experiment is only as good as the engine underneath it, so the engine gets tested like software, not assumed like a formula."
-  },
-  {
-    "objectID": "approach.html#say-what-the-analysis-covers",
-    "href": "approach.html#say-what-the-analysis-covers",
-    "title": "How I Work",
-    "section": "Say what the analysis covers",
-    "text": "Say what the analysis covers\nEvery model has a boundary: the data it was fit on, the assumptions carrying the result, the conditions under which it would not hold. Stating that boundary is what makes the result usable by someone who has to act on it."
   },
   {
     "objectID": "work/cadet-performance.html",
