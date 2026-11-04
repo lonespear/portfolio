@@ -2,10 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.11.9">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Operations research, statistics, and simulation, delivered as tools people use.">
 
 <title>Jonathan Day</title>
 <style>
@@ -40,18 +41,19 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-f1dc749df20b1e08b3a4856047134027.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-55d0e057869ad88b5495b2227f7019fc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-f1dc749df20b1e08b3a4856047134027.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-cf5f31320af5f96e0014730db103727b.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-bbbf8b093a71fe64106ace97a701c400.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-cf5f31320af5f96e0014730db103727b.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-485a7d3485387e60bc526c86994b41ad.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-4d5887c534276bde5edf6f3ebec39b41.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-485a7d3485387e60bc526c86994b41ad.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-bfc6f50b92fc9393d91512dd38077e38.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-b767e21125e426436149948df68077aa.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-bfc6f50b92fc9393d91512dd38077e38.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -89,9 +91,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-project','listing-website','listing-format','listing-engines','listing-language','listing-title','listing-description','listing-categories','listing-order','listing-featured','listing-draft','listing-path','listing-outputHref','listing-author','listing-filename','listing-file-modified','listing-reading-time','listing-word-count',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
       
-      searchColumns: ["listing-title","listing-author","listing-image","listing-description"],
+      searchColumns: ["listing-project","listing-website","listing-format","listing-engines","listing-language","listing-title","listing-description","listing-categories","listing-order","listing-featured","listing-draft","listing-path","listing-outputHref","listing-author","listing-filename","listing-file-modified","listing-reading-time","listing-word-count"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -101,16 +103,8 @@ ul.task-list li input[type="checkbox"] {
       window['quarto-listing-loaded']();
     }
   });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
   </script>
 <style>html{ scroll-behavior: smooth; }</style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
@@ -148,7 +142,7 @@ window.Quarto = {
 <meta property="og:site_name" content="Jonathan Day">
 </head>
 
-<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed jd-home quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -171,6 +165,7 @@ window.Quarto = {
       for (let i=0; i < toggles.length; i++) {
         const toggle = toggles[i];
         if (toggle) {
+          toggle.setAttribute("aria-checked", alternate ? "true" : "false");
           if (alternate) {
             toggle.classList.add("alternate");
           } else {
@@ -200,13 +195,19 @@ window.Quarto = {
       manageTransitions('#quarto-margin-sidebar .nav-link', true);
       // Switch the toggles
       setColorSchemeToggle(alternate)
-      // Hack to workaround the fact that safari doesn't
-      // properly recolor the scrollbar when toggling (#1455)
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455).
+    // Not run on load: stylesheets are set before first paint there, and
+    // scrolling would undo the scroll to a URL fragment (#14973).
+    // The one pixel nudge keeps the reader where they were.
+    const refreshSafariScrollbar = () => {
       if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
         manageTransitions("body", false);
-        window.scrollTo(0, 1);
+        const scrollY = window.scrollY;
+        window.scrollTo(0, scrollY > 0 ? scrollY - 1 : 1);
         setTimeout(() => {
-          window.scrollTo(0, 0);
+          window.scrollTo(0, scrollY);
           manageTransitions("body", true);
         }, 40);
       }
@@ -300,6 +301,7 @@ window.Quarto = {
       // Read the current dark / light value
       let toAlternate = !hasAlternateSentinel();
       toggleColorMode(toAlternate);
+      refreshSafariScrollbar();
       setStyleSentinel(toAlternate);
       toggleGiscusIfUsed(toAlternate, darkModeDefault);
       window.dispatchEvent(new Event('resize'));
@@ -314,15 +316,14 @@ window.Quarto = {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Jonathan Day</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -349,8 +350,9 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <button type="button" role="switch" aria-checked="false" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode" aria-label="Toggle dark mode"><i class="bi"></i></button>
 </div>
+            <div id="quarto-search" class="" title="Search"></div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -360,18 +362,22 @@ window.Quarto = {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content page-columns page-full column-body" id="quarto-document-content" tabindex="-1">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Jonathan Day</h1>
-<p class="subtitle lead">Operations research, statistics, and simulation, delivered as tools people use.</p>
+</div>
+
+<div>
+  <div class="description">
+    Operations research, statistics, and simulation, delivered as tools people use.
+  </div>
 </div>
 
 
-
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta column-body">
 
     
   
@@ -383,211 +389,146 @@ window.Quarto = {
 </header>
 
 
-<div class="hero">
+<div class="jd-hero column-screen page-columns page-full">
+<div class="jd-hero-inner column-page">
+<h1 class="jd-hero-name">Jonathan Day</h1>
+<p><span class="jd-hero-lede">Operations research, statistics, and simulation, delivered as tools people use.</span></p>
 <p>U.S. Army <strong>FA49 Operations Research and Systems Analysis</strong> officer. I build models of messy operational problems and ship them as software the people making the decision use: predictive models on operational data, combat simulation, and decision-support tools.</p>
-<p><a href="./work/index.html" class="btn btn-primary">Projects</a> <a href="./about.html" class="btn btn-outline-primary">About</a></p>
-</div>
-<section id="featured-work" class="level2">
-<h2 class="anchored" data-anchor-id="featured-work">Featured work</h2>
-<div id="listing-featured" class="quarto-listing quarto-listing-container-grid">
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="RGVjaXNpb24lMjBBbmFseXRpY3MlMkNQeXRob24lMkNQeVRvcmNoJTJDSHVnZ2luZyUyMEZhY2UlMjBUcmFuc2Zvcm1lcnMlMkNNb2Rlcm5CRVJULWxhcmdl" data-listing-file-modified-sort="1790162779008" data-listing-reading-time-sort="2" data-listing-word-count-sort="274">
-<a href="./work/wuc_predict.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Validating an NLP Coding-Assist Model for KC-135 Maintenance Records
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('RGVjaXNpb24lMjBBbmFseXRpY3M='); return false;">Decision Analytics</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHlUb3JjaA=='); return false;">PyTorch</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('SHVnZ2luZyUyMEZhY2UlMjBUcmFuc2Zvcm1lcnM='); return false;">Hugging Face Transformers</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TW9kZXJuQkVSVC1sYXJnZQ=='); return false;">ModernBERT-large</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>A fine-tuned ModernBERT-large model that suggests the Work Unit Code for a KC-135 maintenance record, at 0.903 top-1 and 0.978 top-3 accuracy on held-out records.</p>
+<p><a href="./work/index.html" class="btn btn-primary">See the work</a> <a href="./about.html" class="btn btn-outline-primary">About me</a></p>
 </div>
 </div>
-</div></a>
+<section id="featured-work" class="level2 jd-section-title column-page">
+<h2 class="jd-section-title anchored" data-anchor-id="featured-work">Featured work</h2>
+<div id="listing-featured" class="quarto-listing quarto-listing-container-custom">
+<div class="list jd-index">
+
+<a class="jd-row" href="./work/wuc_predict.html" data-index="0" data-categories="RGVjaXNpb24lMjBBbmFseXRpY3M=" data-listing-file-modified-sort="1793804134365" data-listing-reading-time-sort="2" data-listing-word-count-sort="274">
+<div class="jd-row-head">
+<span class="jd-row-section">Decision Analytics</span>
+<span class="jd-row-title">Validating an NLP Coding-Assist Model for KC-135 Maintenance Records</span>
 </div>
-<div class="g-col-1" data-index="1" data-categories="U2ltdWxhdGlvbiUyMCUyNiUyME1MJTIwRW5naW5lZXJpbmclMkNQeXRob24lMkNOdW1QeSUyQ1NjaVB5JTJDc2Npa2l0LWxlYXJuJTIwKEdQKQ==" data-listing-file-modified-sort="1790162779008" data-listing-reading-time-sort="2" data-listing-word-count-sort="318">
-<a href="./work/kriegmate.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-kriegmate: Adversarial Monte Carlo COA Analysis
-</h5>
-<div class="listing-categories">
+<span class="jd-row-desc">A fine-tuned ModernBERT-large model that suggests the Work Unit Code for a KC-135 maintenance record, at 0.903 top-1 and 0.978 top-3 accuracy on held-out records.</span>
+</a>
 
-<div class="listing-category" onclick="window.quartoListingCategory('U2ltdWxhdGlvbiUyMCUyNiUyME1MJTIwRW5naW5lZXJpbmc='); return false;">Simulation &amp; ML Engineering</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TnVtUHk='); return false;">NumPy</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('U2NpUHk='); return false;">SciPy</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('c2Npa2l0LWxlYXJuJTIwKEdQKQ=='); return false;">scikit-learn (GP)</div>
-
+<a class="jd-row" href="./work/kriegmate.html" data-index="1" data-categories="U2ltdWxhdGlvbiUyMCUyNiUyME1MJTIwRW5naW5lZXJpbmc=" data-listing-file-modified-sort="1793804134365" data-listing-reading-time-sort="2" data-listing-word-count-sort="318">
+<div class="jd-row-head">
+<span class="jd-row-section">Simulation &amp; ML Engineering</span>
+<span class="jd-row-title">kriegmate: Adversarial Monte Carlo COA Analysis</span>
 </div>
-<div class="card-text listing-description delink">
-<p>A terrain-aware stochastic combat simulation, company team to brigade, wrapped in a full simulation-analysis toolkit: paired COA comparison with common random numbers…</p>
+<span class="jd-row-desc">A terrain-aware stochastic combat simulation, company team to brigade, wrapped in a full simulation-analysis toolkit: paired COA comparison with common random numbers, Kim-Nelson selection, Gaussian-process and Sobol sensitivity, and history-matching calibration.</span>
+</a>
+
+<a class="jd-row" href="./work/wh40k-sim.html" data-index="2" data-categories="U2ltdWxhdGlvbiUyMCUyNiUyME1MJTIwRW5naW5lZXJpbmc=" data-listing-file-modified-sort="1793804134365" data-listing-reading-time-sort="2" data-listing-word-count-sort="304">
+<div class="jd-row-head">
+<span class="jd-row-section">Simulation &amp; ML Engineering</span>
+<span class="jd-row-title">Rules-Engine V&amp;V and Monte Carlo Force-Pairing Analysis for a Tabletop Wargame</span>
 </div>
+<span class="jd-row-desc">A seeded, headless simulator of a full tabletop wargame ruleset, verified by conformance tests and replay determinism, used to run controlled Monte Carlo experiments on which force compositions win.</span>
+</a>
+
+<a class="jd-row" href="./work/quant_strategy_eval.html" data-index="3" data-categories="UmVzZWFyY2g=" data-listing-file-modified-sort="1793804134365" data-listing-reading-time-sort="2" data-listing-word-count-sort="304">
+<div class="jd-row-head">
+<span class="jd-row-section">Research</span>
+<span class="jd-row-title">Do Trading Signals Beat Buy-and-Hold? A Backtest and a Live Alerting Pipeline</span>
 </div>
-</div></a>
+<span class="jd-row-desc">An eight-strategy, 19-year backtest of the technical signals behind a self-built Raspberry Pi alerting pipeline. No signal beat buy-and-hold on return, and a published trend filter cut drawdown by more than half.</span>
+</a>
+
+<a class="jd-row" href="./work/cadet-performance.html" data-index="4" data-categories="UmVzZWFyY2g=" data-listing-file-modified-sort="1793804134365" data-listing-reading-time-sort="2" data-listing-word-count-sort="246">
+<div class="jd-row-head">
+<span class="jd-row-section">Research</span>
+<span class="jd-row-title">High-Dimensional Predictors of Cadet Performance</span>
 </div>
-<div class="g-col-1" data-index="2" data-categories="U2ltdWxhdGlvbiUyMCUyNiUyME1MJTIwRW5naW5lZXJpbmclMkNKYXZhU2NyaXB0JTIwKE5vZGUlMjAlM0UlM0QxOCUyQyUyMG5vJTIwZGVwZW5kZW5jaWVzKSUyQ1B5dGhvbiUyMDMlMjAoc2VydmUlMkMlMjBkYXRhJTIwYnVpbGQlMkMlMjBSTCUyMGJyaWRnZSUyMHdpdGglMjBudW1weSklMkNCcmFkbGV5LVRlcnJ5JTIwJTJGJTIwYm9vdHN0cmFwJTJDV2lsc29uJTIwaW50ZXJ2YWxz" data-listing-file-modified-sort="1790162779008" data-listing-reading-time-sort="2" data-listing-word-count-sort="304">
-<a href="./work/wh40k-sim.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Rules-Engine V&amp;V and Monte Carlo Force-Pairing Analysis for a Tabletop Wargame
-</h5>
-<div class="listing-categories">
+<span class="jd-row-desc">LASSO feature selection across 369 physiological, behavioral, and dietary measures to see which predict academic, physical, and military performance.</span>
+</a>
 
-<div class="listing-category" onclick="window.quartoListingCategory('U2ltdWxhdGlvbiUyMCUyNiUyME1MJTIwRW5naW5lZXJpbmc='); return false;">Simulation &amp; ML Engineering</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('SmF2YVNjcmlwdCUyMChOb2RlJTIwJTNFJTNEMTglMkMlMjBubyUyMGRlcGVuZGVuY2llcyk='); return false;">JavaScript (Node &gt;=18, no dependencies)</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9uJTIwMyUyMChzZXJ2ZSUyQyUyMGRhdGElMjBidWlsZCUyQyUyMFJMJTIwYnJpZGdlJTIwd2l0aCUyMG51bXB5KQ=='); return false;">Python 3 (serve, data build, RL bridge with numpy)</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('QnJhZGxleS1UZXJyeSUyMCUyRiUyMGJvb3RzdHJhcA=='); return false;">Bradley-Terry / bootstrap</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('V2lsc29uJTIwaW50ZXJ2YWxz'); return false;">Wilson intervals</div>
-
+<a class="jd-row" href="./teaching/statball.html" data-index="5" data-categories="VGVhY2hpbmc=" data-listing-file-modified-sort="1793804134365" data-listing-reading-time-sort="1" data-listing-word-count-sort="161">
+<div class="jd-row-head">
+<span class="jd-row-section">Teaching</span>
+<span class="jd-row-title">StatBall: A Stats-Powered Baseball Review Game</span>
 </div>
-<div class="card-text listing-description delink">
-<p>A seeded, headless simulator of a full tabletop wargame ruleset, verified by conformance tests and replay determinism, used to run controlled Monte Carlo experiments on…</p>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="3" data-categories="UmVzZWFyY2glMkNQeXRob24lMkNwYW5kYXMlMkNOdW1QeSUyQ1NjaVB5" data-listing-file-modified-sort="1790162779008" data-listing-reading-time-sort="2" data-listing-word-count-sort="304">
-<a href="./work/quant_strategy_eval.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Do Trading Signals Beat Buy-and-Hold? A Backtest and a Live Alerting Pipeline
-</h5>
-<div class="listing-categories">
+<span class="jd-row-desc">Classroom-tested final-exam review: teams earn a salary cap from a 30-question stats quiz, draft players in a silent auction, and play a 2d6 dice-baseball tournament.</span>
+</a>
 
-<div class="listing-category" onclick="window.quartoListingCategory('UmVzZWFyY2g='); return false;">Research</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('cGFuZGFz'); return false;">pandas</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TnVtUHk='); return false;">NumPy</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('U2NpUHk='); return false;">SciPy</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>An eight-strategy, 19-year backtest of the technical signals behind a self-built Raspberry Pi alerting pipeline. No signal beat buy-and-hold on return, and a published trend…</p>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="4" data-categories="UmVzZWFyY2glMkNSJTJDZ2xtbmV0JTJDdGlkeXZlcnNl" data-listing-file-modified-sort="1790162779008" data-listing-reading-time-sort="2" data-listing-word-count-sort="246">
-<a href="./work/cadet-performance.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-High-Dimensional Predictors of Cadet Performance
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UmVzZWFyY2g='); return false;">Research</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z2xtbmV0'); return false;">glmnet</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('dGlkeXZlcnNl'); return false;">tidyverse</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>LASSO feature selection across 369 physiological, behavioral, and dietary measures to see which predict academic, physical, and military performance.</p>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="5" data-categories="VGVhY2hpbmclMkNQeXRob24lMkNTdHJlYW1saXQlMkNwYW5kYXMlMkNnc3ByZWFk" data-listing-file-modified-sort="1790162779008" data-listing-reading-time-sort="1" data-listing-word-count-sort="161">
-<a href="./teaching/statball.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-StatBall: A Stats-Powered Baseball Review Game
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('VGVhY2hpbmc='); return false;">Teaching</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('U3RyZWFtbGl0'); return false;">Streamlit</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('cGFuZGFz'); return false;">pandas</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z3NwcmVhZA=='); return false;">gspread</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Classroom-tested final-exam review: teams earn a salary cap from a 30-question stats quiz, draft players in a silent auction, and play a 2d6 dice-baseball tournament.</p>
-</div>
-</div>
-</div></a>
-</div>
 </div>
 <div class="listing-no-matching d-none">No matching items</div>
 </div>
+<p><a href="./work/index.html" class="jd-more">All projects</a></p>
 </section>
-<section id="areas" class="level2">
-<h2 class="anchored" data-anchor-id="areas">Areas</h2>
-<div class="grid">
-<section id="decision-analytics" class="level3 g-col-12 g-col-md-6 g-col-lg-3">
+<section id="areas" class="level2 jd-section-title column-page">
+<h2 class="jd-section-title anchored" data-anchor-id="areas">Areas</h2>
+<div class="jd-areas">
+<section id="decision-analytics" class="level3 jd-area">
 <h3 class="anchored" data-anchor-id="decision-analytics">Decision analytics</h3>
 <p>Predictive models on operational data, built for the people who act on them.</p>
 </section>
-<section id="simulation-wargaming" class="level3 g-col-12 g-col-md-6 g-col-lg-3">
+<section id="simulation-wargaming" class="level3 jd-area">
 <h3 class="anchored" data-anchor-id="simulation-wargaming">Simulation &amp; wargaming</h3>
 <p>Rules engines, Monte Carlo experiments, and reinforcement learning for stress-testing.</p>
 </section>
-<section id="research" class="level3 g-col-12 g-col-md-6 g-col-lg-3">
+<section id="research" class="level3 jd-area">
 <h3 class="anchored" data-anchor-id="research">Research</h3>
 <p>Text mining, high-dimensional regression, and image quantification.</p>
 </section>
-<section id="teaching" class="level3 g-col-12 g-col-md-6 g-col-lg-3">
+<section id="teaching" class="level3 jd-area">
 <h3 class="anchored" data-anchor-id="teaching">Teaching</h3>
 <p>Probability and statistics at West Point, and workshops on building analytic tools.</p>
 </section>
 </div>
-
-
-
 </section>
+
+
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-      const a = window.document.createElement('a');
-      a.classList.add('top-right');
-      a.classList.add('quarto-color-scheme-toggle');
-      a.href = "";
-      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const toggle = window.document.createElement('button');
+      toggle.type = "button";
+      toggle.setAttribute("role", "switch");
+      toggle.setAttribute("aria-checked", "false");
+      toggle.classList.add('top-right');
+      toggle.classList.add('quarto-color-scheme-toggle');
+      toggle.setAttribute("aria-label", "Toggle dark mode");
+      toggle.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
       const i = window.document.createElement("i");
       i.classList.add('bi');
-      a.appendChild(i);
-      window.document.body.appendChild(a);
+      toggle.appendChild(i);
+      // Put the toggle in a landmark of its own, so that landmark navigation
+      // can reach it.
+      //
+      // The container is always a fresh direct child of body, and the toggle is
+      // never moved into page furniture that the theme or the author controls.
+      // The toggle is positioned against the page, so any ancestor that
+      // establishes a containing block captures it: a positioned element or a
+      // grid for position: absolute, and transform, filter, will-change or
+      // contain for position: fixed. A direct child of body has none of these
+      // to inherit, and the shift when one appears is silent and visual.
+      //
+      // ARIA says a document should have at most one banner, and axe reports a
+      // duplicate whether or not the banners carry distinct labels. So use a
+      // header when the page has no banner yet, and a named region otherwise.
+      //
+      // A header is a banner wherever it sits, unless it is inside sectioning
+      // content, so this cannot just look at the children of body: a custom
+      // page layout wraps the title block header in a plain div. An explicit
+      // role="banner" always counts.
+      const sectioning = 'article, aside, main, nav, section, [role="article"], [role="complementary"], [role="main"], [role="navigation"], [role="region"]';
+      const hasBanner = Array.from(
+        window.document.querySelectorAll('header:not([role]), [role="banner"]')
+      ).some(function(el) {
+        return el.hasAttribute("role") || el.closest(sectioning) === null;
+      });
+      const container = window.document.createElement(hasBanner ? "div" : "header");
+      if (hasBanner) {
+        container.setAttribute("role", "region");
+        container.setAttribute("aria-label", "Toggle dark mode");
+      }
+      container.classList.add('quarto-color-scheme-toggle-container');
+      container.appendChild(toggle);
+      window.document.body.appendChild(container);
     }
     setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
@@ -661,12 +602,31 @@ StatBall: A Stats-Powered Baseball Review Game
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/lonespear\.github\.io");
+        var filterRegex = new RegExp("https:\/\/lonespear\.github\.io\/portfolio\/");
+      const newWindowLabel = "(opens in a new tab)";
+      const newWindowNoteId = "quarto-ext-newwindow-label";
+      // Links reference one hidden label through aria-describedby, so the
+      // announcement never changes their accessible name.
+      var describeNewWindow = (link) => {
+        if (!window.document.getElementById(newWindowNoteId)) {
+          var newWindowNote = window.document.createElement("span");
+          newWindowNote.id = newWindowNoteId;
+          newWindowNote.hidden = true;
+          newWindowNote.textContent = newWindowLabel;
+          window.document.body.appendChild(newWindowNote);
+        }
+        var describedBy = (link.getAttribute("aria-describedby") || "").split(/\s+/).filter(Boolean);
+        if (!describedBy.includes(newWindowNoteId)) {
+          describedBy.push(newWindowNoteId);
+          link.setAttribute("aria-describedby", describedBy.join(" "));
+        }
+      }
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
       // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
       for (var i=0; i<links.length; i++) {
         const link = links[i];
         if (!isInternal(link.href)) {
@@ -680,8 +640,70 @@ StatBall: A Stats-Powered Baseball Review Game
             if (link.getAttribute("rel") === null) {
               link.setAttribute("rel", "noopener");
             }
+            describeNewWindow(link);
+          if (!link.classList.contains('no-external-icon')) {
+          }
         }
       }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
       const config = {
         allowHTML: true,
@@ -695,6 +717,7 @@ StatBall: A Stats-Powered Baseball Review Game
         interactiveBorder: 10,
         theme: 'quarto',
         placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
       };
       if (contentFn) {
         config.content = contentFn;
@@ -857,44 +880,54 @@ StatBall: A Stats-Powered Baseball Review Game
           const lineIds = lines.map((line) => {
             return targetCell + "-" + line;
           })
-          let top = null;
-          let height = null;
-          let parent = null;
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
           if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
             }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
             }
+            placeBand(gutterDiv, el, lastEl);
             selectedAnnoteEl = annoteEl;
           }
         };
@@ -992,6 +1025,9 @@ StatBall: A Stats-Powered Baseball Review Game
       }
     }
   });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
   </script>
 </div> <!-- /content -->
 <footer class="footer">

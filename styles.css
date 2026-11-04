@@ -1,37 +1,229 @@
-/* Layout accents on top of the flatly/darkly themes (colors live in styles/*.scss). */
+/* Layout and components shared by the light and dark themes.
+   Colors come from the --jd-* tokens defined in styles/light.scss and styles/dark.scss. */
 
-.hero {
-  max-width: 46rem;
-  padding: 1.5rem 0 2rem;
+@font-face {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(assets/fonts/public-sans-latin-wght-normal.woff2) format("woff2-variations");
+}
+@font-face {
+  font-family: "Public Sans";
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(assets/fonts/public-sans-latin-wght-italic.woff2) format("woff2-variations");
+}
+
+body { font-variant-numeric: tabular-nums; }
+
+/* ---------- Navbar ---------- */
+.navbar {
+  border-bottom: 1px solid var(--jd-rule);
+  box-shadow: none;
+}
+.navbar-brand .navbar-title { font-weight: 700; letter-spacing: -0.01em; }
+.navbar .nav-link { color: var(--jd-muted); }
+.navbar .nav-link.active,
+.navbar .nav-link:hover { color: var(--jd-field); }
+
+/* ---------- Headings ---------- */
+main h2, main .h2 {
+  border-bottom: 0;
+  padding-bottom: 0;
+  margin-top: 2.75rem;
+  font-size: 1.55rem;
+  letter-spacing: -0.01em;
+}
+main h3 { font-size: 1.2rem; }
+
+/* ---------- Home hero ---------- */
+.jd-home #title-block-header { display: none; }
+.jd-hero {
+  position: relative;
+  overflow: hidden;
+  margin-top: -1rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid var(--jd-rule);
+}
+.jd-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--jd-contour);
+  -webkit-mask-image: linear-gradient(90deg, transparent 38%, #000 72%), url(assets/contours.svg);
+  mask-image: linear-gradient(90deg, transparent 38%, #000 72%), url(assets/contours.svg);
+  -webkit-mask-size: 100% 100%, cover;
+  mask-size: 100% 100%, cover;
+  -webkit-mask-position: 0 0, right center;
+  mask-position: 0 0, right center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+  pointer-events: none;
+}
+.jd-hero-inner {
+  position: relative;
+  padding: 5.5rem 0 5rem;
+}
+.jd-hero-inner > p { max-width: 38rem; color: var(--jd-muted); }
+.jd-hero-inner > p strong { color: var(--jd-ink); font-weight: 600; }
+.jd-hero-name {
+  font-size: clamp(3rem, 8vw, 5.75rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+  margin: 0 0 1.5rem;
+  color: var(--jd-ink);
+}
+p:has(> .jd-hero-lede) { margin-bottom: 1.25rem; }
+.jd-hero-lede {
+  display: block;
+  max-width: 32rem;
+  font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--jd-ink);
+  text-wrap: balance;
+}
+.jd-hero .btn { margin: 1rem 0.6rem 0 0; }
+
+.btn { font-weight: 600; padding: 0.5rem 1.1rem; }
+.btn-sm { padding: 0.3rem 0.8rem; }
+
+/* ---------- Home sections ---------- */
+main h2.jd-section-title { margin-top: 3.5rem; margin-bottom: 0.75rem; }
+.jd-more { display: inline-block; margin-top: 1.25rem; font-weight: 600; }
+
+.jd-areas {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2rem;
+  margin-top: 1.25rem;
+  margin-bottom: 2rem;
+}
+.jd-area { border-top: 2px solid var(--jd-field); padding-top: 0.9rem; }
+.jd-area h3 { font-size: 1.05rem; margin: 0 0 0.4rem; }
+.jd-area p { color: var(--jd-muted); font-size: 0.95rem; margin: 0; }
+
+/* ---------- Project index (home, Work, Teaching) ---------- */
+.jd-index { border-top: 2px solid var(--jd-ink); }
+.jd-row {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 2.5rem;
+  padding: 1.6rem 0;
+  border-bottom: 1px solid var(--jd-rule);
+  color: inherit;
+  text-decoration: none;
+}
+.jd-row:hover { color: inherit; }
+.jd-row:hover .jd-row-title { color: var(--jd-grid); text-decoration: underline; text-underline-offset: 3px; }
+.jd-row:focus-visible { outline: 2px solid var(--jd-grid); outline-offset: 2px; }
+.jd-row-section {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--jd-field);
+  margin-bottom: 0.35rem;
+}
+.jd-row-title {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--jd-ink);
+  text-wrap: balance;
+}
+.jd-row-desc {
+  display: block;
+  padding-top: 1.75rem;
+  color: var(--jd-muted);
+  max-width: 62ch;
+}
+
+/* Category filter on the Work page */
+.quarto-listing-category-title { font-weight: 700; font-size: 0.95rem; }
+.quarto-listing-category .category { color: var(--jd-muted); font-size: 0.95rem; }
+.quarto-listing-category .category.active { color: var(--jd-field); font-weight: 600; }
+
+/* ---------- Project pages ---------- */
+.quarto-title-block .quarto-title h1.title {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+.quarto-title .quarto-categories { margin-top: 0.75rem; }
+.quarto-title-block .quarto-title .quarto-categories .quarto-category {
+  border: 0;
+  padding: 0;
+  text-transform: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--jd-field);
+  opacity: 1;
+}
+.quarto-title-block .description p {
+  font-size: 1.15rem;
+  line-height: 1.5;
+  color: var(--jd-muted);
+  max-width: 62ch;
+}
+.quarto-title-block .subtitle {
   font-size: 1.2rem;
-  line-height: 1.6;
+  color: var(--jd-muted);
+  max-width: 46rem;
 }
-.hero .btn { margin: 0.75rem 0.5rem 0 0; }
 
-.quarto-title-block .subtitle { font-size: 1.15rem; max-width: 46rem; }
-
-/* Listing cards */
-.quarto-grid-item.card {
-  border-radius: 0.5rem;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+/* The results are the evidence; set them apart from the narrative. */
+section#results {
+  background: var(--jd-panel);
+  border-left: 3px solid var(--jd-field);
+  padding: 1.25rem 1.5rem 0.5rem;
+  margin: 2rem 0 1rem;
 }
-.quarto-grid-item.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+section#results > h2 { margin-top: 0; font-size: 1.15rem; }
+section#results li { margin-bottom: 0.6rem; }
+
+.callout.callout-style-simple {
+  border-left-color: var(--jd-grid);
+  background: transparent;
 }
-.quarto-grid-item .listing-title { font-weight: 700; }
 
-/* Area blurbs on the home page */
-.grid h3 { font-size: 1.1rem; margin-top: 0.5rem; }
-
-/* Results tables on project pages */
 table { font-size: 0.95rem; }
 
-@media (max-width: 576px) {
-  .hero { font-size: 1.05rem; }
+.fine {
+  color: var(--jd-muted);
+  font-size: 0.85rem;
 }
 
-.fine {
-  color: var(--bs-secondary-color, #6c757d);
-  font-size: .85rem;
+/* ---------- Footer ---------- */
+.nav-footer {
+  border-top: 1px solid var(--jd-rule);
+  font-size: 0.85rem;
+  color: var(--jd-muted);
+  padding: 1.5rem 1.5rem 2rem;
+  align-items: flex-start;
+}
+.nav-footer-left { max-width: 40rem; text-align: left; }
+
+/* ---------- Small screens ---------- */
+@media (max-width: 991.98px) {
+  .jd-areas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 767.98px) {
+  .jd-hero-inner { padding: 3.5rem 0 3rem; }
+  .jd-hero::before { opacity: 0.35; }
+  .jd-row { grid-template-columns: 1fr; gap: 0.5rem; padding: 1.25rem 0; }
+  .jd-row-desc { padding-top: 0; }
+  .jd-areas { grid-template-columns: 1fr; gap: 1.5rem; }
+  section#results { padding: 1rem 1rem 0.25rem; }
+  section#results ul { padding-left: 1.1rem; }
+  .nav-footer { flex-direction: column; gap: 0.75rem; }
 }
