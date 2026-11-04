@@ -1,7 +1,7 @@
 ---
 title: "kriegmate: Adversarial Monte Carlo COA Analysis"
 description: "A terrain-aware stochastic combat simulation, company team to brigade, wrapped in a full simulation-analysis toolkit: paired COA comparison with common random numbers, Kim-Nelson selection, Gaussian-process and Sobol sensitivity, and history-matching calibration."
-categories: ["Simulation & ML Engineering", "Python", "NumPy", "SciPy", "scikit-learn (GP)"]
+categories: ["Simulation & ML Engineering"]
 order: 2
 featured: true
 draft: false

@@ -1,7 +1,7 @@
 ---
 title: "Threnody (Pre-release Mobile Strategy Game)"
 description: "Solo-built Phaser 3 / Capacitor Android tactics game with Firebase async multiplayer, in pre-release for Google Play (internal testing)."
-categories: ["Product Engineering", "JavaScript", "Phaser 3", "Vite", "Capacitor 8"]
+categories: ["Product Engineering"]
 order: 100
 featured: false
 draft: true

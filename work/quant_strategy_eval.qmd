@@ -1,7 +1,7 @@
 ---
 title: "Do Trading Signals Beat Buy-and-Hold? A Backtest and a Live Alerting Pipeline"
 description: "An eight-strategy, 19-year backtest of the technical signals behind a self-built Raspberry Pi alerting pipeline. No signal beat buy-and-hold on return, and a published trend filter cut drawdown by more than half."
-categories: ["Research", "Python", "pandas", "NumPy", "SciPy"]
+categories: ["Research"]
 order: 4
 featured: true
 draft: false

@@ -1,6 +1,7 @@
 ---
 title: "Jonathan Day"
-subtitle: "Operations research, statistics, and simulation, delivered as tools people use."
+body-classes: jd-home
+description: "Operations research, statistics, and simulation, delivered as tools people use."
 page-layout: full
 toc: false
 listing:
@@ -10,50 +11,61 @@ listing:
     - teaching/*.qmd
   include:
     featured: true
-  type: grid
-  grid-columns: 3
+  template: _listing-index.ejs
   sort: ["order"]
-  fields: [title, description, categories]
-  field-display-names:
-    description: ""
+  max-description-length: 400
 ---
 
-::: {.hero}
+::: {.jd-hero .column-screen .page-columns .page-full}
+::: {.jd-hero-inner .column-page}
+```{=html}
+<h1 class="jd-hero-name">Jonathan Day</h1>
+```
+
+[Operations research, statistics, and simulation, delivered as tools people use.]{.jd-hero-lede}
+
 U.S. Army **FA49 Operations Research and Systems Analysis** officer. I build models of
 messy operational problems and ship them as software the people making the decision use:
 predictive models on operational data, combat simulation, and decision-support tools.
 
-[Projects](work/index.qmd){.btn .btn-primary}
-[About](about.qmd){.btn .btn-outline-primary}
+[See the work](work/index.qmd){.btn .btn-primary}
+[About me](about.qmd){.btn .btn-outline-primary}
+:::
 :::
 
-## Featured work
+:::: {.column-page}
+## Featured work {.jd-section-title}
 
 :::{#featured}
 :::
 
-## Areas
+[All projects](work/index.qmd){.jd-more}
+::::
 
-::::: {.grid}
+:::::: {.column-page}
+## Areas {.jd-section-title}
 
-:::: {.g-col-12 .g-col-md-6 .g-col-lg-3}
+::::: {.jd-areas}
+
+:::: {.jd-area}
 ### Decision analytics
 Predictive models on operational data, built for the people who act on them.
 ::::
 
-:::: {.g-col-12 .g-col-md-6 .g-col-lg-3}
+:::: {.jd-area}
 ### Simulation & wargaming
 Rules engines, Monte Carlo experiments, and reinforcement learning for stress-testing.
 ::::
 
-:::: {.g-col-12 .g-col-md-6 .g-col-lg-3}
+:::: {.jd-area}
 ### Research
 Text mining, high-dimensional regression, and image quantification.
 ::::
 
-:::: {.g-col-12 .g-col-md-6 .g-col-lg-3}
+:::: {.jd-area}
 ### Teaching
 Probability and statistics at West Point, and workshops on building analytic tools.
 ::::
 
 :::::
+::::::

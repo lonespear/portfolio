@@ -1,7 +1,7 @@
 ---
 title: "Open-Source Infrastructure Query Explorer (OpenStreetMap / Overpass) - prototype"
 description: "A Streamlit and folium front end for OpenStreetMap: basemaps, reverse geocoding, and Overpass lookups of facilities around a point. This is a prototype toward an infrastructure access analysis tool."
-categories: ["Product Engineering", "Python", "Streamlit", "folium", "streamlit-folium"]
+categories: ["Product Engineering"]
 order: 100
 featured: false
 draft: true

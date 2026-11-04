@@ -1,7 +1,7 @@
 ---
 title: "Multi-Source Conflict Dashboard: ACLED Event Geography, WVS Regional Attitudes, and Partner-Support Data (Russo-Ukrainian War)"
 description: "An interactive Streamlit dashboard that combines three open sources: ACLED fatal-event geography (2018 to March 2024), World Values Survey regional religion and language data, and Kiel Ukraine Support Tracker donor commitments."
-categories: ["Product Engineering", "Python", "Streamlit", "Plotly", "pandas"]
+categories: ["Product Engineering"]
 order: 100
 featured: false
 draft: true

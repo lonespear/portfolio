@@ -1,5 +1,7 @@
 project:
   type: website
+  resources:
+    - assets/
   render:
     - index.qmd
     - about.qmd
@@ -11,8 +13,8 @@ project:
 website:
   title: "Jonathan Day"
   description: "Operations research, statistics, and simulation. Portfolio of Jonathan Day."
-  site-url: https://lonespear.github.io
-  repo-url: https://github.com/lonespear/lonespear.github.io
+  site-url: https://lonespear.github.io/portfolio/
+  repo-url: https://github.com/lonespear/portfolio
   open-graph: true
   page-navigation: true
   navbar:
@@ -40,10 +42,6 @@ format:
       light: [flatly, styles/light.scss]
       dark: [darkly, styles/dark.scss]
     css: styles.css
-    include-in-header:
-      text: |
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
     toc: true
     toc-depth: 3
     fig-align: center

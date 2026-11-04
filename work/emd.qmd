@@ -1,7 +1,7 @@
 ---
 title: "EMD Manning: Optimal Soldier-to-Billet Sourcing (Synthetic Data)"
 description: "A Streamlit decision-support prototype that sources soldiers to exercise billets by solving a linear assignment (unit-mass Earth Mover's Distance) problem that trades TDY cost against qualification, readiness, and cohesion penalties, demonstrated on synthetic data."
-categories: ["Simulation & ML Engineering", "Python", "SciPy (linear_sum_assignment)", "pandas", "NumPy"]
+categories: ["Simulation & ML Engineering"]
 order: 100
 featured: false
 draft: true

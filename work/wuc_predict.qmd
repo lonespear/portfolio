@@ -1,7 +1,7 @@
 ---
 title: "Validating an NLP Coding-Assist Model for KC-135 Maintenance Records"
 description: "A fine-tuned ModernBERT-large model that suggests the Work Unit Code for a KC-135 maintenance record, at 0.903 top-1 and 0.978 top-3 accuracy on held-out records."
-categories: ["Decision Analytics", "Python", "PyTorch", "Hugging Face Transformers", "ModernBERT-large"]
+categories: ["Decision Analytics"]
 order: 1
 featured: true
 draft: false

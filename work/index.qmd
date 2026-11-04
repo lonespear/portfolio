@@ -4,13 +4,10 @@ subtitle: "Analysis, research, simulation, and the software that delivers them."
 listing:
   id: work
   contents: "*.qmd"
-  type: grid
-  grid-columns: 3
+  template: ../_listing-index.ejs
   sort: ["order", "title"]
   categories: true
-  fields: [title, description, categories]
-  field-display-names:
-    description: ""
+  max-description-length: 400
 page-layout: full
 toc: false
 ---

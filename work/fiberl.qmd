@@ -1,7 +1,7 @@
 ---
 title: "fiberL: Automated Fiber Length and Alignment Measurement from SEM Images"
 description: "A Streamlit tool that traces every fiber in an SEM image of a nanofiber gel and reports length and orientation distributions. It is meant to replace slow, subjective hand-tracing."
-categories: ["Research", "Python", "OpenCV", "scikit-image", "NumPy"]
+categories: ["Research"]
 order: 100
 featured: false
 draft: true

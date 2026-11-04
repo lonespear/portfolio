@@ -1,7 +1,7 @@
 ---
 title: "Can a Self-Play RL Agent Serve as a Balance Oracle? Automated Stress-Testing of a Wargame Rule Set"
 description: "Ported a shipped wargame's rules engine to Python and trained PPO self-play agents to flag unbalanced units, then tested whether the agent's win rates can be trusted as a measure of balance."
-categories: ["Simulation & ML Engineering", "Python", "PyTorch", "PPO", "action-masked actor-critic"]
+categories: ["Simulation & ML Engineering"]
 order: 100
 featured: false
 draft: true

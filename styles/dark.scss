@@ -1,13 +1,38 @@
 /*-- scss:defaults --*/
-$font-family-sans-serif: "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
-$font-family-monospace: "JetBrains Mono", SFMono-Regular, Menlo, Consolas, monospace;
-$primary: #8fbf9f;
-$secondary: #a3a89f;
+// Night version of the map palette. Shared layout lives in styles.css.
+$font-family-sans-serif: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+$font-family-monospace: SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+$font-size-root: 17px;
+$line-height-base: 1.6;
+$headings-font-weight: 700;
+$headings-line-height: 1.2;
+
+$primary: #9cc4a8;
+$secondary: #9aa59c;
 $success: #7cc08d;
 $warning: #e0b050;
-$body-bg: #151a17;
-$body-color: #e4e7e1;
+$body-bg: #121915;
+$body-color: #e3e8e2;
 $link-color: #8cb8e0;
-$navbar-bg: #0f1411;
-$navbar-fg: #e4e7e1;
+$border-color: #2b3730;
+$border-radius: 3px;
+$btn-border-radius: 3px;
 
+$navbar-bg: #121915;
+$navbar-fg: #e3e8e2;
+$navbar-hl: #9cc4a8;
+$footer-bg: #121915;
+$footer-fg: #9aa59c;
+
+/*-- scss:rules --*/
+:root {
+  --jd-paper: #121915;
+  --jd-ink: #e3e8e2;
+  --jd-muted: #9aa59c;
+  --jd-field: #9cc4a8;
+  --jd-grid: #8cb8e0;
+  --jd-rule: #2b3730;
+  --jd-contour: #3e5a48;
+  --jd-panel: #18221c;
+}
+.btn-primary { color: #121915; }

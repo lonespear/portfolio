@@ -1,14 +1,37 @@
 /*-- scss:defaults --*/
-$font-family-sans-serif: "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
-$font-family-monospace: "JetBrains Mono", SFMono-Regular, Menlo, Consolas, monospace;
+// Map paper, field green, and map-grid blue. Shared layout lives in styles.css.
+$font-family-sans-serif: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+$font-family-monospace: SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+$font-size-root: 17px;
+$line-height-base: 1.6;
+$headings-font-weight: 700;
+$headings-line-height: 1.2;
+
 $primary: #2f4a3a;        // field green
-$secondary: #6b6f68;
+$secondary: #5d665f;
 $success: #3f7d4e;
 $warning: #b7791f;
-$body-bg: #fbfbf8;
-$body-color: #1f2421;
-$link-color: #2f5d8a;
-$navbar-bg: #1f2a24;
-$navbar-fg: #e9ece6;
-$footer-bg: #f1f1ec;
+$body-bg: #f4f6f2;        // map paper
+$body-color: #1b2620;
+$link-color: #2c5a86;     // map-grid blue
+$border-color: #d5dbd3;
+$border-radius: 3px;
+$btn-border-radius: 3px;
 
+$navbar-bg: #f4f6f2;
+$navbar-fg: #1b2620;
+$navbar-hl: #2f4a3a;
+$footer-bg: #f4f6f2;
+$footer-fg: #5d665f;
+
+/*-- scss:rules --*/
+:root {
+  --jd-paper: #f4f6f2;
+  --jd-ink: #1b2620;
+  --jd-muted: #5d665f;
+  --jd-field: #2f4a3a;
+  --jd-grid: #2c5a86;
+  --jd-rule: #d5dbd3;
+  --jd-contour: #7f9a88;
+  --jd-panel: #e8ede6;
+}

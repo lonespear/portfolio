@@ -1,7 +1,7 @@
 ---
 title: "High-Dimensional Predictors of Cadet Performance"
 description: "LASSO feature selection across 369 physiological, behavioral, and dietary measures to see which predict academic, physical, and military performance."
-categories: ["Research", "R", "glmnet", "tidyverse"]
+categories: ["Research"]
 order: 5
 featured: true
 draft: false

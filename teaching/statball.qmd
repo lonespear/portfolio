@@ -1,7 +1,7 @@
 ---
 title: "StatBall: A Stats-Powered Baseball Review Game"
 description: "Classroom-tested final-exam review: teams earn a salary cap from a 30-question stats quiz, draft players in a silent auction, and play a 2d6 dice-baseball tournament."
-categories: ["Teaching", "Python", "Streamlit", "pandas", "gspread"]
+categories: ["Teaching"]
 order: 6
 featured: true
 draft: false

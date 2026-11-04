@@ -4,12 +4,9 @@ subtitle: "Making quantitative reasoning usable by people who have to act on it.
 listing:
   id: teaching
   contents: "*.qmd"
-  type: grid
-  grid-columns: 2
+  template: ../_listing-index.ejs
   sort: ["order", "title"]
-  fields: [title, description]
-  field-display-names:
-    description: ""
+  max-description-length: 400
 page-layout: full
 toc: false
 ---

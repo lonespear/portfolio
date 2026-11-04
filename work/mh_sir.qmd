@@ -1,7 +1,7 @@
 ---
 title: "Biomarkers and Depression Severity in NHANES: Sliced Inverse Regression vs. LASSO vs. XGBoost"
 description: "Scores PHQ-9 depression severity with a Bayesian ordinal IRT model, then compares supervised dimension reduction (SIR), PCA, LASSO, and XGBoost/SHAP for ranking ~150 NHANES clinical, biomarker, and demographic predictors."
-categories: ["Research", "R", "brms", "cmdstanr", "mclust"]
+categories: ["Research"]
 order: 100
 featured: false
 draft: true

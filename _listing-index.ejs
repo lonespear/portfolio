@@ -1,0 +1,13 @@
+```{=html}
+<div class="list jd-index">
+<% for (const item of items) { %>
+<a class="jd-row" href="<%- item.path %>" <%= metadataAttrs(item) %>>
+<div class="jd-row-head">
+<% if (item.categories && item.categories.length) { %><span class="jd-row-section"><%= item.categories[0] %></span><% } %>
+<span class="jd-row-title"><%= item.title %></span>
+</div>
+<span class="jd-row-desc"><%= item.description %></span>
+</a>
+<% } %>
+</div>
+```

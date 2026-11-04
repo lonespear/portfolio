@@ -45,7 +45,8 @@ def page(card):
         "---",
         f"title: {q(card['display_title'])}",
         f"description: {q(card.get('one_liner'))}",
-        f"categories: {json.dumps([SECTION_LABEL.get(section, section)] + card.get('tech', [])[:4], ensure_ascii=False)}",
+        # One section label per card; the full tech list lives in the page's Tools section.
+        f"categories: {json.dumps([SECTION_LABEL.get(section, section)], ensure_ascii=False)}",
         f"order: {order.index(slug) + 1 if slug in order else 100}",
         f"featured: {'true' if slug in order else 'false'}",
         f"draft: {'true' if draft else 'false'}",
